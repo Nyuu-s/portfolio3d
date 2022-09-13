@@ -10,7 +10,7 @@ import { TextureLoader } from 'three';
 import {OrbitControls, Stars} from '@react-three/drei'
 
 
-function Earth(props) {
+function Earth() {
 
   const [colorMap, nightMap, normalMap, specularMap, cloudsMap] = useLoader(
     TextureLoader,
@@ -60,14 +60,14 @@ function Earth(props) {
           metalness={0.4}
           roughness={0.5}
         />
-        <OrbitControls
+        {/* <OrbitControls
           enableZoom={true}
           enablePan={true}
           enableRotate={true}
           zoomSpeed={0.6}
           panSpeed={0.5}
           rotateSpeed={0.4}
-        />
+        /> */}
       </mesh>
     </>
   );

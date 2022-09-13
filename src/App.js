@@ -17,7 +17,7 @@ function App() {
       <TopSection />
       <Canvas >
         <Suspense fallback={null}>
-          <Earth props={{cloudAnime: 1}} />
+          {/* <Earth /> */}
         </Suspense>
       </Canvas>
      </CanvasContainer>
