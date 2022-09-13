@@ -60,14 +60,14 @@ function Earth() {
           metalness={0.4}
           roughness={0.5}
         />
-        {/* <OrbitControls
+         <OrbitControls
           enableZoom={true}
           enablePan={true}
           enableRotate={true}
           zoomSpeed={0.6}
           panSpeed={0.5}
           rotateSpeed={0.4}
-        /> */}
+        /> 
       </mesh>
     </>
   );

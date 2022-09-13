@@ -3,7 +3,7 @@ import './App.css';
 import styled from 'styled-components'
 import {Canvas} from '@react-three/fiber'
 import { Suspense } from 'react';
-import { Earth, TopSection } from './Components/'
+import { Earth, Sphere, TopSection } from './Components/'
 
 const CanvasContainer = styled.div`
   width: 100%;
@@ -12,12 +12,15 @@ const CanvasContainer = styled.div`
 `;
 
 function App() {
+
+
   return (
     <CanvasContainer> 
       <TopSection />
-      <Canvas >
+      <Canvas camera={{position: [0,0,10]}}  gl={{antialias: true, pixelRatio: devicePixelRatio}} >
         <Suspense fallback={null}>
           {/* <Earth /> */}
+          <Sphere />
         </Suspense>
       </Canvas>
      </CanvasContainer>
