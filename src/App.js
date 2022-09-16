@@ -23,10 +23,11 @@ function App() {
     <CanvasContainer onMouseMove={(e) => {
       mouse.x = (e.clientX / window.innerWidth) * 2 - 1
       mouse.y = -(e.clientY / window.innerHeight) * 2 + 1
-     
+      
     }} 
     > 
-      <TopSection />
+    <TopSection />
+    
       <Canvas 
       camera={{position: [0,0,10]}}  gl={{antialias: true, pixelRatio: devicePixelRatio}} >
         <Suspense fallback={null}>
