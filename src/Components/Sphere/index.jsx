@@ -1,56 +1,67 @@
 import React, {useRef} from 'react'
 import * as THREE from 'three'
+import gsap from 'gsap'
 import vertexShader from '../../shaders/vertex.js'
 import atmosVertexShader from '../../shaders/atmosVertex'
 import fragmentShader from '../../shaders/fragment.js'
 import atmosFragmentShader from '../../shaders/atmosFragment'
 import EarthTexture from '../../assets/textures/8k_earth_daymap.jpg'
 import EarthCloudsMap from "../../assets/textures/8k_earth_clouds.jpg";
+import EarthNightMap from "../../assets/textures/8k_earth_nightmap.jpg";
 
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
-import { Blending, TextureLoader } from 'three'
+import { Blending, Group, TextureLoader } from 'three'
 import {OrbitControls} from '@react-three/drei'
 
 
 
 
-
-function Sphere() {
+function Sphere({NormalizedMouse}) {
     var camPos
+    var startAngle = -0.471239
     const earth = useRef()
     const atmos = useRef()
     const cloudsRef = useRef()
-    useThree(({camera}) => {
-      camPos = camera.position
-    })
-    useFrame(({ clock }) => {
-      const elapsedTime = clock.getElapsedTime();
-  
-       earth.current.rotation.y = elapsedTime / 20;
-       cloudsRef.current.rotation.y = elapsedTime / 40;
 
+    
+   
+    useFrame(({ clock, scene }) => {
+      const elapsedTime = clock.getElapsedTime();
+      var groupRotation = earth.current.parent.rotation
+      // scene.children[0].rotateY
+     
+      //  cloudsRef.current.rotation.y = -elapsedTime / 20;
+      //  earth.current.rotation.y = -elapsedTime / 20;
+       earth.current.rotateY(0.0004);
+       cloudsRef.current.rotateY(0.0003);
+       gsap.to(groupRotation, {
+        x: NormalizedMouse.y * -0.5,
+        y: NormalizedMouse.x * 0.5,
+        duration: 2
+       })
       
     });
-    const [texture_earth, texture_clouds ] = useLoader(TextureLoader, [EarthTexture, EarthCloudsMap])
+    const [texture_earth, texture_clouds, texture_night ] = useLoader(TextureLoader, [EarthTexture, EarthCloudsMap, EarthNightMap])
     
 
     
   return (
     <>
         
-        <mesh ref={earth} position={[0,0,0]}>
-            <sphereGeometry args={[5, 50, 50]} />
+        <mesh ref={earth}  rotation-z={startAngle} position={[0,0,0] }>
+            <sphereGeometry args={[5, 50, 50, ]} />
             <shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader} 
               uniforms={
                     {
                         earthTexture: { value: texture_earth},
-                        
+                        earthNightTexture: { value: texture_night},
+                        cam_pos: {value: [0,0,10]}
                 
                     }
                   }
               />
         </mesh>
-        <mesh ref={cloudsRef} position={[0, 0, 0]}  >
+        <mesh ref={cloudsRef} rotation-z={startAngle} position={[0, 0, 0]}  >
       <sphereGeometry args={[5.02, 50, 50]} />
         <meshBasicMaterial
           map={texture_clouds}

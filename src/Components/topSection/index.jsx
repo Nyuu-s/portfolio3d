@@ -1,41 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
+import {Logo, NavButton} from '../../Components'
+import {GiPlanetCore as HomeIcon}  from 'react-icons/gi'
 
-const TopSectionContainer = styled.div`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   
-`
 
-const Logo = styled.h1`
-   margin-top: 50px;
-    color: #fff;
-    font-weight: 700;
-    font-size: 35px;
-
-`;
-
-const Slogan = styled.h4`
-    margin:0;
-    color: #fff;
-    font-weight: 700;
-    font-size: 20px;
-    margin-top: 10px
-
-`
-
-const TopSection = () => {
-  return (
-    <TopSectionContainer>
-        <Logo>TEST 3D</Logo>
-        <Slogan>Keep Learning</Slogan>
-    </TopSectionContainer>
+const TopSection = ({onUserClick}) => {
+  return ( 
+    <div className='fixed top-0 left-0 h-10 z-10 mt-2  w-full text-white text-2xl flex'>
+      <div className='ml-2 '>
+         <Logo icon={<HomeIcon size={75}/>}/> 
+      </div>
+      <div className=' w-full flex'>
+        <NavButton title={'Projects'}/> 
+        <NavButton title={'Contact'}/>
+        <NavButton title={'About me'}/>
+      </div>
+    </div>
   )
 }
 
