@@ -1,15 +1,17 @@
 //-------------------- 3D SCENE ------------------------------
-export { default as Earth } from './Earth/index';
-export { default as Sphere } from './Sphere/index';
+export { default as Earth } from        './Earth/index';
+export { default as Sphere } from       './Sphere/index';
+export { default as Room } from         './Room/index';
+export { default as Environement } from './Environement/index';
 
 // ----------- TOP SECTION ---------------------------------
-export { default as TopSection } from './topSection/index';
-export { default as Logo } from './topSection/Logo';
-export { default as NavButton } from './topSection/NavButton';
-export { default as NavBar } from './topSection/NavBar/index';
+export { default as TopSection } from   './topSection/index';
+export { default as Logo } from         './topSection/Logo';
+export { default as NavButton } from    './topSection/NavButton';
+export { default as NavBar } from       './topSection/NavBar/index';
 
 //------------- CONTENT ------------------------------------
 export { default as ProjectsGrid } from './ProjectsGrid/index';
-export { default as Project} from './ProjectsGrid/Project';
+export { default as Project} from       './ProjectsGrid/Project';
 
  

@@ -9,8 +9,8 @@ import EarthTexture from '../../assets/textures/8k_earth_daymap.jpg'
 import EarthCloudsMap from "../../assets/textures/8k_earth_clouds.jpg";
 import EarthNightMap from "../../assets/textures/8k_earth_nightmap.jpg";
 
-import { useFrame, useLoader, useThree } from '@react-three/fiber'
-import { Blending, Group, TextureLoader } from 'three'
+import { useFrame, useLoader,  } from '@react-three/fiber'
+import { TextureLoader  } from 'three'
 import {OrbitControls} from '@react-three/drei'
 
 

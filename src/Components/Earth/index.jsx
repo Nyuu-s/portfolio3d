@@ -6,7 +6,7 @@ import EarthNightMap from "../../assets/textures/8k_earth_nightmap.jpg";
 import EarthNormalMap from "../../assets/textures/8k_earth_normal_map.jpg";
 import EarthSpecularMap from "../../assets/textures/8k_earth_specular_map.jpg";
 import { useFrame, useLoader } from '@react-three/fiber';
-import { TextureLoader } from 'three';
+import { TextureLoader} from 'three';
 import {OrbitControls, Stars} from '@react-three/drei'
 
 
