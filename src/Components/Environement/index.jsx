@@ -13,8 +13,8 @@ function Environement() {
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
         shadow-normalBias={0.05}
-        position={[1.5,7,3]}
-        
+        position={[-1.5,7,3]}
+
         />
       <ambientLight 
       color={'#fff'}

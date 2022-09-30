@@ -2,11 +2,12 @@
 import './App.css';
 import styled from 'styled-components'
 import {Canvas} from '@react-three/fiber'
-import { Suspense, useEffect } from 'react';
+import { Suspense, useRef, useEffect } from 'react';
 import * as THREE from 'three'
-import { Earth, Sphere, TopSection, Room, Environement } from './Components/'
-import { Stars , OrbitControls} from '@react-three/drei';
-import { PCFSoftShadowMap } from 'three';
+import { Earth, Sphere, TopSection, Room, Environement, Controls, Camera } from './Components/'
+import { Stars , OrbitControls, OrthographicCamera} from '@react-three/drei';
+
+
 
 const CanvasContainer = styled.div`
   width: 100%;
@@ -20,7 +21,7 @@ var mouse = { x:0 ,
 
 function App() {
 
-
+  
   return (
     <CanvasContainer onMouseMove={(e) => {
       mouse.x = (e.clientX / window.innerWidth) * 2 - 1
@@ -32,7 +33,10 @@ function App() {
     
       <Canvas 
       shadows 
-      camera={{position: [0,0,10]}}  
+    
+      // -0.2,0.7,1.2
+      camera={{position: [12,10,10] }} 
+      
       gl={{ 
             antialias: true,
             pixelRatio: devicePixelRatio,
@@ -40,18 +44,23 @@ function App() {
             toneMappingExposure: 1,
 
           }} >
-
+        
         <Suspense fallback={null}>
+        <Camera />
+        
+   
+        
         <gridHelper args={[10, 10]} />
-        <axesHelper args={[10]}/>
+        <axesHelper args={[10]}/> 
         <OrbitControls
-          enableZoom={true}
+          enableZoom={false}
           enablePan={true}
           enableRotate={true}
           zoomSpeed={0.6}
           panSpeed={0.5}
           rotateSpeed={0.4}
           enableDamping
+          
         /> 
    
           <Stars

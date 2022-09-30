@@ -3,6 +3,8 @@ export { default as Earth } from        './Earth/index';
 export { default as Sphere } from       './Sphere/index';
 export { default as Room } from         './Room/index';
 export { default as Environement } from './Environement/index';
+export { default as Controls } from './Controls';
+export { default as Camera } from './Camera';
 
 // ----------- TOP SECTION ---------------------------------
 export { default as TopSection } from   './topSection/index';

@@ -1,10 +1,11 @@
 import React , { useEffect } from 'react'
-import ScreenTexture from "../../assets/textures/screen_video.mp4"
-import ArcadeScreenTexture from "../../assets/textures/arcade_video.mp4"
+import ScreenTexture from "../../assets/textures/screen_noise1.mp4"
+import ArcadeScreenTexture from "../../assets/textures/screen_noise2.mp4"
 import * as THREE from 'three'
 import RoomModel from '../../assets/models/portfolio-room-arcade.glb'
 import { useAnimations, useGLTF, useVideoTexture} from '@react-three/drei'
 import { useRef } from 'react'
+
 
 const findMesh = (scene, name) => {
   return scene.children[scene.children.findIndex((value) => value.name === name)]
@@ -12,7 +13,7 @@ const findMesh = (scene, name) => {
 
 
 function Room() {
-  
+  // softShadows()
   const room = useGLTF(RoomModel)
   
   const PCvideo = useVideoTexture(ScreenTexture)
@@ -24,7 +25,7 @@ function Room() {
     console.log(room);
     useEffect(() => {
 
-      room.scene.scale.set(0.11, 0.11, 0.11)
+      room.scene.scale.set(0.21, 0.21, 0.21)
      
       room.scene.children.forEach( child => {
 
@@ -48,7 +49,7 @@ function Room() {
       PCScreen.current.material = new THREE.MeshBasicMaterial({map: PCvideo})
       ArcadeScreen.current.material = new THREE.MeshBasicMaterial({map: Arcadevideo})
       animation.actions['Cube.099Action.001']?.play()
-    }, [PCvideo, Arcadevideo])
+    }, [PCvideo, Arcadevideo, animation.actions])
     
   return (
         <>  
