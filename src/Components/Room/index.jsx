@@ -50,12 +50,14 @@ function Room() {
       ArcadeScreen.current.material = new THREE.MeshBasicMaterial({map: Arcadevideo})
       animation.actions['Cube.099Action.001']?.play()
     }, [PCvideo, Arcadevideo, animation.actions])
+
+    const roomRef = useRef()
     
   return (
         <>  
 
               
-              <primitive object={room.scene} ></primitive>
+              <primitive ref={roomRef} object={room.scene} ></primitive>
 
           
 

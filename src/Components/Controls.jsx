@@ -44,17 +44,19 @@ function Controls(props) {
         new THREE.Vector3( 10, 0, 10 ) 
     ], true ), []) 
     const points = curve.getPoints( 80 );
-    const geometry = useMemo(() => new THREE.BufferGeometry().setFromPoints( points ),[curve, points])  
+    const geometry = useMemo(() => new THREE.BufferGeometry().setFromPoints( points ),[points])  
     const material = useMemo(() => new THREE.LineBasicMaterial( { color: 0xff0000 } ),[ ]) 
     const [progress, setProgress] = useState(0)
-
+    
     useFrame(() => {
         lerp.current = progress
-        props.getCamPos(curve.getPointAt(progress))
+        var vec = curve.getPointAt(progress )
+        props.getCamPos(vec)
+        props.getLookAt(new THREE.Vector3())
         lerp.target += 0.0001
         lerp.target = gsap.utils.clamp(0,1,lerp.target)
         lerp.current = gsap.utils.clamp(0,1,lerp.current)
-        var value = gsap.utils.interpolate(lerp.current, lerp.target, lerp.ease)
+        var value = gsap.utils.interpolate(lerp.current, lerp.target, lerp.ease)  % 1
         setProgress(value)
     })
     
