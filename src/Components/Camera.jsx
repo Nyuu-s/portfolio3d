@@ -1,14 +1,17 @@
-import React, {useEffect,  useRef } from 'react'
+import React, {useEffect, useMemo, useRef } from 'react'
 import {useHelper, OrthographicCamera, } from '@react-three/drei'
-import {useThree} from '@react-three/fiber'
+import {useFrame, useThree} from '@react-three/fiber'
 import { CameraHelper } from 'three'
 import {Controls} from '../Components'
 import { useState } from 'react'
-import {useStore} from 'zustand'
+
 import * as THREE from 'three'
 import { useAddCameras, useCameras } from '../Context/ContextZustand';
+import { useLayoutEffect } from 'react'
 
-const WIDTH = 1.5
+const WIDTH = window.innerWidth
+const HEIGHT = window.innerHeight
+
 
 // function Camera(props) {
 //     const camera = useRef()
@@ -49,38 +52,26 @@ const WIDTH = 1.5
 
 function Camera(props) {
     const ref = useRef()
-    // useEffect(() => {
-    //     props.store.setState({
-    //       [`${props.label}Cam`]: ref
-    //     })
-    //     ref.current.lookAt(t)
-    // }, [props.label])
- 
+    console.log(props, ref);
+   const t =  useMemo(() => new THREE.Euler(45,0,0), [])
+    useHelper(ref, (props.debug && THREE.CameraHelper) || null)
+    // ref.current && props.lookAt && ref.current.lookAt(props.lookAt)
 
-
-    
-     useAddCameras(ref)
-
-
-
-    console.log(useCameras());
-    useHelper(ref, THREE.CameraHelper)
-    // const t = new THREE.Vector3(0, 0, 0)
     return(
         <>
-            <OrthographicCamera 
+            <OrthographicCamera  
+            makeDefault={props.default}
             ref={ref}
+            position={props.position}
+            scale={props.scale}
             far={props.far}
             near={props.near}
-            position={props.position}
-            left={-WIDTH}
-            right={WIDTH}
-            top={props.top}
-            bottom={props.bottom}
-            makeDefault={props.default}
-            >
+            rotation={t}
+       
+            
+            />
 
-            </OrthographicCamera>
+            
         
         </>
     )

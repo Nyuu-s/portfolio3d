@@ -6,7 +6,7 @@ import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry';
 import { Camera } from '../Components/'
 import { useFrame } from '@react-three/fiber';
 import gsap from 'gsap';
-
+import { useAddCameras, useCameras } from '../Context/ContextZustand';
 
 
 
@@ -17,12 +17,13 @@ import gsap from 'gsap';
     // Create the final object to add to the scene
     // const curveObject = new THREE.Line( geometry, material );
 
-var localProgress = 0
+
 var lerp = {
     current : 0,
     target: 0,
     ease: 0.1
 }
+
 window.addEventListener("wheel", (e => {
     if(e.deltaY > 0 ){
         lerp.target += 0.01
@@ -32,10 +33,16 @@ window.addEventListener("wheel", (e => {
 
 }))
 
+function Children({children, customProps}){
+  return <>
+    { React.cloneElement(children, {position: customProps.position, lookAt: customProps.lookAt})}
+  </> 
+}
+
 
 
 function Controls(props) {
-
+    
     const curve = useMemo(()=> new THREE.CatmullRomCurve3( [
         new THREE.Vector3( -10, 0, 10 ),
         new THREE.Vector3( -5, 5, 5 ),
@@ -46,13 +53,17 @@ function Controls(props) {
     const points = curve.getPoints( 80 );
     const geometry = useMemo(() => new THREE.BufferGeometry().setFromPoints( points ),[points])  
     const material = useMemo(() => new THREE.LineBasicMaterial( { color: 0xff0000 } ),[ ]) 
+    const ORIGIN = useMemo(() => new THREE.Vector3( 0,0,0 ),[ ]) 
     const [progress, setProgress] = useState(0)
-    
+    const [vec, setVec] = useState(ORIGIN)
+
+
     useFrame(() => {
         lerp.current = progress
-        var vec = curve.getPointAt(progress )
-        props.getCamPos(vec)
-        props.getLookAt(new THREE.Vector3())
+        setVec(curve.getPointAt(progress))
+        // curCam.current.position = vec
+        // props.getCamPos(vec)
+        // props.getLookAt(new THREE.Vector3())
         lerp.target += 0.0001
         lerp.target = gsap.utils.clamp(0,1,lerp.target)
         lerp.current = gsap.utils.clamp(0,1,lerp.current)
@@ -69,7 +80,7 @@ function Controls(props) {
         <line geometry={geometry}>
             <lineBasicMaterial args={[material]}/>
         </line>
-        {props.children}
+        <Children children={props.children} customProps={{position: vec, lookAt: ORIGIN}} />
     </>  
   ) 
 } 
