@@ -53,9 +53,9 @@ const HEIGHT = window.innerHeight
 function Camera(props) {
     const ref = useRef()
     console.log(props, ref);
-   const t =  useMemo(() => new THREE.Euler(45,0,0), [])
+   
     useHelper(ref, (props.debug && THREE.CameraHelper) || null)
-    // ref.current && props.lookAt && ref.current.lookAt(props.lookAt)
+    //ref.current && props.lookAt && ref.current.lookAt(props.lookAt) 
 
     return(
         <>
@@ -66,7 +66,8 @@ function Camera(props) {
             scale={props.scale}
             far={props.far}
             near={props.near}
-            rotation={t}
+            rotation={props.rotation}
+            lookAt={props.lookAt}
        
             
             />

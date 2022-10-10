@@ -8,7 +8,8 @@ import RoomModel from '../../assets/models/portfolio-room-arcade.glb'
 import { useAnimations, useGLTF, useVideoTexture} from '@react-three/drei'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import {useSetRoom} from '../../Context/ContextZustand'
+import {useSetRoom} from "../../Context/ContextZustand"
+
 import gsap from 'gsap'
 
 const findMesh = (scene, name) => {
@@ -38,15 +39,12 @@ function Room() {
   const Arcadevideo = useVideoTexture(ArcadeScreenTexture)
   const PCNoise = useVideoTexture(TextureNoise1)
   const ArcadeNoise = useVideoTexture(TextureNoise2)
-  const ref1 = useRef(findMesh(room.scene, "RoomWalls" ).children[0])
-  const ref2 = useRef(findMesh(room.scene, "RoomWalls" ).children[1])
-  const ref3 = useRef(findMesh(room.scene, "RoomWalls" ).children[2])
   const PCScreen = useRef(findMesh(room.scene, "screen001" ))
   const ArcadeScreen = useRef(findMesh(room.scene, "arcadeScreen001"))
   const Tesseract = useRef(findMesh(room.scene, 'Cube099'))
   const animation = useAnimations(room.animations, Tesseract)
 
-  useSetRoom([ref1, ref2, ref3])
+
     useFrame(() => {
       room.scene.rotation.y = lerp.currentX
       lerp.currentX = gsap.utils.interpolate(lerp.currentX, lerp.targetX, lerp.ease)
@@ -84,6 +82,7 @@ function Room() {
     }, [PCvideo, Arcadevideo, animation.actions])
 
     const roomRef = useRef()
+    useSetRoom(room.scene)
     
   return (
         <>  

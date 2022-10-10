@@ -6,6 +6,7 @@ import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry';
 import { Camera } from '../Components/'
 import { useFrame } from '@react-three/fiber';
 import gsap from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import { useAddCameras, useCameras } from '../Context/ContextZustand';
 
 
