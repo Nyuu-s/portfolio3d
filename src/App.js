@@ -5,9 +5,10 @@ import './App.css';
 import styled from 'styled-components'
 import {Canvas, useFrame, useThree, createPortal} from '@react-three/fiber'
 import * as THREE from 'three'
-import { Earth, Sphere, TopSection, Room, Environement, Controls, Camera, Floor, AnimationsControls } from './Components/'
+import { Earth, Sphere, TopSection, Room, Environement, Controls, Camera, Floor, AnimationsControls, RoomModel } from './Components/'
 import { Stars , OrbitControls, OrthographicCamera, useFBO, Plane, useHelper, View, PerspectiveCamera, Bounds, RenderTexture} from '@react-three/drei';
 import { LandingPage } from './Pages';
+import { useTheme } from './Context/ContextZustand';
 
 
 
@@ -28,7 +29,7 @@ function App() {
   const container = useRef()
   const view1 = useRef()
   const view2 = useRef()
-
+  let Theme = useTheme()
 
 
   const [cameraOrthoProp, setCameraOrthoProp] = useState({
@@ -42,7 +43,7 @@ function App() {
   })
   return (
     
-    <div ref={container} className='w-screen h-screen fixed'> 
+    <div ref={container} className={`${Theme.mode === 'dark' ? 'dark' : '' } w-screen h-screen fixed`}> 
       <div ref={view1} className="view1"/>
       <div ref={view2} className="view2" />
       
@@ -52,6 +53,8 @@ function App() {
       <Canvas 
       shadows 
       className="canvas w-full h-full"
+      eventSource={container}
+     
       // -0.2,0.7,1.2
       gl={{ 
             antialias: true,
@@ -83,13 +86,13 @@ function App() {
           {/* <Controls>
             <Camera  default={!DEBUG} {...cameraOrthoProp} debug={DEBUG}  />
           </Controls> */}
-          <group dispose={null}> 
+          <group name='RoomScene'> 
             {/* <Sphere NormalizedMouse={mouse}/> */}
             <Environement></Environement>
-            <Room />
+            <RoomModel containerRef={container}/>
             <Floor />   
           </group>
-          <AnimationsControls containerRef={container}/>
+          {/* <AnimationsControls containerRef={container}/> */}
             
 
             {/* <Earth /> */}

@@ -2,6 +2,7 @@
 export { default as Earth } from        './Earth/index';
 export { default as Sphere } from       './Sphere/index';
 export { default as Room } from         './Room/index';
+export { default as RoomModel } from    './Room/PortfolioRoomArcade';
 export { default as Floor } from        './Floor/index';
 export { default as Environement } from './Environement/index';
 export { default as Controls } from     './Controls';

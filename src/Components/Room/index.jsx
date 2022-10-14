@@ -23,13 +23,7 @@ var  lerp = {
   targetY: 0,
   ease: 0.1 
 }
-window.addEventListener('mousemove', (e) => {
-    var rotationX = ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth
-    var rotationY = ((e.clientY - window.innerHeight / 2) * 2) / window.innerHeight
-    lerp.targetX = rotationX * 0.05
-    lerp.targetY = rotationY * 0.05
-    
-})
+
 
 function Room() {
   // softShadows()
@@ -88,10 +82,12 @@ function Room() {
         <>  
 
               
-              <primitive ref={roomRef} object={room.scene}  ></primitive>
+              <primitive ref={roomRef} object={room.scene}  >
 
-          
+                <pointLight color={"#fff"} intensity={1} />
+              </primitive>
 
+            
         
         </>
   )

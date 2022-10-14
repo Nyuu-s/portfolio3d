@@ -8,7 +8,7 @@ import {useRoom} from '../../Context/ContextZustand'
 
 function Floor() {
 const ref = useRoom()
-console.log("ref", ref);
+
     
   return (
    <>

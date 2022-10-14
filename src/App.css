@@ -4,6 +4,15 @@
     height: 100%;
   }
   
+  .circle{
+    transition: all 0.2s ease-in-out;
+  }
+
+  .slide{
+    left: 28px;
+  }
+
+
   .view2 {
     position: absolute;
     top: 2em;

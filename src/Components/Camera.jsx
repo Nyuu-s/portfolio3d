@@ -52,7 +52,7 @@ const HEIGHT = window.innerHeight
 
 function Camera(props) {
     const ref = useRef()
-    console.log(props, ref);
+
    
     useHelper(ref, (props.debug && THREE.CameraHelper) || null)
     //ref.current && props.lookAt && ref.current.lookAt(props.lookAt) 

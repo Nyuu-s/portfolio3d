@@ -5,15 +5,15 @@ import { HeaderFlow } from '../Components'
 
 
 
-function About() {
+function CV() {
 
   
 
   return (
 
-      <section className='sm:w-1/2 w-full p-[1000px_4%] m-0 bg-secondary-dark-bg dark:text-slate-300 font-raleway aboutSection'> 
+      <section className='sm:w-1/2 w-full p-[1000px_4%] m-0 bg-blue-600 dark:text-slate-300 font-raleway aboutSection'> 
   
-          <HeaderFlow text1={"About Me"} text2={'About Me'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} />
+          <HeaderFlow text1={"Me"} text2={'Contact'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} flowDirection='right'/>
         
           
           <div >
@@ -29,4 +29,4 @@ function About() {
   )
 }
 
-export default About
+export default CV
