@@ -5,15 +5,20 @@ import { HeaderFlow } from '../Components'
 
 
 
-function CV() {
+function CV({timeline}) {
 
-  
+const section = useRef()
+useEffect(() => {
+    timeline && timeline.from(section.current, {yPercent: 100})
+
+
+}, [timeline])
 
   return (
 
-      <section className='sm:w-1/2 w-full p-[1000px_4%] m-0 bg-blue-600 dark:text-slate-300 font-raleway aboutSection'> 
+      <section  ref={section} className='absolute w-full h-full pt-5 px-[4%] m-0 bg-blue-600 dark:text-slate-300 font-raleway CVSection'> 
   
-          <HeaderFlow text1={"Me"} text2={'Contact'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} flowDirection='right'/>
+          <HeaderFlow text1={"CV"} text2={'CV'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} flowDirection='left'/>
         
           
           <div >

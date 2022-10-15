@@ -1,17 +1,20 @@
 import React, { useRef, useEffect } from 'react'
 import { PerspectiveCamera } from '@react-three/drei'
 import { HeaderFlow } from '../Components'
+import { useLayoutEffect } from 'react'
 
 
 
-
-function About() {
-
-  
-
+ 
+function About({timeline}) {
+  const section = useRef()
+  useEffect(() => {
+    timeline && timeline.from(section.current, {xPercent: 100})
+  }, [timeline])
+ 
   return (
-
-      <section className='sm:w-1/2 w-full p-[1000px_4%] m-0 bg-secondary-dark-bg dark:text-slate-300 font-raleway aboutSection'> 
+ 
+      <section ref={section} className=' absolute   h-full pt-5 px-[4%] w-full m-0 bg-secondary-dark-bg dark:text-slate-300 font-raleway aboutSection'> 
   
           <HeaderFlow text1={"About Me"} text2={'About Me'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} />
         

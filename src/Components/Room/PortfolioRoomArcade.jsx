@@ -78,6 +78,13 @@ const [GearsRotation, setGearsRotation] = useState({status: false, direction: fa
 
   
   useEffect(() => {
+    const onMove = (e) =>{
+      var rotationX = ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth
+      var rotationY = ((e.clientY - window.innerHeight / 2) * 2) / window.innerHeight
+      lerp.targetX = rotationX * 0.05
+      lerp.targetY = rotationY * 0.05
+    }
+    window.addEventListener('mousemove', onMove)
     const tl = gsap.timeline()
     const el = props.containerRef.current
     console.log(bigGear);
@@ -99,7 +106,6 @@ const [GearsRotation, setGearsRotation] = useState({status: false, direction: fa
       scrub: 0.5,
       end: "bottom bottom",
       scroller: el.querySelector('.page'),
-      markers: true,
       onEnter: () => setGearsRotation({status: true, direction: false}),
       onLeave:() => setGearsRotation({status: false, direction: false}),
       onEnterBack: () => setGearsRotation({status: true, direction: true}),
@@ -107,11 +113,13 @@ const [GearsRotation, setGearsRotation] = useState({status: false, direction: fa
       onUpdate: (self) => {
           Rotlerp.status =true
           Rotlerp.target = self.progress
-          console.log(self.progress);
+          
       }
     })
-    console.log(bigGear.current);
     
+    return () => {
+      window.removeEventListener("mousemove", onMove)
+    }
   
  
 
@@ -133,13 +141,7 @@ const [GearsRotation, setGearsRotation] = useState({status: false, direction: fa
     ease: 0.1 
   }
   
-  window.addEventListener('mousemove', (e) => {
-    var rotationX = ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth
-    var rotationY = ((e.clientY - window.innerHeight / 2) * 2) / window.innerHeight
-    lerp.targetX = rotationX * 0.05
-    lerp.targetY = rotationY * 0.05
-    
-})
+
 const lamp = useRef()
 
 useFrame((state) => {
