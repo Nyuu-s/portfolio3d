@@ -1,12 +1,12 @@
 import React, {useEffect, useMemo, useRef } from 'react'
-import {useHelper, OrthographicCamera, } from '@react-three/drei'
+import {useHelper, OrthographicCamera, PerspectiveCamera, } from '@react-three/drei'
 import {useFrame, useThree} from '@react-three/fiber'
 import { CameraHelper } from 'three'
 import {Controls} from '../Components'
 import { useState } from 'react'
 
 import * as THREE from 'three'
-import { useAddCameras, useCameras } from '../Context/ContextZustand';
+import useStore, { useAddCameras, useCameras } from '../Context/ContextZustand';
 import { useLayoutEffect } from 'react'
 
 const WIDTH = window.innerWidth
@@ -52,25 +52,49 @@ const HEIGHT = window.innerHeight
 
 function Camera(props) {
     const ref = useRef()
-
+    const setCam = useStore((state) => state.setCamera)
    
-    useHelper(ref, (props.debug && THREE.CameraHelper) || null)
-    //ref.current && props.lookAt && ref.current.lookAt(props.lookAt) 
+  
+   useEffect(() => {
+     setCam(ref)
+   }, [])
+
+
+// useHelper(ref, (THREE.CameraHelper) || null) 
 
     return(
-        <>
-            <OrthographicCamera  
+        <> 
+        {props.perspective ? 
+            <PerspectiveCamera  
             makeDefault={props.default}
-            ref={ref}
+            ref={ref} 
             position={props.position}
             scale={props.scale}
-            far={props.far}
-            near={props.near}
+            far={10000}
+            near={1}
             rotation={props.rotation}
-            lookAt={props.lookAt}
-       
+            aspect={window.innerWidth / window.innerHeight}
+            fov={45}
+            
+        
             
             />
+    
+    :
+    <OrthographicCamera  
+    makeDefault={props.default}
+    ref={ref} 
+    position={props.position}
+    scale={props.scale}
+    far={props.far}
+    near={props.near}
+    rotation={props.rotation}
+    
+
+    
+    />
+    }
+  
 
             
         

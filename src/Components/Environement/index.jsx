@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react'
-import {useTheme} from '../../Context/ContextZustand'
+import useStore , {useTheme} from '../../Context/ContextZustand'
 import gsap from 'gsap'
+
 
 
 
@@ -9,9 +10,18 @@ function Environement() {
   let theme = useTheme()
   const ambiantLight = useRef()
   const dirLight = useRef()
-
+  
+  const setLights = useStore((state) => state.setLights)
 
   
+
+  useEffect(() => {
+    setLights(ambiantLight, dirLight)
+  
+
+  }, [])
+  
+   
   useEffect(() => {
     if(theme.mode === 'light'){
       gsap.to(ambiantLight.current.color, {r: 1, g:1, b:1})

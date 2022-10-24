@@ -7,6 +7,7 @@ export { default as Floor } from        './Floor/index';
 export { default as Environement } from './Environement/index';
 export { default as Controls } from     './Controls';
 export { default as Camera } from       './Camera';
+export { default as CameraLine } from       './CameraLine/index';
 
 // ----------- TOP SECTION ---------------------------------
 export { default as TopSection } from   './topSection/index';
@@ -17,7 +18,6 @@ export { default as NavBar } from       './topSection/NavBar/index';
 //------------- CONTENT ------------------------------------
 export { default as ProjectsGrid } from './ProjectsGrid/index';
 export { default as Project} from       './ProjectsGrid/Project';
-export { default as AnimationsControls} from    './AnimationsControls';
 export { default as HeaderFlow} from    './HeaderFlow';
 
  

@@ -16,8 +16,10 @@ useEffect(() => {
 
   return (
 
-      <section  ref={section} className='absolute w-full h-full pt-5 px-[4%] m-0 bg-blue-600 dark:text-slate-300 font-raleway CVSection'> 
-  
+      <section  ref={section} className='absolute rounded-tr-[450px] w-full h-full pt-5 px-[4%] m-0 bg-blue-600 dark:text-slate-300 font-raleway CVSection'> 
+          <div className="progress-wrapper  w-4 z-10 absolute top-0 left-0">
+            <div className="progressbarC h-screen w-full bg-red-500 origin-[top_center] scale-y-100"></div>
+          </div>
           <HeaderFlow text1={"CV"} text2={'CV'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} flowDirection='left'/>
         
           
