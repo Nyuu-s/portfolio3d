@@ -6,11 +6,11 @@ import EarthNightMap from "../../assets/textures/8k_earth_nightmap.jpg";
 import EarthNormalMap from "../../assets/textures/8k_earth_normal_map.jpg";
 import EarthSpecularMap from "../../assets/textures/8k_earth_specular_map.jpg";
 import { useFrame, useLoader } from '@react-three/fiber';
-import { TextureLoader } from 'three';
+import { TextureLoader} from 'three';
 import {OrbitControls, Stars} from '@react-three/drei'
 
 
-function Earth(props) {
+function Earth() {
 
   const [colorMap, nightMap, normalMap, specularMap, cloudsMap] = useLoader(
     TextureLoader,
@@ -60,14 +60,14 @@ function Earth(props) {
           metalness={0.4}
           roughness={0.5}
         />
-        <OrbitControls
+         <OrbitControls
           enableZoom={true}
           enablePan={true}
           enableRotate={true}
           zoomSpeed={0.6}
           panSpeed={0.5}
           rotateSpeed={0.4}
-        />
+        /> 
       </mesh>
     </>
   );
