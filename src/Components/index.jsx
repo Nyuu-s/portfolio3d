@@ -8,6 +8,7 @@ export { default as Environement } from './Environement/index';
 export { default as Controls } from     './Controls';
 export { default as Camera } from       './Camera';
 export { default as CameraLine } from       './CameraLine/index';
+export { default as ProjectsMesh} from       './ProjectsGrid/ProjectsMesh';
 
 // ----------- TOP SECTION ---------------------------------
 export { default as TopSection } from   './topSection/index';

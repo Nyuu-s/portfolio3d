@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useEffect} from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import vertexShader from '../../shaders/vertex.js'
@@ -11,7 +11,7 @@ import EarthNightMap from "../../assets/textures/8k_earth_nightmap.jpg";
 
 import { useFrame, useLoader,  } from '@react-three/fiber'
 import { TextureLoader  } from 'three'
-import {OrbitControls} from '@react-three/drei'
+import {OrbitControls, Stars} from '@react-three/drei'
 
 
 
@@ -22,8 +22,29 @@ function Sphere({NormalizedMouse}) {
     const earth = useRef()
     const atmos = useRef()
     const cloudsRef = useRef()
+    const StarsRef = useRef()
+    useEffect(() => { 
 
-    
+      // AppScene.Space ? navigate('/test') : navigate('/')
+      let earthScaleTime = 15
+      let StarsFadeTime = 5
+      let ctx = gsap.context(() => {
+        console.log(StarsRef);   
+        const tl = gsap.timeline()
+        tl.fromTo(earth.current.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: earthScaleTime}) 
+        tl.fromTo(cloudsRef.current.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: earthScaleTime}, '<') 
+        tl.fromTo(atmos.current.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: earthScaleTime}, '<') 
+        tl.fromTo(StarsRef.current.geometry.attributes.color, {count: 0}, {count: 5000, duration: StarsFadeTime}, '<') 
+        tl.fromTo(StarsRef.current.geometry.attributes.position, {count: 0}, {count: 5000, duration: StarsFadeTime}, '<') 
+        tl.fromTo(StarsRef.current.geometry.attributes.size, {count: 0}, {count: 5000, duration: StarsFadeTime}, '<') 
+        
+        
+      })
+     
+      return () => {
+        ctx.revert()
+      }
+    }, [])
    
     useFrame(({ clock, scene }) => {
       const elapsedTime = clock.getElapsedTime();
@@ -85,7 +106,16 @@ function Sphere({NormalizedMouse}) {
           panSpeed={0.5}
           rotateSpeed={0.4}
         /> 
-    
+        <Stars ref={StarsRef}
+            radius={300}
+            depth={60}
+            // count={0}
+            factor={7}
+            saturation={100} 
+            fade={true}
+            
+
+      />
     </>
   )
 }

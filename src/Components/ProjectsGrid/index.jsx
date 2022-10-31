@@ -9,7 +9,7 @@ function ProjectsGrid({visible}) {
   return (
   <div className={`fixed h-full w-full top-24 overflow-y-auto overflow-ellipsis z-10 bg-white bg-opacity-5 ${visible ? 'block': 'hidden'}`} >
       {/* make a grid like this https://vr.with.in/ with from project files */}
-      <Project title={'Jeu Video'} shortDesc={str} link={""}>
+      {/* <Project title={'Jeu Video'} shortDesc={str} link={""}>
           <div>
             <p>
               {str}
@@ -17,7 +17,7 @@ function ProjectsGrid({visible}) {
          
             </p>
           </div>
-      </Project>
+      </Project> */}
       
       
       

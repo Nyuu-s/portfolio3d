@@ -13,6 +13,7 @@ import { useFrame, useThree,  } from '@react-three/fiber'
 import * as THREE from 'three'
 import useStore from '../../Context/ContextZustand'
 import { RoughEase } from 'gsap/EasePack'
+import { useNavigate } from 'react-router-dom'
 
 // TEXTURES
 import ScreenTexture from "../../assets/textures/screen_video.mp4"
@@ -23,12 +24,7 @@ import { ArrowHelper, AxesHelper, Box3, Box3Helper, BoxGeometry, BoxHelper, Came
 import CameraLine from '../CameraLine'
 import { useLayoutEffect } from 'react'
 
-function floatAnim(item, t) {
-  item.current.rotation.x = 1 - (1+Math.sin(t/1.5)/20)
-  item.current.rotation.y =Math.cos(t/4) / 8
-  item.current.rotation.z = Math.sin(t/4) /8
-  item.current.position.y =  0.5-(1+ Math.sin(t/1.5) /10)
-}
+
 
 export function RoomModel(props) {
   // VARIABLES & CONSTANTS 
@@ -50,7 +46,9 @@ export function RoomModel(props) {
   const Tesseract = useRef()
   const TesseractLight = useRef()
   const bigGear = useRef()
+  const cam = useRef()
   const lamp = useRef()
+
   const [GearsRotation, setGearsRotation] = useState({status: false, direction: false})
   const [RoomState, setRoomState] = useState('default')
   const [ScreensState, setScreensState] = useState({pc: PCvideo, arcade: Arcadevideo})
@@ -94,7 +92,9 @@ export function RoomModel(props) {
   }
   }, [Theme])
 
-  const cam = useStore((state) => (state.mainCamera))
+  // const cam = useStore((state) => (state.mainCamera))
+  const mainCam = useThree((state) => state.camera)
+  cam.current = mainCam
   
   // RESPONSIVE ROOM ANIMATIONS
   useEffect(() => {
@@ -129,7 +129,11 @@ export function RoomModel(props) {
             gsap.to(miniLamp.current.color, {r: 0, g:0, b:0 }) 
         break;
         case 'rocket':
-          const timeline = gsap.timeline({onComplete: () => props.setState({Room: false, Space: true})})
+          const timeline = gsap.timeline({onComplete: () => {
+            props.setState({Room: false, Space: true})
+            
+          }
+        })
           let v2 = new THREE.Vector3()
           let q1 = new THREE.Quaternion()
           timeline.pause()
