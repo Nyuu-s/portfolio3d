@@ -31,12 +31,12 @@ function Sphere({NormalizedMouse}) {
       let ctx = gsap.context(() => {
         console.log(StarsRef);   
         const tl = gsap.timeline()
-        tl.fromTo(earth.current.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: earthScaleTime}) 
-        tl.fromTo(cloudsRef.current.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: earthScaleTime}, '<') 
-        tl.fromTo(atmos.current.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: earthScaleTime}, '<') 
         tl.fromTo(StarsRef.current.geometry.attributes.color, {count: 0}, {count: 5000, duration: StarsFadeTime}, '<') 
         tl.fromTo(StarsRef.current.geometry.attributes.position, {count: 0}, {count: 5000, duration: StarsFadeTime}, '<') 
         tl.fromTo(StarsRef.current.geometry.attributes.size, {count: 0}, {count: 5000, duration: StarsFadeTime}, '<') 
+        tl.fromTo(earth.current.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: earthScaleTime}) 
+        tl.fromTo(cloudsRef.current.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: earthScaleTime}, '<') 
+        tl.fromTo(atmos.current.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: earthScaleTime}, '<') 
         
         
       })

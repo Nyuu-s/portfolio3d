@@ -10,7 +10,10 @@ import { Stars , OrbitControls, OrthographicCamera, useFBO, Plane, useHelper, Vi
 import { LandingPage, Main } from './Pages';
 import { useTheme } from './Context/ContextZustand'
 import gsap from 'gsap';
-import { BrowserRouter, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, Switch, Route , Router} from "wouter"
+import makeMatcher from "wouter/matcher"
+
+
 
 
 
@@ -19,8 +22,15 @@ const DEBUG = false
 var mouse = { x:0 ,
               y:0 }
 
+const defaultMatcher = makeMatcher();
+const multipathMatcher = (patterns, path) => {
+  for (let pattern of [patterns].flat()) {
+    const [match, params] = defaultMatcher(pattern, path);
+    if (match) return [match, params];
+  }
 
-
+  return [false, null];
+};
 
 
 function App() {
@@ -28,27 +38,38 @@ function App() {
   const view1 = useRef()
   const view2 = useRef()
 
-  const navigate = useNavigate()
-  let location = useLocation()
+
   let Theme = useTheme()
-  const [AppScene, setAppScene] = useState({Room: true , Space: false})
+  const [AppScene, setAppScene] = useState({Room: false , Space: true})
+  const [urlUpdate, seturlUpdate] = useState({status: false, url: '/'})
 
-  useEffect(() => {
-    if(AppScene.Space){
 
-      if( location.pathname !==  '/test' )
-        navigate('/test')
-    }
+  // useEffect(() => {
+  //   if(urlUpdate.status){
+
+  //     if( location.pathname !==  urlUpdate.url )
+  //       navigate(urlUpdate.url)
+  //   }
    
-  }, [AppScene])
+  // }, [urlUpdate])
   
-  useEffect(() => {
-    location.pathname ===  '/test' ? setAppScene({Room: false , Space: true}) : setAppScene({Room: true , Space: false})
-    console.log(location.pathname);
-  }, [location.pathname])
+  // useEffect(() => {
+
+  //   if(location.pathname.includes('/projects'))
+  //   {
+  //     setAppScene({Room: false , Space: true})
+  //   }
+  //   else 
+  //   {
+  //     setAppScene({Room: true , Space: false})
+  //   }
 
 
-console.log(AppScene);
+    
+    
+  // }, [location.pathname])
+
+
   
   
   
@@ -96,31 +117,35 @@ console.log(AppScene);
             
           <Suspense fallback={null}>
         
-            <Camera default={AppScene.Room} perspective={false} {...cameraOrthoProp}/>
-            <Camera default={AppScene.Space} perspective={true} {...cameraPersProp}/>
+            
             { DEBUG && <>
               <gridHelper args={[10, 10]} />
               <axesHelper args={[10]}/>
             </> }
 
+              
+                <Route path='/'>
+                  <Camera default={true} perspective={false} {...cameraOrthoProp}/>
+                  <group name='RoomScene'> 
+                    <Environement />
+                    <RoomModel containerRef={container} />
+                    <Floor />
+                  </group>
+                </Route>
+                <Router matcher={multipathMatcher}>
 
-     
-            {
-            AppScene.Room && 
-            <group name='RoomScene'> 
-              <Environement />
-              <RoomModel containerRef={container} setState={(appState) => setAppScene(appState)}/>
-              <Floor />
-            </group>
-            }
-              {   AppScene.Space &&  
-              <group name='SolarSystem' >
-                <Sphere NormalizedMouse={mouse} />
-                
-                <ProjectsMesh />
-
-                
-              </group>}
+                  <Route path={['/projects', '/projects/:id']}>
+                    <Camera default={true} perspective={true} {...cameraPersProp}/>
+                    <group name='SolarSystem' >
+                      <Sphere NormalizedMouse={mouse} />
+                    </group>
+                  </Route>
+                  <Route path={'/projects'}>
+                      <ProjectsMesh  />
+                  </Route>
+                </Router>
+  
+              
           
               {/* <OrbitControls
               enableZoom={true}

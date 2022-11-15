@@ -9,6 +9,7 @@ function NavBar() {
        <Logo icon={<HomeIcon size={75}/>}/> 
     </div>
     <div className=' w-full flex'>
+      
       <NavButton title={'Projects'}/> 
       <NavButton title={'Contact'}/>
       <NavButton title={'About me'}/>

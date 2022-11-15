@@ -1,44 +1,37 @@
-import { Plane } from '@react-three/drei'
+import { Html, Plane } from '@react-three/drei'
 import * as THREE from 'three'
 import React , {useMemo, useRef, useState, useEffect} from 'react'
 import { useFrame } from '@react-three/fiber'
 import gsap from 'gsap'
-import { Vector3 } from 'three'
+import {useLocation} from 'wouter'
 
-const onMove = (e) =>{
-    var rotationX = ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth
-    var rotationY = ((e.clientY - window.innerHeight / 2) * 2) / window.innerHeight
-    return {rotationX, rotationY}
-  }
+
 
 const onEnter = (e, position, func) => {
+    let normals = e.object.geometry.attributes.normal.array
     
-   gsap.to(e.object.position, {z: position.z + 0.5, onComplete: () => {func(true)}})
+    // e.object.translateOnAxis(new THREE.Vector3(normals[0],normals[1],normals[2]),0.5)
+    gsap.to(e.object.position, {x:position.x,  z: position.z + 0.5})
 //    gsap.to(e.object.rotation, {y: 0 , })
 }
 const onLeave = (e, position, func) => {
     gsap.to(e.object.position, {z: position.z })
-    gsap.to(e.object.rotation, {x: 0, y: position.rotationY , onComplete: () => {func(false)}})
+    gsap.to(e.object.rotation, {x: 0, y: position.rotationY })
  }
 
-function ProjectsMesh() {
+function ProjectsMesh(props) {
 
-    const [hovered, setHovered] = useState(false)
     const [movable, setMovable] = useState(false)
+    const [location, setLocation] = useLocation()
+    
+    const projectsGroup = useRef()
    
+ 
+    
     
     
     const projects = []
     const positions = []
-    const t = useRef()
-    let lerp = useMemo(() => ({
-        currentX : 0,
-        targetX: 0,
-        currentY : 0,
-        targetY: 0,
-        ease: 0.1 
-      }), [])
-
     var x = -5.5
     var y = 4.5
     var z = 10
@@ -55,6 +48,7 @@ function ProjectsMesh() {
             e.object.material.color = {r: 0, g:1, b: 0, isColor: true}
             document.body.style.cursor = 'pointer'
             onEnter(e, positions[i], setMovable)
+            setMovable(true)
             
         }}
        
@@ -73,22 +67,52 @@ function ProjectsMesh() {
             e.eventObject.material.color = {r: 75/255, g:153/255, b: 153/255, isColor: true}
             document.body.style.cursor = 'default'
             onLeave(e, positions[i], setMovable)
-        }
+            setMovable(false)
+        }} 
+        onClick={() => {
             
+            setLocation('/projects/'+i)
+           
+        }}
+
+        >
+            <meshBasicMaterial side={THREE.DoubleSide} color={[75/255, 153/255, 153/255] }  />
+            {/* Use Html from drei or make custom texture for each project and use it on plane */}
             
-        } >
-            <meshBasicMaterial color={[75/255, 153/255, 153/255] }  />
+
+            <Html occlude transform position={[0,0,0.1]} pointerEvents='false'>
+                <div>Project {i+1}</div>
+            </Html>
+            
         </Plane> 
         )
     }
 
+    useEffect(() => {
+        
+        let ctx = gsap.context(() => {
+            let tl = gsap.timeline({delay: 2})
+            tl.pause()
+            gsap.utils.toArray(projectsGroup.current.children).forEach(((element, i) => {
+                tl.from(element.scale, {x:0, y:0, z:0, duration: 1.5}, '<0.3')
+            }))
+        
   
+        tl.play()
+        })
+        return () => {
+          ctx.revert()
+        }
+      }, [])
     
  
   return (
     <>
+        <group ref={projectsGroup}>
+            {projects}
+        </group>
 
-        {projects}
+     
     </>
   )
 }

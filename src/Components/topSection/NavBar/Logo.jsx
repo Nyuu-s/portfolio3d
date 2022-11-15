@@ -1,13 +1,13 @@
 import React from 'react'
 import gsap from 'gsap'
 
-const test = (lvl) => {
+const rescale = (lvl) => {
     gsap.to(".main-icon", { scale: lvl, ease: 'back' })
 }
 
-function Logo({icon}) {
+function Logo({icon, clickFunc}) {
   return (
-    <div onMouseOver={() => test(1.2)} onMouseLeave={()=>test(1)} className=' main-icon z-50 hover:cursor-pointer ' >
+    <div onMouseOver={() => rescale(1.2)} onMouseLeave={()=>rescale(1)} className=' main-icon z-50 hover:cursor-pointer ' onClick={clickFunc} >
         {icon}
     </div>
   )

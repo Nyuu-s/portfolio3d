@@ -1,9 +1,11 @@
-import React, {useLayoutEffect, useRef} from 'react'
+import React, {useLayoutEffect, useEffect, useRef} from 'react'
 import {CV, Contact, About} from '../Pages'
 import ASScroll from '@ashthornton/asscroll'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-
+import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
+import {useLocation} from 'wouter'
+import { useState } from 'react'
 
 
 const setupAsscroll = () => {
@@ -42,14 +44,19 @@ const setupAsscroll = () => {
   return asscroll;
 }
 function Main(props) {
+  gsap.registerPlugin(ScrollToPlugin)
+  const routeMap = {about: '.aboutSection', contact: '.ContactSection', cv: 'CVSection'}
   const asscroll = useRef()
   const time = useRef();
   const main = useRef();
   const container = useRef()
+  const [location, setLocation] = useLocation();
+  const [test, settest] = useState()
+
 
   console.log(props.pageRef);
   useLayoutEffect(() => {
-   console.log(main);
+    
     let ctx = gsap.context(() => { 
       asscroll.current = setupAsscroll()
 
@@ -64,9 +71,9 @@ function Main(props) {
           
           }
         })
-        .from('.aboutSection', {xPercent: -100}).from('.progressbarA',{ scaleY: 0})
-        .from('.ContactSection', {yPercent: -100}).to('.aboutSection', {opacity: 0}, "<25%").from('.progressbarB',{scaleY: 0})
-        .from(".CVSection", {yPercent: 100}).to('.ContactSection', {opacity: 0}, "<25%").from('.progressbarC',{scaleY: 0})
+        .from('.aboutSection', {xPercent: -100}).to('.aboutSection', {borderTopRightRadius: 0}, '<15%').from('.progressbarA',{ scaleY: 0}).addLabel('.aboutSection')
+        .from('.ContactSection', {yPercent: -100}).to('.ContactSection', {borderBottomRightRadius: 0}, '<15%').from('.progressbarB',{scaleY: 0}).addLabel('.ContactSection')
+        .from(".CVSection", {yPercent: 100}).to('.CVSection', {borderTopRightRadius: 0}, '<10%').from('.progressbarC',{scaleY: 0}).addLabel('.CVSection')
         // setTl(timeL)
         // ScrollTrigger.create({
         //   animation: timeL,
@@ -94,8 +101,16 @@ function Main(props) {
       
       
     }, [])
-    
-  
+  useEffect(() => {
+    console.log(time);
+  }, [location])
+
+  useLayoutEffect(() => {
+    if(main.current){
+      gsap.to(window, {scrollTo: time.current.scrollTrigger.labelToScroll(props.Section), duration: 2 })  
+      
+    }
+  }, [props.Section])
 
   return (
     
@@ -110,7 +125,9 @@ function Main(props) {
       <div className='h-[2000px] w-full separator '></div>
     
       <div ref={container} className='relative sm:w-1/2 w-full h-screen overflow-hidden container'>   
+          
           <About timeline={null} />
+     
           <Contact timeline={null}/> 
           <CV timeline={null} />
       </div>
