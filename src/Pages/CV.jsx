@@ -1,18 +1,21 @@
 import React, { useRef, useEffect } from 'react'
 import { PerspectiveCamera } from '@react-three/drei'
 import { HeaderFlow } from '../Components'
+import { useCallback } from 'react'
 
 
 
 
-function CV({timeline}) {
+function CV({sectionRef}) {
 
-const section = useRef()
-useEffect(() => {
-    timeline && timeline.from(section.current, {yPercent: 100})
+const section = useCallback(
+  (node) => {
+    sectionRef(node)
+  },
+  [],
+)
 
 
-}, [timeline])
 
   return (
 

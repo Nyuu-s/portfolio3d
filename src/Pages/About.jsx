@@ -2,15 +2,24 @@ import React, { useRef, useEffect } from 'react'
 import { PerspectiveCamera } from '@react-three/drei'
 import { HeaderFlow } from '../Components'
 import { useLayoutEffect } from 'react'
+import { useCallback } from 'react'
 
 
 
  
-function About({timeline}) {
-  const section = useRef()
+function About({sectionRef}) {
+  const section = useCallback(
+    (node) => {
+      sectionRef(node)
+    },
+    [],
+  )
+  
   useEffect(() => {
-    timeline && timeline.from(section.current, {xPercent: 100})
-  }, [timeline])
+    if(section.current){
+      sectionRef(section)
+    }
+  }, [section])
  
   return (
     

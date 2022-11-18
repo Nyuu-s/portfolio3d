@@ -12,7 +12,7 @@ import { useTheme } from './Context/ContextZustand'
 import gsap from 'gsap';
 import { useLocation, Switch, Route , Router} from "wouter"
 import makeMatcher from "wouter/matcher"
-
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
 
 
@@ -42,6 +42,7 @@ function App() {
   let Theme = useTheme()
   const [AppScene, setAppScene] = useState({Room: false , Space: true})
   const [urlUpdate, seturlUpdate] = useState({status: false, url: '/'})
+  const [location, setLocation] = useLocation()
 
 
   // useEffect(() => {
@@ -70,6 +71,7 @@ function App() {
   // }, [location.pathname])
 
 
+
   
   
   
@@ -96,7 +98,7 @@ function App() {
       <div ref={view2} className="view2" />
       
 
-      
+        
       
         <Canvas 
         shadows 
@@ -132,6 +134,7 @@ function App() {
                     <Floor />
                   </group>
                 </Route>
+                
                 <Router matcher={multipathMatcher}>
 
                   <Route path={['/projects', '/projects/:id']}>
@@ -159,11 +162,11 @@ function App() {
           </Suspense>
         </Canvas>
         
-        <LandingPage  />
+       
     
 
           
-
+        <LandingPage  />
 
 
 

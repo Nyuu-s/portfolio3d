@@ -7,7 +7,7 @@ import { useToggleTheme, useTheme } from '../Context/ContextZustand'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
-import {useLocation, Route, Redirect} from 'wouter'
+import {useLocation, Route, Redirect, Switch} from 'wouter'
 import { Projects } from '../data/project'
 import { Logo, NavButton } from '../Components'
 import {GiHamburgerMenu as BurgerIcon}  from 'react-icons/gi'
@@ -32,20 +32,24 @@ function LandingPage(props) {
 
   useEffect(() => {
     sectionProp = section
-    let ctx = gsap.context(() => {
-      timeLine.current = gsap.timeline().to('.menuItem', {yPercent: -200, stagger: 0.2,  duration: 1.5})
-    })
+    
+    // let ctx = gsap.context(() => {
+    //   timeLine.current = gsap.timeline().to('.menuItem', {yPercent: -200, stagger: 0.2,  duration: 1.5})
+    // })
    
-    return () => {
-      ctx.revert()
-    }
+    // return () => {
+    //   ctx.revert()
+    // }
   }, [])
   
-  useEffect(() => {
+  useLayoutEffect(() => { 
     setSection(sectionProp)
-  
+    
+      
+   
 
   }, [location])
+
   
 
   useEffect(() => {
@@ -59,11 +63,12 @@ function LandingPage(props) {
       setLocation('/')
     scroll.scrollToTop()
     setSection('.page')
-  }
+  } 
 
   return (
   
-    
+    <div>
+
       <div ref={page} className='z-10 w-full h-full overflow-y-scroll scrollbar-hide  page' asscroll-container="true">
           <div className='toggle-bar fixed flex  w-full top-2  z-50'>
             <div className='flex w-full items-center'>
@@ -85,8 +90,9 @@ function LandingPage(props) {
                   // setSection('.aboutSection')
                   if(location !== '/'){
                      setLocation('/')
+                    
                   }
-                  
+               
                   //scroll to section
                 }}/>
               
@@ -133,18 +139,29 @@ function LandingPage(props) {
           </div>
      
 
+          <Switch>
 
-          <Route path='/'>
-            <Main pageRef={page} Section={section} />
-          </Route>
+            <Route path='/'>
+              {
+                () => {
+                  
+                  return(<Main pageRef={page} Section={section} />)
 
-          <Route path='/projects/:id'>
-            {(params) => {
-              return(
-                Projects[params.id]
-              )
-            }}
-          </Route>
+                }
+                  
+                
+              }
+            </Route>
+
+            <Route path='/projects/:id'>
+              {(params) => {
+                
+                return(
+                  Projects[params.id]
+                )
+              }}
+            </Route>
+          </Switch>
 
 {/*     
       <Routes>
@@ -155,6 +172,7 @@ function LandingPage(props) {
 
 
       </div>
+    </div>
     
     
 
