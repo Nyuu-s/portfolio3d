@@ -8,18 +8,17 @@ import { useCallback } from 'react'
 
  
 function About({sectionRef}) {
+
+
   const section = useCallback(
     (node) => {
       sectionRef(node)
+   
     },
     [],
   )
   
-  useEffect(() => {
-    if(section.current){
-      sectionRef(section)
-    }
-  }, [section])
+
  
   return (
     

@@ -28,7 +28,7 @@ import {useLocation} from 'wouter'
 
 export function RoomModel(props) {
   // VARIABLES & CONSTANTS 
-  gsap.registerPlugin(ScrollTrigger)
+
   const group = useRef()
   const scene = useRef()
   const Rocket = useRef()
@@ -178,7 +178,7 @@ export function RoomModel(props) {
     return scene
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const onMove = (e) =>{
       var rotationX = ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth
       var rotationY = ((e.clientY - window.innerHeight / 2) * 2) / window.innerHeight
@@ -199,7 +199,6 @@ export function RoomModel(props) {
         tl.to(scene.current.position, {x: () =>{ return window.innerWidth * 0.0055}, ease: 1,
             scrollTrigger: {
                 trigger: el.querySelector('.separator'),
-                markers: true,
                 scrub: 0.5,
                 id: 'bigScaleTrigger',
                 start: "top top",
@@ -239,7 +238,7 @@ export function RoomModel(props) {
         scrub: 0.5,
         end: "bottom top",
         scroller: el.querySelector('.page'),
-        markers: true,
+       
         onEnter: () => setGearsRotation({status: true, direction: false}),
         onLeave:() => setGearsRotation({status: false, direction: false}),
         onEnterBack: () => setGearsRotation({status: true, direction: true}),
@@ -251,14 +250,13 @@ export function RoomModel(props) {
         }
       })
     })
-      
+       
     return () => {
-      window.removeEventListener("mousemove", onMove)
       window.removeEventListener("mousemove", onMove)
       ScrollTrigger.getAll().forEach((instance) => {
         instance.kill();
       });
-      gsap.killTweensOf(window);
+     
       ctx.revert()
     }
   

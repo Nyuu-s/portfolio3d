@@ -13,7 +13,7 @@ import gsap from 'gsap';
 import { useLocation, Switch, Route , Router} from "wouter"
 import makeMatcher from "wouter/matcher"
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-
+import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
 
 
 
@@ -34,6 +34,7 @@ const multipathMatcher = (patterns, path) => {
 
 
 function App() {
+  gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
   const container = useRef()
   const view1 = useRef()
   const view2 = useRef()
@@ -62,15 +63,21 @@ function App() {
   //   }
   //   else 
   //   {
-  //     setAppScene({Room: true , Space: false})
+  //     setAppScene({Room: true , Space: false}) 
   //   }
 
 
     
     
   // }, [location.pathname])
-
-
+ 
+  useEffect(() => { 
+    setTimeout(() => {
+      
+      console.log(ScrollTrigger.getAll()); 
+    }, 500);
+  }, [location])
+  
 
   
   
@@ -127,12 +134,14 @@ function App() {
 
               
                 <Route path='/'>
-                  <Camera default={true} perspective={false} {...cameraOrthoProp}/>
-                  <group name='RoomScene'> 
-                    <Environement />
-                    <RoomModel containerRef={container} />
-                    <Floor />
-                  </group>
+                  <>
+                    <Camera default={true} perspective={false} {...cameraOrthoProp}/>
+                    <group name='RoomScene'> 
+                      <Environement />
+                      <RoomModel containerRef={container} />
+                      <Floor />
+                    </group>
+                  </>
                 </Route>
                 
                 <Router matcher={multipathMatcher}>

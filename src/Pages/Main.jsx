@@ -1,64 +1,30 @@
 import React, {useLayoutEffect, useEffect, useRef} from 'react'
 import {CV, Contact, About} from '../Pages'
-import ASScroll from '@ashthornton/asscroll'
+
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
+
 import {useLocation} from 'wouter'
 import { useState } from 'react'
 import { useCallback } from 'react'
+import { invalidate } from '@react-three/fiber'
+import {animateScroll as scroll} from 'react-scroll'
 
 
-const setupAsscroll = () => {
-  // https://github.com/ashthornton/asscroll
-  const asscroll = new ASScroll({
-    
-    disableRaf: true });
 
-    
-  gsap.ticker.add(asscroll.update);
-
-  ScrollTrigger.defaults({
-    scroller: asscroll.containerElement });
-
-
-  ScrollTrigger.scrollerProxy(asscroll.containerElement, {
-    scrollTop(value) {
-      return arguments.length ? asscroll.currentPos = value : asscroll.currentPos;
-    },
-    getBoundingClientRect() {
-      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-    },
-    
-    });
-
- 
-  asscroll.on("update", ScrollTrigger.update);
-  ScrollTrigger.addEventListener("refresh", asscroll.resize);
-  
-    
-  requestAnimationFrame(() => {
-    asscroll.enable({
-      newScrollElements: document.querySelectorAll(".gsap-marker-start, .gsap-marker-end, [asscroll]") });
-
-  });
-  return asscroll;
-}
-
-const t = () => {
-  console.log('loaded');
-}
 
 function Main(props) {
-  gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
+  
   
   const routeMap = {about: '.aboutSection', contact: '.ContactSection', cv: 'CVSection'} 
-  const asscroll = useRef()
-  const time = useRef();
+  const time = useRef(gsap.timeline({paused: true}));
   const main = useRef();
+  const container = useRef();
   const aboutRef = useRef()
   const contactRef = useRef()
   const cvRef = useRef()
+  const asscroll = useRef(props.Asscroll)
+  const [ST, setST] = useState()
 
   const contact = useCallback(
     (node) => {
@@ -78,81 +44,99 @@ function Main(props) {
     },
     [],
     )
+    
   
   
   // const container = useRef()
   const [location, setLocation] = useLocation();
   const [test, settest] = useState()
+  const [scrollT, setscrollT] = useState()
 
- useEffect(() => {
+  useEffect(() => {
+
+  }, [location])
   
-
-
+useEffect(() => {
+  time.current
+  .from(aboutRef.current, {xPercent: -100}).to(aboutRef.current, {borderTopRightRadius: 0}, '<15%').from('.progressbarA',{ scaleY: 0}).addLabel('.aboutSection')
+  .from(contactRef.current, {yPercent: -100}).to(contactRef.current, {borderBottomRightRadius: 0}, '<15%').from('.progressbarB',{scaleY: 0}).addLabel('.ContactSection')
+  .from(cvRef.current, {yPercent: 100}).to(cvRef.current, {borderTopRightRadius: 0}, '<10%').from('.progressbarC',{scaleY: 0}).addLabel('.CVSection')
   
- }, [])
+  let st = 
+  ScrollTrigger.create({
+    animation: time.current,
+      scroller: '.page',
+      trigger: container.current,
+      start: () => "top top",
+      end: () => "bottom+=400",
+      scrub:true,
+      pin: container.current,
+      markers: true, 
+    
+      id: 'mainPageScroller',  
+})
+  
+  setST(st)   
+  return () => {
+    st.kill()
+
+    time.current.revert()
+    
+  }
+      
+
+  // asscroll.current?.update() 
+  // ScrollTrigger.refresh(false)
+  // asscroll.current?.enable({ newScrollEl ements: document.querySelectorAll(".gsap-marker-start, .gsap-marker-end, [asscroll]") })
+}, [])
+
+useEffect(() => {
+  // ST?.revert()
+  console.log('refreshing trigger :', ST, asscroll );
+  // asscroll.current?.current?.update()
+
+
+
+}, [ST])
+
  
-  useLayoutEffect(() => {
-    console.log(aboutRef.current, contactRef.current, cvRef.current);
-    asscroll.current = setupAsscroll()
+  useLayoutEffect(() => { 
+    // scroll.scrollToTop()
+    
+    let ctx = gsap.context(() => {
+    //   time.current
+    // .from(aboutRef.current, {xPercent: -100}).to(aboutRef.current, {borderTopRightRadius: 0}, '<15%').from('.progressbarA',{ scaleY: 0}).addLabel('.aboutSection')
+    // .from(contactRef.current, {yPercent: -100}).to(contactRef.current, {borderBottomRightRadius: 0}, '<15%').from('.progressbarB',{scaleY: 0}).addLabel('.ContactSection')
+    // .from(cvRef.current, {yPercent: 100}).to(cvRef.current, {borderTopRightRadius: 0}, '<10%').from('.progressbarC',{scaleY: 0}).addLabel('.CVSection')
 
-    let ctx = gsap.context(() => { 
+
+  
 
         
+        
+        
+      }, main.current.parentNode); // <- IMPORTANT! Scopes selector text
+    
 
-          time.current = gsap.timeline({scrollTrigger: {
-              // animation: timeL,
-              // scroller: props.pageRef.current,
-              trigger: '.container',
-              start: "top top",
-              end: () => "+=4000",
-              scrub: true,
-              pin: true,
-              id: 'mainPageScrollTrigger',
-              pinReparent: true,
-              markers: true
-              
-            
-            }
-          })
-          .from(aboutRef.current, {xPercent: -100}).to(aboutRef.current, {borderTopRightRadius: 0}, '<15%').from('.progressbarA',{ scaleY: 0}).addLabel('.aboutSection')
-          .from(contactRef.current, {yPercent: -100}).to(contactRef.current, {borderBottomRightRadius: 0}, '<15%').from('.progressbarB',{scaleY: 0}).addLabel('.ContactSection')
-          .from(cvRef.current, {yPercent: 100}).to(cvRef.current, {borderTopRightRadius: 0}, '<10%').from('.progressbarC',{scaleY: 0}).addLabel('.CVSection')
-        
-        // setTl(timeL)
-        // ScrollTrigger.create({
-        //   animation: timeL,
-        //   scroller: page.current,
-        //   trigger: container.current,
-        //   start: "top top",
-        //   end: "+=4000",
-        //   scrub: 0.4,
-        //   pin: true,
-        //   // pinSpacing: false,
-        //   // anticipatePin: 1,
-        //   // invalidateOnRefresh: true
-        
-        // })
-        
-        
-      },  main.current.parentNode); // <- IMPORTANT! Scopes selector text
-      
-      
+     
      
       return () => {
-        // ScrollTrigger.killAll()
+       
+        // time.current.revert()
         // console.log(ScrollTrigger.getById('mainPageScrollTrigger'));
         // ScrollTrigger.getById('mainPageScrollTrigger').kill()
         // console.log(ScrollTrigger.getById('mainPageScrollTrigger'));
         // asscroll.current.off("update", ScrollTrigger.update);
         // ScrollTrigger.removeEventListener("refresh", asscroll.current.resize);
         // time.current.revert()
+        // ScrollTrigger.getAll().forEach((instance) => {
+        //   instance.kill();
+        // });
+      
         ctx.revert();
-       
-        ScrollTrigger.getAll().forEach((instance) => {
-          instance.kill();
-        });
-        gsap.killTweensOf(window);
-        ctx.kill()
+        
+
+      
         
      
       } // cleanup
@@ -162,15 +146,24 @@ function Main(props) {
     }, [])
 
 
-  // useLayoutEffect(() => {
-  //   if(main.current){
-  //     gsap.to(window, {scrollTo: time.current.scrollTrigger.labelToScroll(props.Section), duration: 2 })  
+
+  
+
+  useEffect(() => {
+  
+    // if(test){
+
+    
+      let sc = ScrollTrigger.getById('mainPageScroller')
+      console.log(props.Section);
+      gsap.to('.page', {scrollTo: sc.labelToScroll(props.Section), duration: 2 })  
       
-  //   }
-  // }, [props.Section])
+    // }
+  }, [props.Section])
 
   return (
     <div>
+
       <div ref={main} className='relative pointer-events-none' asscroll="true">  
       
         <section className='w-screen h-screen '>
@@ -182,7 +175,7 @@ function Main(props) {
         <div  className='relative w-full h-full section-container' > 
           <div className='h-[2000px] w-full separator '></div>
         
-          <div  className='relative sm:w-1/2 w-full h-screen overflow-hidden container'>   
+          <div ref={container}  className='relative sm:w-1/2 w-full h-screen overflow-hidden container'>   
               
               <About sectionRef={about} />
         
@@ -193,6 +186,7 @@ function Main(props) {
         </div>
       </div>
     </div>
+    
   )
 }
 

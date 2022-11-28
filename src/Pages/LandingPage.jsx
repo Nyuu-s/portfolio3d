@@ -6,49 +6,74 @@ import {MdFlashlightOff, MdFlashlightOn} from 'react-icons/md'
 import { useToggleTheme, useTheme } from '../Context/ContextZustand'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import ASScroll from '@ashthornton/asscroll'
 
-import {useLocation, Route, Redirect, Switch} from 'wouter'
+import {useLocation, Route, useRoute, Switch, useRouter} from 'wouter'
 import { Projects } from '../data/project'
 import { Logo, NavButton } from '../Components'
 import {GiHamburgerMenu as BurgerIcon}  from 'react-icons/gi'
 import {TiHome as HomeIcon}  from 'react-icons/ti'
 import {Link, scroller, animateScroll as scroll} from 'react-scroll'
 
+const setupAsscroll = () => {
+  // https://github.com/ashthornton/asscroll
+  const asscroll = new ASScroll({
+    
+    disableRaf: true });
+
+    
+  gsap.ticker.add(asscroll.update);
+
+  ScrollTrigger.defaults({
+    scroller: asscroll.containerElement });
+
+
+  ScrollTrigger.scrollerProxy(asscroll.containerElement, {
+    scrollTop(value) {
+      return arguments.length ? asscroll.currentPos = value : asscroll.currentPos;
+    },
+    getBoundingClientRect() {
+      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+    },
+    
+    });
+
+ 
+  asscroll.on("update", ScrollTrigger.update);
+  ScrollTrigger.addEventListener("refresh", asscroll.resize);
+  
+    
+  requestAnimationFrame(() => {
+    asscroll.enable({
+      newScrollElements: document.querySelectorAll(".gsap-marker-start, .gsap-marker-end, [asscroll]") });
+
+  });
+  return asscroll;
+}
 
 
 
 function LandingPage(props) {
-  gsap.registerPlugin(ScrollTrigger)
+
   const bSlide = useRef()
   const page = useRef()
   const logo = useRef()
+  const asscrollRef = useRef()
   const timeLine = useRef()
   const toggleTheme = useToggleTheme()  
   const [NavbarDeploy, setNavbarDeploy] = useState(false)
   const {mode} = useTheme()
   const [location, setLocation] = useLocation();
   const [section, setSection] = useState('.page')
-  let sectionProp 
 
-  useEffect(() => {
-    sectionProp = section
-    
-    // let ctx = gsap.context(() => {
-    //   timeLine.current = gsap.timeline().to('.menuItem', {yPercent: -200, stagger: 0.2,  duration: 1.5})
-    // })
-   
-    // return () => {
-    //   ctx.revert()
-    // }
-  }, [])
-  
-  useLayoutEffect(() => { 
-    setSection(sectionProp)
-    
-      
-   
 
-  }, [location])
+
+  useLayoutEffect(() => {
+    // asscrollRef.current = setupAsscroll()
+  }, []) 
+
+
+
 
   
 
@@ -67,7 +92,7 @@ function LandingPage(props) {
 
   return (
   
-    <div>
+
 
       <div ref={page} className='z-10 w-full h-full overflow-y-scroll scrollbar-hide  page' asscroll-container="true">
           <div className='toggle-bar fixed flex  w-full top-2  z-50'>
@@ -86,14 +111,11 @@ function LandingPage(props) {
                     defaultBehaviour()
                 }}/>
               
-              <NavButton title={'About me'} clickFunc={() => {
-                  // setSection('.aboutSection')
-                  if(location !== '/'){
-                     setLocation('/')
-                    
-                  }
-               
-                  //scroll to section
+              <NavButton title={'About me'}  clickFunc={() => {
+                
+                setLocation('/')
+                
+       
                 }}/>
               
                 <NavButton title={'Contact'}  clickFunc={() => {
@@ -110,8 +132,11 @@ function LandingPage(props) {
                       setSection('.CVSection')
                     //scroll to section
                   }}/>
-                <NavButton title={'Projects'} clickFunc={() => {
+                <NavButton title={'Projects'}  clickFunc={() => {
+                
                   setLocation('/projects')
+                  
+                
                   // setSection('.page')
                   }}/>
              
@@ -145,7 +170,7 @@ function LandingPage(props) {
               {
                 () => {
                   
-                  return(<Main pageRef={page} Section={section} />)
+                  return(<Main pageRef={page} Section={section} Asscroll={asscrollRef}  />)
 
                 }
                   
@@ -172,8 +197,7 @@ function LandingPage(props) {
 
 
       </div>
-    </div>
-    
+
     
 
   )
