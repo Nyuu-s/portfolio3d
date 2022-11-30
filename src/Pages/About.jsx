@@ -1,25 +1,17 @@
-import React, { useRef, useEffect } from 'react'
-import { PerspectiveCamera } from '@react-three/drei'
+import React from 'react'
 import { HeaderFlow } from '../Components'
-import { useLayoutEffect } from 'react'
 import { useCallback } from 'react'
 
 
 
  
 function About({sectionRef}) {
-
-
   const section = useCallback(
     (node) => {
       sectionRef(node)
-   
     },
-    [],
+    [sectionRef],
   )
-  
-
- 
   return (
     
     

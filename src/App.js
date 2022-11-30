@@ -1,16 +1,16 @@
 
-import React, { Suspense, useRef, useEffect, useState, useLayoutEffect } from 'react';
+import React, { Suspense, useRef, useMemo } from 'react';
 import './App.css';
 
 
-import {Canvas, useFrame, useThree, createPortal} from '@react-three/fiber'
+import {Canvas} from '@react-three/fiber'
 import * as THREE from 'three'
-import { Earth, Sphere, TopSection, Room, Environement, Controls, Camera, Floor, AnimationsControls, RoomModel, ProjectsMesh,  } from './Components/'
-import { Stars , OrbitControls, OrthographicCamera, useFBO, Plane, useHelper, View, PerspectiveCamera, Bounds, RenderTexture, Effects} from '@react-three/drei';
-import { LandingPage, Main } from './Pages';
+import { Earth, Environement,  Camera, Floor,  RoomModel, ProjectsMesh,  } from './Components/'
+import {Preload, Loader} from '@react-three/drei';
+import { LandingPage } from './Pages';
 import { useTheme } from './Context/ContextZustand'
 import gsap from 'gsap';
-import { useLocation, Switch, Route , Router} from "wouter"
+import { useLocation, Route , Router} from "wouter"
 import makeMatcher from "wouter/matcher"
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
@@ -33,6 +33,7 @@ const multipathMatcher = (patterns, path) => {
 };
 
 
+
 function App() {
   gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
   const container = useRef()
@@ -41,9 +42,9 @@ function App() {
 
 
   let Theme = useTheme()
-  const [AppScene, setAppScene] = useState({Room: false , Space: true})
-  const [urlUpdate, seturlUpdate] = useState({status: false, url: '/'})
-  const [location, setLocation] = useLocation()
+
+
+  const [location] = useLocation()
 
 
   // useEffect(() => {
@@ -71,19 +72,13 @@ function App() {
     
   // }, [location.pathname])
  
-  useEffect(() => { 
-    setTimeout(() => {
-      
-      console.log(ScrollTrigger.getAll()); 
-    }, 500);
-  }, [location])
+
   
 
   
   
   
-
-  const [cameraOrthoProp, setCameraOrthoProp] = useState({
+  const cameraOrthoProp = useMemo(() => ({
     far: 25000,
     near: -10000,
     scale: 0.005,
@@ -91,13 +86,15 @@ function App() {
     rotation: [-Math.PI/8,0, 0],
     lookAt: [0,0,0]
   
-  })
-  const [cameraPersProp, setCameraPersProp] = useState({
+  }), [])
+  
+  const cameraPersProp = useMemo(() => ({
     far: 250000,
     near: -100000,
     scale:1, 
     position: [0,0,20],
-  })
+  }), [])
+  
   return (
     
     <div ref={container} className={`${Theme.mode === 'dark' ? 'dark' : '' } w-screen h-screen fixed`}> 
@@ -106,8 +103,9 @@ function App() {
       
 
         
-      
-        <Canvas 
+        <Loader />
+        <Canvas
+        
         shadows 
         className="canvas w-full h-full"
         eventSource={container}
@@ -125,8 +123,8 @@ function App() {
           
             
           <Suspense fallback={null}>
-        
-            
+          
+       
             { DEBUG && <>
               <gridHelper args={[10, 10]} />
               <axesHelper args={[10]}/>
@@ -135,6 +133,7 @@ function App() {
               
                 <Route path='/'>
                   <>
+                 
                     <Camera default={true} perspective={false} {...cameraOrthoProp}/>
                     <group name='RoomScene'> 
                       <Environement />
@@ -149,7 +148,7 @@ function App() {
                   <Route path={['/projects', '/projects/:id']}>
                     <Camera default={true} perspective={true} {...cameraPersProp}/>
                     <group name='SolarSystem' >
-                      <Sphere NormalizedMouse={mouse} />
+                      <Earth NormalizedMouse={mouse} /> 
                     </group>
                   </Route>
                   <Route path={'/projects'}>
@@ -168,13 +167,14 @@ function App() {
               rotateSpeed={0.4}
               enableDamping
             />  */}
+             <Preload all />
           </Suspense>
         </Canvas>
         
        
     
 
-          
+        
         <LandingPage  />
 
 

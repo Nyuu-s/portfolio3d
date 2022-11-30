@@ -12,5 +12,5 @@ function Logo({icon, clickFunc}) {
     </div>
   )
 }
-
+ 
 export default Logo

@@ -1,55 +1,52 @@
-import React , { useRef, useState, useEffect, useMemo, useLayoutEffect } from 'react'
-import {About, Contact, CV, Main} from './'
-import * as THREE  from 'three'
-import { useThree } from '@react-three/fiber'
+import React , { useRef, useState, useEffect } from 'react'
+import { Main} from './'
 import {MdFlashlightOff, MdFlashlightOn} from 'react-icons/md'
 import { useToggleTheme, useTheme } from '../Context/ContextZustand'
-import gsap from 'gsap'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import ASScroll from '@ashthornton/asscroll'
 
-import {useLocation, Route, useRoute, Switch, useRouter} from 'wouter'
+
+import {useLocation, Route, Switch} from 'wouter'
 import { Projects } from '../data/project'
 import { Logo, NavButton } from '../Components'
 import {GiHamburgerMenu as BurgerIcon}  from 'react-icons/gi'
 import {TiHome as HomeIcon}  from 'react-icons/ti'
-import {Link, scroller, animateScroll as scroll} from 'react-scroll'
+import {animateScroll as scroll} from 'react-scroll'
 
-const setupAsscroll = () => {
-  // https://github.com/ashthornton/asscroll
-  const asscroll = new ASScroll({
+// WEIRD BEHAVIOUR ON NAVIGATION BETWEEN ROUTES
+// const setupAsscroll = () => {
+//   // https://github.com/ashthornton/asscroll
+//   const asscroll = new ASScroll({ 
     
-    disableRaf: true });
+//     disableRaf: true });
 
     
-  gsap.ticker.add(asscroll.update);
+//   gsap.ticker.add(asscroll.update);
 
-  ScrollTrigger.defaults({
-    scroller: asscroll.containerElement });
+//   ScrollTrigger.defaults({
+//     scroller: asscroll.containerElement });
 
 
-  ScrollTrigger.scrollerProxy(asscroll.containerElement, {
-    scrollTop(value) {
-      return arguments.length ? asscroll.currentPos = value : asscroll.currentPos;
-    },
-    getBoundingClientRect() {
-      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-    },
+//   ScrollTrigger.scrollerProxy(asscroll.containerElement, {
+//     scrollTop(value) {
+//       return arguments.length ? asscroll.currentPos = value : asscroll.currentPos;
+//     },
+//     getBoundingClientRect() {
+//       return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+//     },
     
-    });
+//     });
 
  
-  asscroll.on("update", ScrollTrigger.update);
-  ScrollTrigger.addEventListener("refresh", asscroll.resize);
+//   asscroll.on("update", ScrollTrigger.update);
+//   ScrollTrigger.addEventListener("refresh", asscroll.resize);
   
     
-  requestAnimationFrame(() => {
-    asscroll.enable({
-      newScrollElements: document.querySelectorAll(".gsap-marker-start, .gsap-marker-end, [asscroll]") });
+//   requestAnimationFrame(() => {
+//     asscroll.enable({
+//       newScrollElements: document.querySelectorAll(".gsap-marker-start, .gsap-marker-end, [asscroll]") });
 
-  });
-  return asscroll;
-}
+//   });
+//   return asscroll;
+// }
 
 
 
@@ -68,8 +65,8 @@ function LandingPage(props) {
 
 
 
-  useLayoutEffect(() => {
-    // asscrollRef.current = setupAsscroll()
+  useEffect(() => {
+
   }, []) 
 
 
@@ -94,7 +91,7 @@ function LandingPage(props) {
   
 
 
-      <div ref={page} className='z-10 w-full h-full overflow-y-scroll scrollbar-hide  page' asscroll-container="true">
+      <div ref={page} onScroll={() => {setSection('undefined')}} className='z-10 w-full h-full overflow-y-scroll scrollbar-hide  page' asscroll-container="true">
           <div className='toggle-bar fixed flex  w-full top-2  z-50'>
             <div className='flex w-full items-center'>
             <div ref={logo} className='ml-5 z-20'>

@@ -19,7 +19,7 @@ function Environement() {
     setLights(ambiantLight, dirLight)
   
 
-  }, [])
+  }, [setLights])
   
    
   useEffect(() => {
@@ -36,7 +36,7 @@ function Environement() {
       gsap.to(dirLight.current.color, {r: 51/255, g:51/255, b:90/255})
 
     }
-    
+     
   }, [theme])
 
   return (

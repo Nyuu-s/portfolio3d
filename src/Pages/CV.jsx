@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from 'react'
-import { PerspectiveCamera } from '@react-three/drei'
+import React from 'react'
 import { HeaderFlow } from '../Components'
 import { useCallback } from 'react'
 
@@ -12,10 +11,10 @@ const section = useCallback(
   (node) => {
     sectionRef(node)
   },
-  [],
+  [sectionRef],
 )
 
-
+ 
 
   return (
 

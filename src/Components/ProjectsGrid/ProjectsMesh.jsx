@@ -1,14 +1,13 @@
 import { Html, Plane } from '@react-three/drei'
 import * as THREE from 'three'
-import React , {useMemo, useRef, useState, useEffect} from 'react'
-import { useFrame } from '@react-three/fiber'
+import React , { useRef, useState, useEffect} from 'react'
 import gsap from 'gsap'
 import {useLocation} from 'wouter'
 
 
 
-const onEnter = (e, position, func) => {
-    let normals = e.object.geometry.attributes.normal.array
+const onEnter = (e, position) => {
+    
     
     // e.object.translateOnAxis(new THREE.Vector3(normals[0],normals[1],normals[2]),0.5)
     gsap.to(e.object.position, {x:position.x,  z: position.z + 0.5})
@@ -19,7 +18,7 @@ const onLeave = (e, position, func) => {
     gsap.to(e.object.rotation, {x: 0, y: position.rotationY })
  }
 
-function ProjectsMesh(props) {
+function ProjectsMesh() {
 
     const [movable, setMovable] = useState(false)
     const [location, setLocation] = useLocation()
@@ -60,7 +59,7 @@ function ProjectsMesh(props) {
             e.object.rotation.x = -u.y * 0.1
             e.object.rotation.y = positions[i].rotationY + (u.x * 0.1)
             
-        }
+        } 
            
         }}
         onPointerLeave={(e) =>{

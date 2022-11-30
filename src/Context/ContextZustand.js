@@ -3,7 +3,7 @@ import create from 'zustand'
 const THEME_COLORS = {
     light: "#f3f",
     dark: "#333"
-}
+} 
 
 const useStore = create((set) => ({
 

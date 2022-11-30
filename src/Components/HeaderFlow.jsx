@@ -1,4 +1,4 @@
-import React, { useRef , useLayoutEffect, useEffect, useState} from 'react'
+import React, { useRef , useLayoutEffect, useState} from 'react'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
@@ -66,7 +66,7 @@ function HeaderFlow({colorText1, colorText2, bgClassColor1, bgClassColor2, flowD
         ctx.revert() 
         window.removeEventListener('resize', debouncedHandleResize)
       } 
-    }, [parentWidth])  
+    }, [parentWidth, flowDirection, width])  
 
    
       

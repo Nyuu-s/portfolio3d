@@ -20,7 +20,7 @@ function Project(props) {
               {isGithub ? <GitHubIcon /> :  <ExternalLink size={20} />} 
               
               </span>}
-        </h1>
+        </h1> 
         <div className='my-5 mx-5'>
           <p className='text-justify'>
             {props.shortDesc}
