@@ -2,7 +2,7 @@ import React , { useRef, useState, useEffect } from 'react'
 import { Main} from './'
 import {MdFlashlightOff, MdFlashlightOn} from 'react-icons/md'
 import { useToggleTheme, useTheme } from '../Context/ContextZustand'
-
+import gsap from 'gsap'
 
 import {useLocation, Route, Switch} from 'wouter'
 import { Projects } from '../data/project'
@@ -66,7 +66,14 @@ function LandingPage(props) {
 
 
   useEffect(() => {
+    let ctx =  gsap.context(() => {
+      timeLine.current = gsap.timeline().to('.menuItem', {yPercent: -100, stagger: 0.1, duration: 1}).pause()
 
+      
+    })
+    return () => {
+      ctx.revert()
+    }
   }, []) 
 
 
@@ -76,7 +83,10 @@ function LandingPage(props) {
 
   useEffect(() => {
     if(timeLine.current){
+
+      console.log(timeLine.current);
       NavbarDeploy ? timeLine.current.play() : timeLine.current.reverse()
+
     }
   }, [NavbarDeploy])
 
@@ -91,14 +101,14 @@ function LandingPage(props) {
   
 
 
-      <div ref={page} onScroll={() => {setSection('undefined')}} className='z-10 w-full h-full overflow-y-scroll scrollbar-hide  page' asscroll-container="true">
+      <div ref={page} onScroll={() => {setSection('undefined')}} className='z-20 w-full h-full overflow-y-scroll scrollbar-hide   page' asscroll-container="true">
           <div className='toggle-bar fixed flex  w-full top-2  z-50'>
             <div className='flex w-full items-center'>
             <div ref={logo} className='ml-5 z-20'>
               
               <Logo icon={<BurgerIcon size={20}/>} clickFunc={() => {
-                  
-                  NavbarDeploy ? setNavbarDeploy(false) : setNavbarDeploy(true)
+                NavbarDeploy ? setNavbarDeploy(false) : setNavbarDeploy(true)
+                console.log(NavbarDeploy);
               }}/> 
             </div>
  
@@ -111,7 +121,7 @@ function LandingPage(props) {
               <NavButton title={'About me'}  clickFunc={() => {
                 
                 setLocation('/')
-                
+                setSection('.aboutSection')
        
                 }}/>
               

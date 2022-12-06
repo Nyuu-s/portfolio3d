@@ -11,7 +11,6 @@ import { useCallback } from 'react'
 
 
 
-
 function Main(props) {
   
   
@@ -69,7 +68,7 @@ useEffect(() => {
       end: () => "bottom+=400",
       scrub:true,
       pin: container.current,
-      markers: true, 
+      pinSpacing: true,
     
       id: 'mainPageScroller',  
 })
@@ -112,7 +111,7 @@ useEffect(() => {
       
         <section className='w-screen h-screen '>
             <div className='relative h-full max-w-[972px] w-[calc(100%_-_120px)] mx-auto font-raleway sm:max-w-[1100px]'> 
-                <div className='absolute left-0 top-[20%] text-4xl font-bold'> Welcome</div>
+                <div className='absolute left-0 top-[20%] text-4xl font-bold'> Welcome </div>
                 <div className='absolute right-0 bottom-1/3 text-2xl font-semibold '></div>
             </div>
         </section>

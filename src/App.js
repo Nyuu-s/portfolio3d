@@ -5,8 +5,8 @@ import './App.css';
 
 import {Canvas} from '@react-three/fiber'
 import * as THREE from 'three'
-import { Earth, Environement,  Camera, Floor,  RoomModel, ProjectsMesh,  } from './Components/'
-import {Preload, Loader} from '@react-three/drei';
+import { Earth,  Camera  } from './Components/'
+import {Preload, Loader, Html, useProgress} from '@react-three/drei';
 import { LandingPage } from './Pages';
 import { useTheme } from './Context/ContextZustand'
 import gsap from 'gsap';
@@ -16,6 +16,14 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
 
 
+const RoomModel = React.lazy(() => import('./Components/Room/PortfolioRoomArcade'))
+const Environement = React.lazy(() => import('./Components/Environement/index'))
+const Floor = React.lazy(() => import('./Components/Floor/index'))
+const ProjectsMesh = React.lazy(() => import('./Components/ProjectsGrid/ProjectsMesh'))
+function CustomLoader() {
+  const { active, progress, errors, item, loaded, total } = useProgress()
+  return <Html className='w-screen mx-auto ' center> <div className='text-red-100 text-center'> Loading: {(progress - 1) > 0 ? (progress-0.1).toFixed(1) : 0} %   </div></Html>
+}
 
 
 const DEBUG = false
@@ -39,7 +47,7 @@ function App() {
   const container = useRef()
   const view1 = useRef()
   const view2 = useRef()
-
+  const {progress} = useProgress()
 
   let Theme = useTheme()
 
@@ -98,16 +106,15 @@ function App() {
   return (
     
     <div ref={container} className={`${Theme.mode === 'dark' ? 'dark' : '' } w-screen h-screen fixed`}> 
-      <div ref={view1} className="view1"/>
-      <div ref={view2} className="view2" />
+
       
 
         
-        <Loader />
+
         <Canvas
-        
+      
         shadows 
-        className="canvas w-full h-full"
+        className="canvas w-full h-full -z-10"
         eventSource={container}
         
         // -0.2,0.7,1.2
@@ -119,64 +126,47 @@ function App() {
             }}
               
         >
-
-          
-            
-          <Suspense fallback={null}>
-          
-       
             { DEBUG && <>
               <gridHelper args={[10, 10]} />
               <axesHelper args={[10]}/>
             </> }
 
-              
+                <Router matcher={multipathMatcher}>
                 <Route path='/'>
                   <>
-                 
-                    <Camera default={true} perspective={false} {...cameraOrthoProp}/>
-                    <group name='RoomScene'> 
-                      <Environement />
-                      <RoomModel containerRef={container} />
-                      <Floor />
-                    </group>
+
+                  <Suspense fallback={<CustomLoader />}>
+                      <Camera default={true} perspective={false} {...cameraOrthoProp}/>
+                        <group name='RoomScene'> 
+                          <Environement />
+                          <RoomModel containerRef={container} />
+                          <Floor />
+                          <Preload all />
+                        </group>
+                  </Suspense>
                   </>
                 </Route>
-                
-                <Router matcher={multipathMatcher}>
-
                   <Route path={['/projects', '/projects/:id']}>
-                    <Camera default={true} perspective={true} {...cameraPersProp}/>
-                    <group name='SolarSystem' >
-                      <Earth NormalizedMouse={mouse} /> 
-                    </group>
+                    
+
+                      <Camera default={true} perspective={true} {...cameraPersProp}/>
+                      <group name='SolarSystem' >
+                        <Earth NormalizedMouse={mouse} /> 
+                      </group>
+                   
                   </Route>
                   <Route path={'/projects'}>
                       <ProjectsMesh  />
                   </Route>
                 </Router>
-  
-              
-          
-              {/* <OrbitControls
-              enableZoom={true}
-              enablePan={true}
-              enableRotate={true}
-              zoomSpeed={0.6}
-              panSpeed={0.5}
-              rotateSpeed={0.4}
-              enableDamping
-            />  */}
-             <Preload all />
-          </Suspense>
+
         </Canvas>
-        
+   
        
     
 
         
         <LandingPage  />
-
 
 
 

@@ -305,9 +305,9 @@ useFrame((state) => {
    
 
    
-    
-    <group ref={group} {...props}  scale={0.21} position={[0,-1,0]} >
    
+    <group ref={group} {...props}  scale={0.21} position={[0,-1,0]} >
+
       <group ref={scene} name="Scene"  >
       
         <group name="RoomWalls" position={[0.57, 5, 1.98]} rotation={[0, Math.PI / 4, 0]}>
