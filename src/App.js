@@ -1,5 +1,5 @@
 
-import React, { Suspense, useRef, useMemo } from 'react';
+import React, { Suspense, useRef, useMemo, useState } from 'react';
 import './App.css';
 
 
@@ -20,10 +20,8 @@ const RoomModel = React.lazy(() => import('./Components/Room/PortfolioRoomArcade
 const Environement = React.lazy(() => import('./Components/Environement/index'))
 const Floor = React.lazy(() => import('./Components/Floor/index'))
 const ProjectsMesh = React.lazy(() => import('./Components/ProjectsGrid/ProjectsMesh'))
-function CustomLoader() {
-  const { active, progress, errors, item, loaded, total } = useProgress()
-  return <Html className='w-screen mx-auto ' center> <div className='text-red-100 text-center'> Loading: {(progress - 1) > 0 ? (progress-0.1).toFixed(1) : 0} %   </div></Html>
-}
+const CustomLoader = React.lazy(() => import('./Components/CustomLoader'))
+
 
 
 const DEBUG = false
@@ -45,41 +43,8 @@ const multipathMatcher = (patterns, path) => {
 function App() {
   gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
   const container = useRef()
-  const view1 = useRef()
-  const view2 = useRef()
-  const {progress} = useProgress()
-
   let Theme = useTheme()
-
-
-  const [location] = useLocation()
-
-
-  // useEffect(() => {
-  //   if(urlUpdate.status){
-
-  //     if( location.pathname !==  urlUpdate.url )
-  //       navigate(urlUpdate.url)
-  //   }
-   
-  // }, [urlUpdate])
   
-  // useEffect(() => {
-
-  //   if(location.pathname.includes('/projects'))
-  //   {
-  //     setAppScene({Room: false , Space: true})
-  //   }
-  //   else 
-  //   {
-  //     setAppScene({Room: true , Space: false}) 
-  //   }
-
-
-    
-    
-  // }, [location.pathname])
- 
 
   
 
@@ -109,7 +74,9 @@ function App() {
 
       
 
-        
+   
+
+
 
         <Canvas
       
@@ -134,14 +101,15 @@ function App() {
                 <Router matcher={multipathMatcher}>
                 <Route path='/'>
                   <>
-
                   <Suspense fallback={<CustomLoader />}>
+
                       <Camera default={true} perspective={false} {...cameraOrthoProp}/>
                         <group name='RoomScene'> 
                           <Environement />
                           <RoomModel containerRef={container} />
                           <Floor />
                           <Preload all />
+                          
                         </group>
                   </Suspense>
                   </>
@@ -164,9 +132,9 @@ function App() {
    
        
     
-
+        {<LandingPage  />}
+     
         
-        <LandingPage  />
 
 
 

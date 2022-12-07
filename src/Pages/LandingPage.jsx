@@ -62,19 +62,29 @@ function LandingPage(props) {
   const {mode} = useTheme()
   const [location, setLocation] = useLocation();
   const [section, setSection] = useState('.page')
+  const [isReady, setIsReady] = useState(false)
 
 
 
   useEffect(() => {
     let ctx =  gsap.context(() => {
-      timeLine.current = gsap.timeline().to('.menuItem', {yPercent: -100, stagger: 0.1, duration: 1}).pause()
+      if(isReady){
+        timeLine.current = gsap.timeline()
+        .to('.menuItem', {yPercent: -100, stagger: 0.1, duration: 1})
+        .to('.toggle-bar', {backgroundColor: "rgba(0,0,0,0)", duration: 1}, '<')
+        .pause()
+      }
 
       
     })
+    setTimeout(() => {
+      setIsReady(true)
+    }, 500);
+
     return () => {
       ctx.revert()
     }
-  }, []) 
+  }, [isReady]) 
 
 
 
@@ -83,8 +93,6 @@ function LandingPage(props) {
 
   useEffect(() => {
     if(timeLine.current){
-
-      console.log(timeLine.current);
       NavbarDeploy ? timeLine.current.play() : timeLine.current.reverse()
 
     }
@@ -101,8 +109,8 @@ function LandingPage(props) {
   
 
 
-      <div ref={page} onScroll={() => {setSection('undefined')}} className='z-20 w-full h-full overflow-y-scroll scrollbar-hide   page' asscroll-container="true">
-          <div className='toggle-bar fixed flex  w-full top-2  z-50'>
+      <div ref={page} onScroll={() => {setSection('undefined')}} className=' w-full h-full overflow-y-scroll scrollbar-hide   page' asscroll-container="true">
+          {isReady && <div className='toggle-bar bg-main-dark-bg bg-opacity-60  dark:bg-opacity-100  fixed flex  w-full top-0  z-50'>
             <div className='flex w-full items-center'>
             <div ref={logo} className='ml-5 z-20'>
               
@@ -112,7 +120,7 @@ function LandingPage(props) {
               }}/> 
             </div>
  
-            <div className='menuItems flex w-full ml-3'>
+            <div className='menuItems flex   w-full ml-3'>
 
               <NavButton title={<HomeIcon size={35}/>} clickFunc={() => {
                     defaultBehaviour()
@@ -147,28 +155,28 @@ function LandingPage(props) {
                   // setSection('.page')
                   }}/>
              
+
+                <div className="menuItem flex mr-2 justify-end items-center top-12 right-12 z-50">
+                  
+              
+                  <div className="sun"> 
+                    <MdFlashlightOn />
+                  </div>
+                  <button onClick={() => { 
+                                            toggleTheme()
+                                            }} className='group cursor-pointer relative w-[56px] h-7 flex justify-center items-center bg-pink-400 rounded-full mx-4 border-none shadow-lg'>
+                    <div ref={bSlide}   className={`circle ${mode === 'dark' ? 'slide' : ''} absolute  left-[6px] rounded-[50%] w-5 h-5 bg-secondary-dark-bg dark:bg-white group-hover:scale-90`}></div>
+                  </button>
+                  <div className="moon"> 
+                    <MdFlashlightOff />
+                  </div> 
+                </div>
+              </div>
             </div>
               
-
-            </div>
             
 
-            <div className="menuItem flex mr-2 justify-end items-center top-12 right-12 z-50">
-              
-          
-              <div className="sun"> 
-                <MdFlashlightOn />
-              </div>
-              <button onClick={() => { 
-                                        toggleTheme()
-                                        }} className='group cursor-pointer relative w-[56px] h-7 flex justify-center items-center bg-pink-400 rounded-full mx-4 border-none shadow-lg'>
-                <div ref={bSlide}   className={`circle ${mode === 'dark' ? 'slide' : ''} absolute  left-[6px] rounded-[50%] w-5 h-5 bg-secondary-dark-bg dark:bg-white group-hover:scale-90`}></div>
-              </button>
-              <div className="moon"> 
-                <MdFlashlightOff />
-              </div> 
-            </div>
-          </div>
+          </div>}
      
 
           <Switch>
@@ -176,6 +184,7 @@ function LandingPage(props) {
             <Route path='/'>
               {
                 () => {
+                 
                   
                   return(<Main pageRef={page} Section={section} Asscroll={asscrollRef}  />)
 

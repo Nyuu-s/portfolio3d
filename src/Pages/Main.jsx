@@ -49,9 +49,7 @@ function Main(props) {
   const [location, setLocation] = useLocation();
 
 
-  useEffect(() => {
 
-  }, [location])
   
 useEffect(() => {
   time.current

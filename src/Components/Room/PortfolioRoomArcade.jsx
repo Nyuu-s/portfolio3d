@@ -609,6 +609,6 @@ useFrame((state) => {
   )
 } 
 
-useGLTF.preload('/portfolio-room-arcade-v2.glb')
+useGLTF.preload('/portfolio-room-arcade-v2.glb', true,true)
 
 export default RoomModel

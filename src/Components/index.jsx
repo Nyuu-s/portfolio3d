@@ -18,4 +18,5 @@ export { default as HeaderFlow} from    './HeaderFlow';
 
 //------------- LOADER -------------------------------------
 export { default as Preloader} from    './Preloader';
+export { default as CustomLoader} from    './CustomLoader';
  
