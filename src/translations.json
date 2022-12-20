@@ -1,0 +1,52 @@
+
+{
+    "en": {
+        "translation": {
+          "Welcome": "Welcome !",
+          "About" : {
+            "intro": "",
+            "hobbies": {
+              "prog": "",
+              "science": "",
+              "learning": ""
+            },
+            "motivation": " "
+
+          },
+          "CV": {
+            "download": "Download",
+            "skill": "",
+            "formation": "",
+            "hobbies": ""
+          },
+          "Contact": {},
+          "Projects": {}
+        }
+      },
+      "fr": {
+        "translation": {
+          "Welcome": "Bienvenue !",
+          "About" : {
+            "intro": "<div>Salut, je m'appelle Edgar j'ai 23 ans et je suis développeur d'applications ! </div> \n Je suis un passioné d'informatique depuis tout jeune et notemment de jeux vidéo\n ",
+            "hobbies": {
+              "prog": "Parmis les activités que j'apprecie la programmation detient la medaille d'or, j'aime apprendre de nouveaux languages et renforcer mes compétences dans ceux que je connais déjà.",
+              "science": "Je suis abosulment émerveillé par les sciences qui reprenstes pour moi le salut de l'humanité haha. les domaines que j'affectionne le plus meme si parfois cela depasse de loin mes compétence sont l'astronomie et tout ce qui concerne l'espace et l'infiniment grand. Mais aussi les neurosciences et tout ce qui concerne la comprehension du cerveau humain et de la numérisation de la concience-esprit. Et enfin le domaine de la physique quantique qui joue un role majeur dans l'infiniment grand et quicontient tellement de mystère.",
+              "learning": "J'aime beaucoup apprendre de nouvelles choses sur des sujets variés mais je reste humain avant tout et ma conentration n'est pas infini alors oui j'aime aussi joué aux jeu vidéo, regarder des films et series et lire des mangas",
+              "motivation": "Ayant joué aux jeux vidéo etant plus jeune je me suis assez vite retrouver avouloir etre de l'autre coté du mirroir et creer des jeux, une facons de raconter des histoire et exprimer ca créativité differente plus immerive et interactive que les média traditionelle.",
+              "journey": "J'ai commencer mes études a Lyon ou j'ai obtenu mon Bac+2 puis je suis aller faire mon bac+3 a Rennes et enfin mon bac+5 à Montpellier"
+            }
+
+          },
+          "CV": {
+            "download": "télécharger",
+            "skill": "",
+            "formation": "",
+            "hobbies": ""
+          },
+          "Contact": {},
+          "Projects": {}
+
+        }
+      }
+}
+

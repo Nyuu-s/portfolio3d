@@ -1,11 +1,12 @@
 import React from 'react'
 import { HeaderFlow } from '../Components'
 import { useCallback } from 'react'
-
+import { useTranslation, Trans } from 'react-i18next'
 
 
  
 function About({sectionRef}) {
+  const {t} = useTranslation()
   const section = useCallback(
     (node) => {
       sectionRef(node)
@@ -23,7 +24,8 @@ function About({sectionRef}) {
       <div className="mt-24">
         <HeaderFlow text1={"About Me"} text2={'About Me'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} />
         
-        <div >
+        <div className='dark:text-white'>
+         <Trans components={{div: <div />, b: <strong />}}>About.intro</Trans>
             <h3>Lorem</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae necessitatibus rerum, minus consequatur et, commodi, facilis possimus omnis enim voluptate fugiat qui. Ipsum voluptatem magni fugit ipsa? Iste, laudantium ratione.</p>
             <h3>Lorem</h3>
