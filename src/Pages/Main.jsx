@@ -1,21 +1,22 @@
-import React, { useEffect, useRef} from 'react'
+import React, { useEffect, useRef, useState} from 'react'
 import {CV, Contact, About} from '../Pages'
-
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-
-import {useLocation} from 'wouter'
-
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 
 
 function Main(props) {
+  let scroll = {
+    about: false,
+    cv: false,
+    contact: false
+  }
   
-  
-  const {t, i18n } = useTranslation()
+  const {t } = useTranslation()
   const time = useRef(gsap.timeline({paused: true}));
+  const [Scrollable, setScrollable] = useState(scroll)
   const main = useRef();
   const container = useRef();
   const aboutRef = useRef()
@@ -42,20 +43,29 @@ function Main(props) {
     },
     [],
     )
-    
-  
-  
-  // const container = useRef()
-  const [location, setLocation] = useLocation();
+
 
 
 
   
 useEffect(() => {
+
+  //Animation for all 3 Section + Prevent intern Scrolling until Section animation is done.
   time.current
-  .from(aboutRef.current, {xPercent: -100}).to(aboutRef.current, {borderTopRightRadius: 0}, '<15%').from('.progressbarA',{ scaleY: 0}).addLabel('.aboutSection')
-  .from(contactRef.current, {yPercent: -100}).to(contactRef.current, {borderBottomRightRadius: 0}, '<15%').from('.progressbarB',{scaleY: 0}).addLabel('.ContactSection')
-  .from(cvRef.current, {yPercent: 100}).to(cvRef.current, {borderTopRightRadius: 0}, '<10%').from('.progressbarC',{scaleY: 0}).addLabel('.CVSection')
+    .from(aboutRef.current, {xPercent: -100}).to(aboutRef.current, {borderTopRightRadius: 0, onUpdate: () => {
+    let progress =  time.current.progress()
+    progress > 0.16 ? setScrollable(S => ({...S, about: true})) : setScrollable(S => ({...S, about: false}))
+    }}, '<15%').from('.progressbarA',{ scaleY: 0}).addLabel('.aboutSection')
+
+  .from(cvRef.current, {yPercent: 100}).to(cvRef.current, {borderTopRightRadius: 0, onUpdate: () => {
+    let progress =  time.current.progress()
+    progress > 0.48 ? setScrollable(S => ({...S, cv: true})) : setScrollable(S => ({...S, cv: true}))
+    }}, '<10%').from('.progressbarC',{scaleY: 0}).addLabel('.CVSection')
+
+  .from(contactRef.current, {yPercent: -100}).to(contactRef.current, {borderBottomRightRadius: 0, onUpdate: () => {
+    let progress =  time.current.progress()
+    progress > 0.82 ? setScrollable(S => ({...S, contact: true})) : setScrollable(S => ({...S, contact: true}))
+    }}, '<15%').from('.progressbarB',{scaleY: 0}).addLabel('.ContactSection')
   
   let st = 
   ScrollTrigger.create({
@@ -63,11 +73,9 @@ useEffect(() => {
       scroller: '.page',
       trigger: container.current,
       start: () => "top top",
-      end: () => "bottom+=400",
-      scrub:true,
+      end: () => "bottom+=4000",
+      scrub:0.01,
       pin: container.current,
-      pinSpacing: true,
-    
       id: 'mainPageScroller',  
 })
   
@@ -78,20 +86,9 @@ useEffect(() => {
   
     
   }
-      
 
-  // asscroll.current?.update() 
-  // ScrollTrigger.refresh(false)
-  // asscroll.current?.enable({ newScrollEl ements: document.querySelectorAll(".gsap-marker-start, .gsap-marker-end, [asscroll]") })
 }, [])
 
-
-
-
-
-
-
-  
 
   useEffect(() => {
       if(props.Section !== 'undefined'){
@@ -103,13 +100,13 @@ useEffect(() => {
   }, [props.Section])
 
   return ( 
-    <div>
+ 
 
-      <div ref={main} className='relative pointer-events-none' asscroll="true">  
+      <div ref={main} className='relative pointer-events-none' >  
       
         <section className='w-screen h-screen '>
             <div className='relative h-full max-w-[972px] w-[calc(100%_-_120px)] mx-auto font-raleway sm:max-w-[1100px]'> 
-                <div className='absolute left-0 top-[20%] text-4xl font-bold'> {t('Welcome')} </div>
+                <div className='absolute left-0 top-[20%] text-4xl font-bold dark:text-[#87B1C6]'> {t('Welcome')} </div>
                 <div className='absolute right-0 bottom-1/3 text-2xl font-semibold '></div>
             </div>
         </section>
@@ -118,15 +115,15 @@ useEffect(() => {
         
           <div ref={container}  className='relative sm:w-1/2 w-full h-screen overflow-hidden container'>   
               
-              <About sectionRef={about} />
+              <About sectionRef={about} isScrollable={Scrollable} />
         
-              <Contact sectionRef={contact}/> 
-              <CV sectionRef={cv} />
+              <CV sectionRef={cv} isScrollable={Scrollable} />
+              <Contact sectionRef={contact} isScrollable={Scrollable}/> 
           </div>
           
         </div>
       </div>
-    </div>
+   
     
   )
 }

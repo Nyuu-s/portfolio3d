@@ -1,7 +1,7 @@
 import create from 'zustand'
 
 const THEME_COLORS = {
-    light: "#f3f",
+    light: "#000",
     dark: "#333"
 } 
 
@@ -11,7 +11,9 @@ const useStore = create((set) => ({
     DirLight: undefined,
     mainCamera: undefined,
     setCamera: (cam) => {set(() => ({mainCamera: cam}))},
-    setLights: (amblight, dirlight) => { set(() => ({AmbiantLight: amblight, DirLight: dirlight}))}
+    setLights: (amblight, dirlight) => { set(() => ({AmbiantLight: amblight, DirLight: dirlight}))},
+    ProjectsAnim: true,
+    setProjectsAnim : (value) => {set(() => ({ProjectsAnim: value}))}
   
     
 }))

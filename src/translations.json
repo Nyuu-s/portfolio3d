@@ -27,24 +27,105 @@
         "translation": {
           "Welcome": "Bienvenue !",
           "About" : {
-            "intro": "<div>Salut, je m'appelle Edgar j'ai 23 ans et je suis développeur d'applications ! </div> \n Je suis un passioné d'informatique depuis tout jeune et notemment de jeux vidéo\n ",
+            "intro": "<div>Salut, je m'appelle Edgar, j'ai 23 ans et je suis développeur d'applications. Je suis passionné d'informatique depuis tout jeune et notamment de jeux vidéo.\n ",
             "hobbies": {
-              "prog": "Parmis les activités que j'apprecie la programmation detient la medaille d'or, j'aime apprendre de nouveaux languages et renforcer mes compétences dans ceux que je connais déjà.",
-              "science": "Je suis abosulment émerveillé par les sciences qui reprenstes pour moi le salut de l'humanité haha. les domaines que j'affectionne le plus meme si parfois cela depasse de loin mes compétence sont l'astronomie et tout ce qui concerne l'espace et l'infiniment grand. Mais aussi les neurosciences et tout ce qui concerne la comprehension du cerveau humain et de la numérisation de la concience-esprit. Et enfin le domaine de la physique quantique qui joue un role majeur dans l'infiniment grand et quicontient tellement de mystère.",
-              "learning": "J'aime beaucoup apprendre de nouvelles choses sur des sujets variés mais je reste humain avant tout et ma conentration n'est pas infini alors oui j'aime aussi joué aux jeu vidéo, regarder des films et series et lire des mangas",
-              "motivation": "Ayant joué aux jeux vidéo etant plus jeune je me suis assez vite retrouver avouloir etre de l'autre coté du mirroir et creer des jeux, une facons de raconter des histoire et exprimer ca créativité differente plus immerive et interactive que les média traditionelle.",
-              "journey": "J'ai commencer mes études a Lyon ou j'ai obtenu mon Bac+2 puis je suis aller faire mon bac+3 a Rennes et enfin mon bac+5 à Montpellier"
+              "title": "Mes Hobbies",
+              "progTitle": "Programmation",
+              "sciencesTitle": "Sciences",
+              "prog": "Parmi les activités que j'apprécie la programmation détient la médaille d'or, j'aime apprendre de nouveaux languages et renforcer mes compétences dans ceux que je connais déjà. Pour moi, la programmation consiste en une série de défis et d'énigmes à résoudre. J'aime particulièrement trouver des solutions à des problèmes complexes.",
+              "sciences": "Je suis absolument émerveillé par les sciences qui représentent pour moi le salut de l'humanité ;). Les domaines que j'affectionne le plus, même si parfois cela dépasse de loin mes compétences sont dans un premier temps l'astronomie et tout ce qui concerne l'espace et l'infiniment grand. Dans un second temps j'aime les neurosciences et tout ce qui concernent la compréhension du cerveau humain et de la numérisation de la conscience / esprit. Et enfin je m'intéresse également à la physique quantique qui joue un rôle majeur dans l'infiniment grand et qui contient tellement de mystères.",
+              "learning": "J'aime beaucoup apprendre de nouvelles choses sur des sujets variés mais je reste humain avant tout et ma concentration n'est pas infinie alors oui j'aime aussi jouer aux jeux vidéo, regarder des films et des series et lire des mangas !"
+            },
+            "formation": {
+              "title": "Mon parcours",
+              "motivation": "Ayant joué aux jeux vidéo étant plus jeune, je me suis assez vite retrouvé à vouloir être de l'autre côté du miroir et créer des jeux, une façon de raconter des histoires et d'exprimer ma créativité de manière plus immersive et interactive que les médias conventionnels.",
+              "journey": "J'ai commencé mes études à Lyon où j'ai obtenu mon Bac+2. Ensuite, j'ai poursuivi à Rennes ma Licence et j'ai terminé mon curusus à Montpellier par un Master 2."
+
             }
 
           },
           "CV": {
-            "download": "télécharger",
+            "download": "Télécharger",
             "skill": "",
             "formation": "",
             "hobbies": ""
           },
-          "Contact": {},
-          "Projects": {}
+          "Contact": {
+            "title1": "Contactez",
+            "title2": "Moi !",
+            "subtitle": "Pour me contacter, utilisez l'un des moyens suivants :",
+            "moreInfoTitle": "Plus d'infos",
+            "moreInfoSubTitle": "Concernant ce site, voici ce qui arrivera prochainement !",
+            "moreinfo": ["- SmoothScrolling", "- Plus d'interactions avec la pièce. (dont des petits jeux !)", "- Effet de transitions entre les scènes", "- Amélioration de l'UI", "- Complétion des projets", "- Différents fixs pour la version mobile", "- Correction de la disparition du fond en rafraichissant la scène des projets"],
+            "tel": "+33 6 21 54 48 35",
+            "email": "edgar.jacquemoud99@gmail.com",
+            "github": "https://github.com/Nyuu-s",
+            "linkedin": "www.linkedin.com/in/edgargamedev"
+
+          },
+          "Projects": {
+            "lang" : "Tecnologie: ",
+            "status" :{
+              "on": "En cours..",
+              "off": "Annulé !",
+              "hiatus": "En Pause",
+              "done" : "Fini."
+            },
+            "1": {
+              "title" :"Code en Coop",
+              "menutitle": "Code en Coop",
+              "shortDesc" :"Un mode Minecraft fait avec un ami",
+              "desc": "<div> L'objectif était de découvrir comment fonctionnent les mods de Minecraft tout en travaillant en équipe, malheureusement les études nous ont éloignées mon ami et moi et donc le projet est donc en pause.</div>"
+            },
+            "2": {
+              "title" :"Opengl base",
+              "menutitle" :"Opengl base",
+              "shortDesc" :"Un environnement de rendu basique avec Opengl",
+              "desc": "<div>L'objectif était de découvrir et comprendre comment fonctionne un simple rendu de scène avec OpenGL grâce au tutoriel de FreeCodeCamp. Je voulais par la suite m'en servir comme base pour différents exercices ou projets sans avoir besoin de réécrire les bases à chaque fois.</div>"
+            },
+            "3": {
+              "title" :"Anime List",
+              "menutitle" :"Anime List",
+              "shortDesc" :"Une application listant les différentes séries / animes et diverses statistiques.",
+              "desc": "<div> J'ai créé une application utilisant du Javascript et les frameworks front-end React et Electron afin de créer une application pour Windows permettant de lister les séries vues ou à voir, ainsi que les langues disponibles, les dates de sorties et d'autres informations. Au départ, cette application était destinée à une amie, mais elle sera finalement utilisable par tous.  </div>"
+            },
+            "4": {
+              "title" :"Infectious Engine",
+              "menutitle" :"Infectious Engine",
+              "shortDesc" :"Un moteur de jeu 3D / 4D",
+              "desc": "<div> Le but de ce projet est de créer un moteur de jeu qui permettra, dans un premier temps, d'expérimenter avec diverses techniques, API graphiques, structures de code et optimisations afin de mieux comprendre les moteurs de jeu 3D. Ensuite, ce moteur sera utilisé pour faire tourner un premier jeu 3D et un jeu en 4D (4 dimensions spatiales). Enfin, je souhaite convertir ce moteur en Rust pour approfondir mes connaissances sur ce langage qui m'intéresse. Grâce aux compétences acquises par ce projet, j'aimerai créer un autre moteur (ou utiliser celui que j'ai déjà développé) pour réaliser un jeu contrôlé par la pensée grâce à un casque d'électroencéphalogramme (EEG).  </div>"
+            },
+            "5": {
+              "title" :"Laby js",
+              "menutitle" :"Laby js",
+              "shortDesc" :"Un générateur de labyrinthe",
+              "desc": "<div>Il s'agit d'un petit programme écrit avec le framework p5.js permettant de générer un labyrinthe, l'objectif étant d'expérimenter différents algorithmes dont un utilisant le 'Backtrack' et un autre une division récursive de l'espace.</div> "
+            },
+            "6": {
+              "title" :"Snowman Temple Run",
+              "menutitle" :"Temple Run",
+              "shortDesc" :"",
+              "desc": "<div> </div> "
+            },
+            "7": {
+              "title" :"Images HDR",
+              "menutitle" :"Images HDR",
+              "shortDesc" :"Les différents projets universitaire secondaires",
+              "desc": "<div> </div> "
+            },
+            "8": {
+              "title" :"Augmented Reality Piano Assistant ARPA",
+              "menutitle" :"ARPA",
+              "shortDesc" :"Les différents projets universitaire secondaires",
+              "desc": "<div> </div> "
+            },
+            "9": {
+              "title" :"Inpainting",
+              "menutitle" :"Inpainting",
+              "shortDesc" :"Les différents projets universitaire secondaires",
+              "desc": "<div> </div> "
+            }
+          }
 
         }
       }

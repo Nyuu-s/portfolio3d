@@ -1,19 +1,20 @@
 
-import React, { Suspense, useRef, useMemo, useState } from 'react';
+import React, { Suspense, useRef, useMemo } from 'react';
 import './App.css';
 
 
 import {Canvas} from '@react-three/fiber'
 import * as THREE from 'three'
 import { Earth,  Camera  } from './Components/'
-import {Preload, Loader, Html, useProgress} from '@react-three/drei';
+import {Preload} from '@react-three/drei';
 import { LandingPage } from './Pages';
 import { useTheme } from './Context/ContextZustand'
 import gsap from 'gsap';
-import { useLocation, Route , Router} from "wouter"
+import {  Route , Router} from "wouter"
 import makeMatcher from "wouter/matcher"
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
+import { Projects } from './data/project';
 
 
 const RoomModel = React.lazy(() => import('./Components/Room/PortfolioRoomArcade'))
@@ -70,9 +71,13 @@ function App() {
   
   return (
     
-    <div ref={container} className={`${Theme.mode === 'dark' ? 'dark' : '' } w-screen h-screen fixed`}> 
+    <div  ref={container} className={`${Theme.mode === 'dark' ? 'dark' : '' } w-screen h-screen fixed `}> 
 
       
+
+
+<LandingPage  />
+
 
    
 
@@ -83,6 +88,7 @@ function App() {
         shadows 
         className="canvas w-full h-full -z-10"
         eventSource={container}
+       
         
         // -0.2,0.7,1.2
         gl={{ 
@@ -124,7 +130,7 @@ function App() {
                    
                   </Route>
                   <Route path={'/projects'}>
-                      <ProjectsMesh  />
+                      <ProjectsMesh projectsArr={Projects} />
                   </Route>
                 </Router>
 
@@ -132,8 +138,6 @@ function App() {
    
        
     
-        {<LandingPage  />}
-     
         
 
 

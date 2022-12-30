@@ -1,6 +1,7 @@
 import React, { useRef , useLayoutEffect, useState} from 'react'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import { useToggleTheme, useTheme } from '../Context/ContextZustand'
 
 function debounce(fn, ms) {
     let timer
@@ -14,9 +15,10 @@ function debounce(fn, ms) {
   }
   
 
-function HeaderFlow({colorText1, colorText2, bgClassColor1, bgClassColor2, flowDirection='left', text1, text2, perspective = '100px', speed='slow'}) {
+function HeaderFlow({colorText1, colorText2, bgClassColor1, bgClassColor2, bgClassDarkColor1, bgClassDarkColor2, flowDirection='left', text1, text2, colorTextDark1, colorTextDark2, perspective = '100px', speed='slow'}) {
     gsap.registerPlugin(ScrollTrigger)
-    
+    const theme = useTheme()
+
   
 
 
@@ -24,6 +26,8 @@ function HeaderFlow({colorText1, colorText2, bgClassColor1, bgClassColor2, flowD
    
     const boxStyleRight = {transformOrigin: "left", transform:  `perspective(${perspective}) rotateY(15deg)`,  backgroundColor: bgClassColor1, color: colorText1}
     const boxStyleLeft = {transformOrigin: "right", transform:  `perspective(${perspective}) rotateY(-15deg)`, backgroundColor: bgClassColor2, color: colorText2}
+    const boxStyleDarkRight = {transformOrigin: "left", transform:  `perspective(${perspective}) rotateY(15deg)`,  backgroundColor: bgClassDarkColor1, color: colorTextDark1}
+    const boxStyleDarkLeft = {transformOrigin: "right", transform:  `perspective(${perspective}) rotateY(-15deg)`, backgroundColor: bgClassDarkColor2, color: colorTextDark2}
  
     
     const Boxcontainer = useRef()
@@ -74,10 +78,10 @@ function HeaderFlow({colorText1, colorText2, bgClassColor1, bgClassColor2, flowD
     <>
     <div>
         <div id="box" ref={Boxcontainer} className='flex'>    
-            <div id='inner'  style={boxStyleLeft} className={innerBox }>
+            <div id='inner'  style={theme.mode === 'dark' ? boxStyleDarkLeft : boxStyleLeft} className={innerBox }>
                 <span ref={boxElement} className='text-2xl mt-5 block box'>{text2}</span>  
             </div>
-            <div id='inner' style={boxStyleRight} className={innerBox + '' }> 
+            <div id='inner' style={theme.mode === 'dark' ? boxStyleDarkRight : boxStyleRight} className={innerBox + '' }> 
                 <span  className='text-2xl mt-5 block boxy '>{text1}</span>
             </div>  
         </div>

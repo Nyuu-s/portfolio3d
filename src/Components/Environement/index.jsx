@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useMemo} from 'react'
 import useStore , {useTheme} from '../../Context/ContextZustand'
 import gsap from 'gsap'
-
+import * as THREE from 'three'
 
 
 
@@ -10,7 +10,8 @@ function Environement() {
   let theme = useTheme()
   const ambiantLight = useRef()
   const dirLight = useRef()
-  
+  const lightColor = useMemo(() => new THREE.Color(0xf2e9e4), [])
+  const darkColor = useMemo(() =>  new THREE.Color(0x22223b), [])
   const setLights = useStore((state) => state.setLights)
 
   
@@ -23,17 +24,18 @@ function Environement() {
   
    
   useEffect(() => {
+    
     if(theme.mode === 'light'){
-      gsap.to(ambiantLight.current.color, {r: 1, g:1, b:1})
+      gsap.to(ambiantLight.current.color, lightColor)
       gsap.to(ambiantLight.current, {intensity: 0.5})
-      gsap.to(dirLight.current.color, {r: 1, g:0.4, b:0.3})
+      gsap.to(dirLight.current.color, lightColor)
 
     }
     else
     {
-      gsap.to(ambiantLight.current.color, {r: 51/255, g:51/255, b:51/255})
-      gsap.to(ambiantLight.current, {intensity: 0.08})
-      gsap.to(dirLight.current.color, {r: 51/255, g:51/255, b:90/255})
+      gsap.to(ambiantLight.current.color, darkColor)
+      gsap.to(ambiantLight.current, {intensity: 2})
+      gsap.to(dirLight.current.color, darkColor)
 
     }
      

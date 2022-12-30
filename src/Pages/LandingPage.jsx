@@ -1,15 +1,16 @@
 import React , { useRef, useState, useEffect } from 'react'
 import { Main} from './'
-import {MdFlashlightOff, MdFlashlightOn} from 'react-icons/md'
+import { BsLightbulb as Flashon, BsLightbulbOff as Flashoff} from 'react-icons/bs'
 import { useToggleTheme, useTheme } from '../Context/ContextZustand'
 import gsap from 'gsap'
 
 import {useLocation, Route, Switch} from 'wouter'
-import { Projects } from '../data/project'
+
 import { Logo, NavButton } from '../Components'
 import {GiHamburgerMenu as BurgerIcon}  from 'react-icons/gi'
 import {TiHome as HomeIcon}  from 'react-icons/ti'
 import {animateScroll as scroll} from 'react-scroll'
+import { Projects } from '../data/project'
 
 // WEIRD BEHAVIOUR ON NAVIGATION BETWEEN ROUTES
 // const setupAsscroll = () => {
@@ -70,7 +71,7 @@ function LandingPage(props) {
     let ctx =  gsap.context(() => {
       if(isReady){
         timeLine.current = gsap.timeline()
-        .to('.menuItem', {yPercent: -100, stagger: 0.1, duration: 1})
+        .to('.menuItem', {yPercent: -120, stagger: 0.1, duration: 1})
         .to('.toggle-bar', {backgroundColor: "rgba(0,0,0,0)", duration: 1}, '<')
         .pause()
       }
@@ -109,20 +110,20 @@ function LandingPage(props) {
   
 
 
-      <div ref={page} onScroll={() => {setSection('undefined')}} className=' w-full h-full overflow-y-scroll scrollbar-hide   page' asscroll-container="true">
-          {isReady && <div className='toggle-bar bg-main-dark-bg bg-opacity-60  dark:bg-opacity-100  fixed flex  w-full top-0  z-50'>
+      <div ref={page} onScroll={() => {setSection('undefined')}} className='w-full h-full overflow-y-auto scrollbar-hide   page' >
+          {isReady && <div className='toggle-bar  bg-opacity-60  dark:bg-opacity-100  fixed flex  w-full top-0  z-20'>
             <div className='flex w-full items-center'>
-            <div ref={logo} className='ml-5 z-20'>
+            <div ref={logo} className='ml-5 z-20 mt-5'>
               
-              <Logo icon={<BurgerIcon size={20}/>} clickFunc={() => {
+              <Logo  icon={<BurgerIcon className='dark:text-[#fff] text-[#522263]' size={20}/>} clickFunc={() => {
                 NavbarDeploy ? setNavbarDeploy(false) : setNavbarDeploy(true)
                 console.log(NavbarDeploy);
               }}/> 
             </div>
  
-            <div className='menuItems flex   w-full ml-3'>
+            <div className='menuItems flex   w-full ml-3 mt-5'>
 
-              <NavButton title={<HomeIcon size={35}/>} clickFunc={() => {
+              <NavButton title={<HomeIcon className='dark:text-[#fff] text-[#522263]' size={35}/>} clickFunc={() => {
                     defaultBehaviour()
                 }}/>
               
@@ -133,12 +134,13 @@ function LandingPage(props) {
        
                 }}/>
               
-                <NavButton title={'Contact'}  clickFunc={() => {
-                  if(location !== '/')
-                  setLocation('/')
-                  
-                  setSection('.ContactSection')
-                  //scroll to section
+
+              <NavButton title={'Projects'}  clickFunc={() => {
+              
+                setLocation('/projects')
+                
+              
+                // setSection('.page')
                 }}/>
                 <NavButton title={'CV'}  clickFunc={() => {
                   if(location !== '/')
@@ -147,53 +149,41 @@ function LandingPage(props) {
                       setSection('.CVSection')
                     //scroll to section
                   }}/>
-                <NavButton title={'Projects'}  clickFunc={() => {
-                
-                  setLocation('/projects')
+                <NavButton title={'Contact'}  clickFunc={() => {
+                  if(location !== '/')
+                  setLocation('/')
                   
-                
-                  // setSection('.page')
-                  }}/>
-             
+                  setSection('.ContactSection')
+                  //scroll to section
+                }}/>
 
                 <div className="menuItem flex mr-2 justify-end items-center top-12 right-12 z-50">
-                  
-              
+
                   <div className="sun"> 
-                    <MdFlashlightOn />
+                    <Flashon className='dark:text-[#fff] text-[#522263]'size={20}/>
                   </div>
                   <button onClick={() => { 
                                             toggleTheme()
-                                            }} className='group cursor-pointer relative w-[56px] h-7 flex justify-center items-center bg-pink-400 rounded-full mx-4 border-none shadow-lg'>
-                    <div ref={bSlide}   className={`circle ${mode === 'dark' ? 'slide' : ''} absolute  left-[6px] rounded-[50%] w-5 h-5 bg-secondary-dark-bg dark:bg-white group-hover:scale-90`}></div>
+                                            }} className='group cursor-pointer relative w-[56px] h-7 flex justify-center items-center dark:bg-[#0D0D21] bg-[#522263] rounded-full mx-4 border-none shadow-lg'>
+                    <div ref={bSlide}   className={`circle ${mode === 'dark' ? 'slide' : ''} absolute  left-[6px] rounded-[50%] w-5 h-5 bg-[#904F87] dark:bg-white group-hover:scale-90`}></div>
                   </button>
                   <div className="moon"> 
-                    <MdFlashlightOff />
+                    <Flashoff className='dark:text-[#fff] text-[#522263]' size={20} />
                   </div> 
                 </div>
               </div>
             </div>
-              
-            
-
           </div>}
-     
 
           <Switch>
-
             <Route path='/'>
               {
-                () => {
-                 
-                  
+                () => {     
                   return(<Main pageRef={page} Section={section} Asscroll={asscrollRef}  />)
-
                 }
-                  
-                
+
               }
             </Route>
-
             <Route path='/projects/:id'>
               {(params) => {
                 
@@ -202,6 +192,7 @@ function LandingPage(props) {
                 )
               }}
             </Route>
+
           </Switch>
 
 {/*     

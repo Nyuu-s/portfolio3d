@@ -1,11 +1,13 @@
 import React from 'react'
 import { HeaderFlow } from '../Components'
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
 
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
-function CV({sectionRef}) {
+function CV({sectionRef, isScrollable}) {
 
 const section = useCallback(
   (node) => {
@@ -18,22 +20,20 @@ const section = useCallback(
 
   return (
 
-      <section  ref={section} id='cv' className='absolute rounded-tr-[450px] w-full h-full pt-5 px-[4%] m-0 bg-blue-600 dark:text-slate-300 font-raleway CVSection'> 
-          <div className="progress-wrapper  w-4 z-10 absolute top-0 left-0">
-            <div className="progressbarC h-screen w-full bg-red-500 origin-[top_center] scale-y-100"></div>
+      <section  ref={section} id='cv' className={`${isScrollable.cv ? 'overflow-auto' : 'overflow-hidden'} scrollbar-hide pointer-events-auto absolute rounded-tr-[450px] w-full h-full pt-5 px-[4%] m-0 dark:bg-[#2D2D6C] bg-[#eeeeee]  dark:text-slate-300 font-raleway CVSection`}> 
+          <div className="progress-wrapper h-full w-4 z-10 absolute top-0 left-0">
+            <div className="progressbarC h-full w-full dark:bg-[#3C3C86] bg-[#522263] origin-[top_center] scale-y-125"></div>
           </div>
           <div className='mt-24'>
 
-          <HeaderFlow text1={"CV"} text2={'CV'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} flowDirection='left'/>
+          <HeaderFlow text1={"CV"} text2={'CV'} bgClassColor1={'#c7a4dd'} bgClassDarkColor1={'#26265E'} bgClassDarkColor2={'#0D0D21'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} flowDirection='left'/>
         
           
           <div >
-              <h3>Lorem</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae necessitatibus rerum, minus consequatur et, commodi, facilis possimus omnis enim voluptate fugiat qui. Ipsum voluptatem magni fugit ipsa? Iste, laudantium ratione.</p>
-              <h3>Lorem</h3>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam similique animi vitae corrupti eum veniam libero, quae quaerat laborum recusandae temporibus voluptatem facere ex repellat deserunt id assumenda minima fugit!</p>
-              <h3>lorem</h3>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit praesentium placeat rerum molestiae hic quae doloremque aperiam sequi id, ab similique ipsa dolores, fuga nisi! Nesciunt quidem quae hic accusantium!</p>
+            <div className='mt-10 p-2 hover:cursor-pointer cursor-default flex justify-center' onClick={() => window.open(process.env.PUBLIC_URL +'/EdgarCV.pdf', '_blank')}>
+              <Document file={'/EdgarCV.pdf'} renderMode='canvas' > <Page pageNumber={1}/> </Document>
+
+            </div>
           </div>
           </div>
       </section>
