@@ -1,5 +1,5 @@
 import { Project } from "../Components";
-import {Trans} from 'react-i18next'
+import {Trans, Translation  } from 'react-i18next'
 
 
 
@@ -82,6 +82,24 @@ export  const Projects = [
             {/* <img className="mx-auto w-1/2 mt-10" src="" alt="capture d'ecran" /> */}
     
         </div>
+        </div>
+    </Project>,
+    <Project menuTitle={<Trans>Projects.10.menutitle</Trans>} title={<Trans>Projects.10.title</Trans>} lng={"Javascript, React, Three.js"} status={0}  shortDesc={<Trans>Projects.10.shortDesc</Trans>} link={"https://github.com/fds-napolitain/m2-projet-ar"}>
+        <div>
+            <div>
+                <Trans components={{"div": <div className="ml-5"></div>}}>Projects.10.desc</Trans>
+                <Trans components={{"div": <div className="ml-5 mt-5"></div>}}>Projects.10.moreInfoSubTitle</Trans>
+
+                    <ul className="ml-5">
+                        <Translation>
+                                {
+                                    (t) => t('Projects.10.moreinfo', {returnObjects: true}).map((item, i) => (<li key={i} className='p-2'>{item}</li>))
+                                }
+                        </Translation>
+                    </ul>
+                {/* <img className="mx-auto w-1/2 mt-10" src="" alt="capture d'ecran" /> */}
+        
+            </div>
         </div>
     </Project>
 

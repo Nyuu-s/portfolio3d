@@ -25,7 +25,7 @@ function About({sectionRef, isScrollable}) {
       </div>
 
       <div className="mt-24">
-        <HeaderFlow text1={"About Me"} text2={'About Me'} bgClassDarkColor1={'#26265E'} bgClassDarkColor2={'#0D0D21'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} />
+        <HeaderFlow text1={<Trans components={{div: <div />}}>About.section</Trans>} text2={<Trans components={{div: <div />}}>About.section</Trans>} bgClassDarkColor1={'#26265E'} bgClassDarkColor2={'#0D0D21'} bgClassColor1={'#c7a4dd'} bgClassColor2={'#D4C4DE'} colorText1={"black"} colorText2={"black"} />
         
         <div className='dark:text-white'>
           <div className='m-5 text-lg'>

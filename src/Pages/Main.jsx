@@ -59,12 +59,13 @@ useEffect(() => {
 
   .from(cvRef.current, {yPercent: 100}).to(cvRef.current, {borderTopRightRadius: 0, onUpdate: () => {
     let progress =  time.current.progress()
-    progress > 0.48 ? setScrollable(S => ({...S, cv: true})) : setScrollable(S => ({...S, cv: true}))
+
+    progress > 0.48 ? setScrollable(S => ({...S, cv: true})) : setScrollable(S => ({...S, cv: false}))
     }}, '<10%').from('.progressbarC',{scaleY: 0}).addLabel('.CVSection')
 
   .from(contactRef.current, {yPercent: -100}).to(contactRef.current, {borderBottomRightRadius: 0, onUpdate: () => {
     let progress =  time.current.progress()
-    progress > 0.82 ? setScrollable(S => ({...S, contact: true})) : setScrollable(S => ({...S, contact: true}))
+    progress > 0.82 ? setScrollable(S => ({...S, contact: true})) : setScrollable(S => ({...S, contact: false}))
     }}, '<15%').from('.progressbarB',{scaleY: 0}).addLabel('.ContactSection')
   
   let st = 

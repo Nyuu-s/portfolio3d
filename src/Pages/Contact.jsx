@@ -44,13 +44,7 @@ const section = useCallback(
                   <div className='flex   font-mono  p-2 text-blue-900 dark:text-cyan-300 hover:text-blue-600'> <span className='mt-1 px-2'><AiFillLinkedin /></span> <a target='_blank' rel="noreferrer" href={t('Contact.linkedin')}>{t('Contact.linkedin')}</a></div>
                 </div>
             </div>
-            <div>
-              <h1 className='text-2xl p-2 font-bold text-center'>{t('Contact.moreInfoTitle')}</h1>
-              <h3 className='text-xl text-center'>{t('Contact.moreInfoSubTitle')}</h3>
-              <ul>
-                {t('Contact.moreinfo', {returnObjects: true}).map((item, i) => (<li key={i} className='p-2'>{item}</li>))}
-              </ul>
-            </div>
+         
           </div>
       </section>
 

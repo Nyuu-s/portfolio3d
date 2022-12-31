@@ -28,8 +28,7 @@ function Earth({NormalizedMouse}) {
       // AppScene.Space ? navigate('/test') : navigate('/')
       let earthScaleTime = 15
       let StarsFadeTime = 5
-      let ctx = gsap.context(() => {
-        console.log(StarsRef);   
+      let ctx = gsap.context(() => { 
         const tl = gsap.timeline()
         tl.fromTo(StarsRef.current.geometry.attributes.color, {count: 0}, {count: 5000, duration: StarsFadeTime}, '<') 
         tl.fromTo(StarsRef.current.geometry.attributes.position, {count: 0}, {count: 5000, duration: StarsFadeTime}, '<') 

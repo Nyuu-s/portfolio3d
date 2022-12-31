@@ -27,6 +27,7 @@
         "translation": {
           "Welcome": "Bienvenue !",
           "About" : {
+            "section": "A propos de moi",
             "intro": "<div>Salut, je m'appelle Edgar, j'ai 23 ans et je suis développeur d'applications. Je suis passionné d'informatique depuis tout jeune et notamment de jeux vidéo.\n ",
             "hobbies": {
               "title": "Mes Hobbies",
@@ -51,17 +52,15 @@
             "hobbies": ""
           },
           "Contact": {
+            "section": "Contact",
             "title1": "Contactez",
             "title2": "Moi !",
             "subtitle": "Pour me contacter, utilisez l'un des moyens suivants :",
-            "moreInfoTitle": "Plus d'infos",
-            "moreInfoSubTitle": "Concernant ce site, voici ce qui arrivera prochainement !",
-            "moreinfo": ["- SmoothScrolling", "- Plus d'interactions avec la pièce. (dont des petits jeux !)", "- Effet de transitions entre les scènes", "- Amélioration de l'UI", "- Complétion des projets", "- Différents fixs pour la version mobile", "- Correction de la disparition du fond en rafraichissant la scène des projets"],
             "tel": "+33 6 21 54 48 35",
             "email": "edgar.jacquemoud99@gmail.com",
             "github": "https://github.com/Nyuu-s",
             "linkedin": "www.linkedin.com/in/edgargamedev"
-
+            
           },
           "Projects": {
             "lang" : "Tecnologie: ",
@@ -124,6 +123,14 @@
               "menutitle" :"Inpainting",
               "shortDesc" :"Les différents projets universitaire secondaires",
               "desc": "<div> </div> "
+            },
+            "10": {
+              "moreinfo": ["SmoothScrolling", "Plus d'interactions avec la pièce. (dont des petits jeux !)", "Version Anglaise du site" ,"Effets de transitions entre les scènes", "Amélioration de l'UI", "Complétion des projets", "Différents fixs pour la version mobile", "Correction de la disparition du fond en rafraichissant la scène des projets"],
+              "moreInfoSubTitle": "<div>Voici ce qui arrivera prochainement ! </div>",
+              "title" :"Portfolio",
+              "menutitle" :"Portfolio",
+              "shortDesc" :"Mon Portfolio en 3D",
+              "desc": "<div> Un portfolio créer avec react et Three.js permettant d'apprendre le fonctionnement de WebGL tout en mettant en valeurs mes autres projets. </div> "
             }
           }
 

@@ -7,9 +7,8 @@ import resources from './translations.json'
 function Init() {
     
     i18n.use(LanguageDetector).use(initReactI18next).init({
-        fallbackLng: 'en',
+        fallbackLng: 'fr',
         lng: 'fr',
-        debug: true,
         resources,
         
     })

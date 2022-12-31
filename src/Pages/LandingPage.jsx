@@ -5,7 +5,7 @@ import { useToggleTheme, useTheme } from '../Context/ContextZustand'
 import gsap from 'gsap'
 
 import {useLocation, Route, Switch} from 'wouter'
-
+import { useTranslation, Trans } from 'react-i18next'
 import { Logo, NavButton } from '../Components'
 import {GiHamburgerMenu as BurgerIcon}  from 'react-icons/gi'
 import {TiHome as HomeIcon}  from 'react-icons/ti'
@@ -64,7 +64,7 @@ function LandingPage(props) {
   const [location, setLocation] = useLocation();
   const [section, setSection] = useState('.page')
   const [isReady, setIsReady] = useState(false)
-
+  const {t} = useTranslation()
 
 
   useEffect(() => {
@@ -127,7 +127,7 @@ function LandingPage(props) {
                     defaultBehaviour()
                 }}/>
               
-              <NavButton title={'About me'}  clickFunc={() => {
+              <NavButton title={<Trans >About.section</Trans>}  clickFunc={() => {
                 
                 setLocation('/')
                 setSection('.aboutSection')
@@ -149,7 +149,7 @@ function LandingPage(props) {
                       setSection('.CVSection')
                     //scroll to section
                   }}/>
-                <NavButton title={'Contact'}  clickFunc={() => {
+                <NavButton title={<Trans >Contact.section</Trans>}  clickFunc={() => {
                   if(location !== '/')
                   setLocation('/')
                   
