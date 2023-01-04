@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react'
+import React, {useRef, useState,useEffect} from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import vertexShader from '../../shaders/vertex.js'
@@ -12,6 +12,7 @@ import EarthNightMap from "../../assets/textures/8k_earth_nightmap.jpg";
 import { useFrame, useLoader,  } from '@react-three/fiber'
 import { TextureLoader  } from 'three'
 import {OrbitControls, Stars} from '@react-three/drei'
+import { useLocation } from 'wouter'
 
 
 
@@ -23,11 +24,15 @@ function Earth({NormalizedMouse}) {
     const atmos = useRef()
     const cloudsRef = useRef()
     const StarsRef = useRef()
-    useEffect(() => { 
+    const [toggle, setToggle] = useState(false)
+    const [location] = useLocation()
+    useEffect(() => {
 
+      
       // AppScene.Space ? navigate('/test') : navigate('/')
       let earthScaleTime = 15
       let StarsFadeTime = 5
+  
       let ctx = gsap.context(() => { 
         const tl = gsap.timeline()
         tl.fromTo(StarsRef.current.geometry.attributes.color, {count: 0}, {count: 5000, duration: StarsFadeTime}, '<') 
@@ -44,6 +49,11 @@ function Earth({NormalizedMouse}) {
         ctx.revert()
       }
     }, [])
+
+    useEffect(() => {
+      setToggle(() => ( location === '/projects' ? true : false))
+    }, [location])
+    
    
     useFrame(() => {
       var groupRotation = earth.current.parent.rotation
@@ -103,6 +113,7 @@ function Earth({NormalizedMouse}) {
           zoomSpeed={0.6}
           panSpeed={0.5}
           rotateSpeed={0.4}
+          enabled={toggle}
         /> 
         <Stars ref={StarsRef}
             radius={300}

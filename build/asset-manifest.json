@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "./static/css/main.b0ecd6a1.css",
+    "main.js": "./static/js/main.0a33d698.js",
+    "static/media/portfolio-room-arcade-v2.glb": "./static/media/portfolio-room-arcade-v2.7a442ef9661aabf4d715.glb",
+    "static/media/8k_earth_clouds.jpg": "./static/media/8k_earth_clouds.08fcd80007fae8fc7170.jpg",
+    "static/media/screen_noise2.mp4": "./static/media/screen_noise2.5c2599204ba7dc4e56a3.mp4",
+    "static/media/arcade_video.mp4": "./static/media/arcade_video.f3a222b7848fd4794bee.mp4",
+    "static/media/8k_earth_daymap.jpg": "./static/media/8k_earth_daymap.54672c1f3ba121d80470.jpg",
+    "static/media/screen_video.mp4": "./static/media/screen_video.6e47e8ed9d46d1953702.mp4",
+    "static/media/screen_noise1.mp4": "./static/media/screen_noise1.8fa4ec4409bc8effc9c9.mp4",
+    "static/media/8k_earth_nightmap.jpg": "./static/media/8k_earth_nightmap.c0e138e9bf380cafd2c2.jpg",
+    "static/media/pdf.worker.js": "./static/media/pdf.worker.e38793e81e3eaffef87a.js",
+    "static/media/Raleway-VariableFont_wght.ttf": "./static/media/Raleway-VariableFont_wght.575ec9e676c7a85494bb.ttf",
+    "index.html": "./index.html",
+    "main.b0ecd6a1.css.map": "./static/css/main.b0ecd6a1.css.map",
+    "main.0a33d698.js.map": "./static/js/main.0a33d698.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b0ecd6a1.css",
+    "static/js/main.0a33d698.js"
+  ]
+}

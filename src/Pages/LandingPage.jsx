@@ -5,12 +5,13 @@ import { useToggleTheme, useTheme } from '../Context/ContextZustand'
 import gsap from 'gsap'
 
 import {useLocation, Route, Switch} from 'wouter'
-import { useTranslation, Trans } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { Logo, NavButton } from '../Components'
 import {GiHamburgerMenu as BurgerIcon}  from 'react-icons/gi'
 import {TiHome as HomeIcon}  from 'react-icons/ti'
 import {animateScroll as scroll} from 'react-scroll'
-import { Projects } from '../data/project'
+ import { Projects } from '../data/project'
+
 
 // WEIRD BEHAVIOUR ON NAVIGATION BETWEEN ROUTES
 // const setupAsscroll = () => {
@@ -64,7 +65,7 @@ function LandingPage(props) {
   const [location, setLocation] = useLocation();
   const [section, setSection] = useState('.page')
   const [isReady, setIsReady] = useState(false)
-  const {t} = useTranslation()
+
 
 
   useEffect(() => {
@@ -179,7 +180,7 @@ function LandingPage(props) {
             <Route path='/'>
               {
                 () => {     
-                  return(<Main pageRef={page} Section={section} Asscroll={asscrollRef}  />)
+                  return(<Main pageRef={page} Section={section} changeSection={setSection} Asscroll={asscrollRef}  />)
                 }
 
               }

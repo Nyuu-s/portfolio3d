@@ -2,14 +2,15 @@ import React from 'react'
 import { HeaderFlow } from '../Components'
 import { useCallback } from 'react'
 
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
+import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry.webpack5';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
-
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
 
 function CV({sectionRef, isScrollable}) {
 
-const section = useCallback(
+const section = useCallback( 
   (node) => {
     sectionRef(node)
   },
@@ -31,7 +32,7 @@ const section = useCallback(
           
           <div >
             <div className='mt-10 p-2 hover:cursor-pointer cursor-default flex justify-center' onClick={() => window.open(process.env.PUBLIC_URL +'/EdgarCV.pdf', '_blank')}>
-              <Document file={'/EdgarCV.pdf'} renderMode='canvas' > <Page pageNumber={1}/> </Document>
+              <Document file={process.env.PUBLIC_URL +'/EdgarCV.pdf'} renderMode='canvas' > <Page pageNumber={1}/> </Document>
 
             </div>
           </div>

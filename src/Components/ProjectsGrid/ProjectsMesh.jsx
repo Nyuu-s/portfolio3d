@@ -4,9 +4,15 @@ import React , { useRef, useState, useEffect} from 'react'
 import gsap from 'gsap'
 import {useLocation} from 'wouter'
 import useStore from '../../Context/ContextZustand'
+import {Trans} from 'react-i18next'
 
 
-
+const CategoryMap = {
+    0: <div className='text-blue-500 text-xs font-raleway'><Trans>Projects.category.pers</Trans></div>,
+    1: <div className='text-purple-500 text-xs font-raleway'><Trans>Projects.category.uni</Trans></div>,
+    2: <div className='text-green-500 text-xs font-raleway'><Trans>Projects.category.work</Trans></div>,
+    3: <div className='text-red-500 text-xs font-raleway'><Trans>Projects.category.special</Trans></div>
+  }
 
 
 const onEnter = (e, position) => {
@@ -56,7 +62,7 @@ const onLeave = (e, position, func) => {
            
         }}
         onPointerLeave={(e) =>{
-            e.eventObject.material.color = {r: 75/255, g:153/255, b: 153/255, isColor: true}
+            e.eventObject.material.color = {r: 1, g:205/255, b: 178/255, isColor: true}
             document.body.style.cursor = 'default'
             onLeave(e, positions[i])
             helpers.setMovable(false)
@@ -68,12 +74,13 @@ const onLeave = (e, position, func) => {
         }}
         
         >
-            <meshBasicMaterial side={THREE.DoubleSide} color={[75/255, 153/255, 153/255] }  />
+            <meshBasicMaterial side={THREE.DoubleSide} color={[1, 205/255, 178/255] }  />
             {/* Use Html from drei or make custom texture for each project and use it on plane */}
             
 
             <Html occlude transform position={[0,0,0.1]} scale={0.8} pointerEvents='false'>
-                <div className='text-lg w-30 h-30 '>{Projects[i].props.menuTitle}</div>
+                <div className='text-lg font-raleway w-30 h-30 '>{Projects[i].props.menuTitle}</div>
+                {CategoryMap[Projects[i].props.category]}
             </Html>
             
         </Plane> 

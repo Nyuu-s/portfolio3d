@@ -50,7 +50,7 @@ export function RoomModel(props) {
   const [GearsRotation, setGearsRotation] = useState({status: false, direction: false})
   const [RoomState, setRoomState] = useState('default')
   const [ScreensState, setScreensState] = useState({pc: PCvideo, arcade: Arcadevideo})
-  const [location, setLocation] = useLocation();
+  const [, setLocation] = useLocation();
   let Theme = useTheme()
   const ambiantRef = useStore(state => state.AmbiantLight)
   const dirLightRef = useStore(state => state.DirLight)

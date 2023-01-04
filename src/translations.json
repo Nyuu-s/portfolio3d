@@ -30,7 +30,7 @@
             "section": "A propos de moi",
             "intro": "<div>Salut, je m'appelle Edgar, j'ai 23 ans et je suis développeur d'applications. Je suis passionné d'informatique depuis tout jeune et notamment de jeux vidéo.\n ",
             "hobbies": {
-              "title": "Mes Hobbies",
+              "title": "II) Mes centres d'intérêts",
               "progTitle": "Programmation",
               "sciencesTitle": "Sciences",
               "prog": "Parmi les activités que j'apprécie la programmation détient la médaille d'or, j'aime apprendre de nouveaux languages et renforcer mes compétences dans ceux que je connais déjà. Pour moi, la programmation consiste en une série de défis et d'énigmes à résoudre. J'aime particulièrement trouver des solutions à des problèmes complexes.",
@@ -38,9 +38,9 @@
               "learning": "J'aime beaucoup apprendre de nouvelles choses sur des sujets variés mais je reste humain avant tout et ma concentration n'est pas infinie alors oui j'aime aussi jouer aux jeux vidéo, regarder des films et des series et lire des mangas !"
             },
             "formation": {
-              "title": "Mon parcours",
+              "title": "I) Mon parcours",
               "motivation": "Ayant joué aux jeux vidéo étant plus jeune, je me suis assez vite retrouvé à vouloir être de l'autre côté du miroir et créer des jeux, une façon de raconter des histoires et d'exprimer ma créativité de manière plus immersive et interactive que les médias conventionnels.",
-              "journey": "J'ai commencé mes études à Lyon où j'ai obtenu mon Bac+2. Ensuite, j'ai poursuivi à Rennes ma Licence et j'ai terminé mon curusus à Montpellier par un Master 2."
+              "journey": "J'ai commencé mes études à Lyon où j'ai obtenu mon Bac+2. Ensuite, j'ai poursuivi à Rennes ma Licence et j'ai terminé mon cursus à Montpellier par un Master 2."
 
             }
 
@@ -63,14 +63,21 @@
             
           },
           "Projects": {
-            "lang" : "Tecnologie: ",
+            "lang" : "Tecnologies: ",
             "status" :{
               "on": "En cours..",
               "off": "Annulé !",
               "hiatus": "En Pause",
               "done" : "Fini."
             },
+            "category": {
+              "pers": "Personnel",
+              "uni": "Universitaire",
+              "work": "Entreprise",
+              "special" : "Spécial"
+            },
             "1": {
+          
               "title" :"Code en Coop",
               "menutitle": "Code en Coop",
               "shortDesc" :"Un mode Minecraft fait avec un ami",
@@ -86,7 +93,8 @@
               "title" :"Anime List",
               "menutitle" :"Anime List",
               "shortDesc" :"Une application listant les différentes séries / animes et diverses statistiques.",
-              "desc": "<div> J'ai créé une application utilisant du Javascript et les frameworks front-end React et Electron afin de créer une application pour Windows permettant de lister les séries vues ou à voir, ainsi que les langues disponibles, les dates de sorties et d'autres informations. Au départ, cette application était destinée à une amie, mais elle sera finalement utilisable par tous.  </div>"
+              "desc": "<div> J'ai créé une application utilisant du Javascript et les frameworks front-end React et Electron afin de créer une application pour Windows permettant de lister les séries vues ou à voir, ainsi que les langues disponibles, les dates de sorties et d'autres informations. Au départ, cette application était destinée à une amie, mais elle sera finalement utilisable par tous.  </div>",
+              "desc2": "<div> Un onglet de personnalisation d'interface a été mise en place pour changer les couleurs comme souhaité ainsi que le thème principal (sombre ou lumineux) </div>"
             },
             "4": {
               "title" :"Infectious Engine",
@@ -103,29 +111,36 @@
             "6": {
               "title" :"Snowman Temple Run",
               "menutitle" :"Temple Run",
-              "shortDesc" :"",
-              "desc": "<div> </div> "
+              "shortDesc" :"Un projet universitaire consistant en la création d'un moteur de jeu ainsi qu'un jeu utilisant ce moteur.",
+              "desc": "<div>Il s'agit d'un projet universitaire réalisé avec 2 de mes camarades où l'objectif était de créer un moteur de jeu avec un jeu utilisant ce même moteur. Pour ce faire, nous avons utilisé QT (C++) et OpenGl comme API graphique. Ensuite, nous avons choisi de reprendre le jeu mobile Temple Run, mais sur le thème de l'hiver avec un bonhomme de neige. Nous nous sommes également imposé un petit défi, celui de déplacer uniquement le décor et les obstacles et non le personnage. C'est un jeu sans fin où le but est de faire le meilleur score possible en évitant les glaçons. Les trois boules de neige du bonhomme représentent le nombre de vies restantes, chaque obstacle enlevant une vie. Il est tout de même possible de récupérer une boule de neige qui tombe des parois lorsque l'on a plus qu'une seule vie.</div> ",
+              "desc2": "<div> Dans ce projet, j'ai principalement mis en place le système de détection de collision et j'ai participé à l'architecture du graphe de scène du moteur.</div>"
             },
             "7": {
               "title" :"Images HDR",
               "menutitle" :"Images HDR",
-              "shortDesc" :"Les différents projets universitaire secondaires",
-              "desc": "<div> </div> "
+              "shortDesc" :"Un projet universitaire d'application permettant de faire de la génération d'images à gamme large (HDR) en astrophotographie. ",
+              "desc": "<div>Notre projet universitaire consistait à créer une application capable de prendre en entrée une image de ciel de nuit et d'appliquer différents algorithmes d'HDR pour l'améliorer. Mon camarade et moi avons utilisé Qt pour créer une interface facile à utiliser, et avons mis en place différents algorithmes d'HDR grâce à openCV, tels que ceux de Robertson, Debevec et Mertens. Nous avons également testé plusieurs méthodes pour réduire le bruit, qui est un problème courant en astrophotographie, en utilisant d'abord la moyenne des images et en utilisant par la suite un réseau de neurones convolutionnel. Finalement, nos résultats étaient assez satisfaisants et nous avons réussi à développer une application proposant différentes options de mappage ton-local et d'algorithmes HDR pour produire une image améliorée.</div> "
             },
             "8": {
               "title" :"Augmented Reality Piano Assistant ARPA",
               "menutitle" :"ARPA",
-              "shortDesc" :"Les différents projets universitaire secondaires",
-              "desc": "<div> </div> "
+              "shortDesc" :"Un projet universitaire permettant de jouer du piano en réalité augmentée",
+              "desc": "<div>C'est un projet réalisé avec 2 de mes camarades, sous Unity et avec un LeapMotion pour détecter les mains de l'utilisateur. Grâce à certains mouvements de main, on peut zoomer/dézoomer sur le piano ou se déplacer le long de celui-ci. Avec l'aide de différentes techniques, comme la quantification, nous avons pu réduire les imprécisions des capteurs et donc réduire les erreurs accidentelles, comme les touches doubles. Il est également possible de visualiser quels accords sont en train d'être joués. Voici quelques vidéos de démonstration de l'application finale (en français).</div> "
             },
             "9": {
               "title" :"Inpainting",
               "menutitle" :"Inpainting",
-              "shortDesc" :"Les différents projets universitaire secondaires",
-              "desc": "<div> </div> "
+              "shortDesc" :"Un projet universitaire consistant en une application permettant de réaliser la reconstruction d'images.",
+              "desc": "<div>Notre projet universitaire, réalisé avec un camarade, vise à développer une application qui peut prendre une image en entrée et sélectionner les zones à repeindre afin de reconstruire ou effacer des éléments de l'image. Notre approche initiale consiste à calculer la moyenne des pixels environnants. Nous avons également découvert une autre méthode appelée Fast Marching Methode (FMM) qui promet des résultats nettement supérieurs tout en restant performante, mais nous n'avons pas eu le temps de l'implémenter. Pour sélectionner une zone à peindre, il suffit de cliquer sur un pixel de l'image et de changer la sensibilité, c'est-à-dire la détection de variance de couleur, en utilisant la molette de la souris.</div> "
             },
             "10": {
-              "moreinfo": ["SmoothScrolling", "Plus d'interactions avec la pièce. (dont des petits jeux !)", "Version Anglaise du site" ,"Effets de transitions entre les scènes", "Amélioration de l'UI", "Complétion des projets", "Différents fixs pour la version mobile", "Correction de la disparition du fond en rafraichissant la scène des projets"],
+              "title" :"Espelyet",
+              "menutitle" :"Espelyet",
+              "shortDesc" :"Un projet de base de données recensant tous les critères d'accessibilité du web",
+              "desc": "<div>Pendant mon stage de fin d'étude, j'ai réalisé un projet visant à préparer le développement d'un CMS produisant des sites accessibles. Pour ce faire, j'ai créé une application avec une base de données comprenant tous les critères d'accessibilité et une API qui permettra à ce futur CMS de demander des validations ou des recommandations concernant la production en cours d'un utilisateur. Malheureusement, en raison de la nature du projet, je ne peux pas montrer quoi que ce soit ici. "
+            },
+            "11": {
+              "moreinfo": ["SmoothScrolling", "Plus d'interactions avec la pièce. (dont des petits jeux !)", "Version Anglaise du site" ,"Effets de transitions entre les scènes", "Amélioration de l'UI", "Complétion des projets", "Différents fixs pour la version mobile", "Correction l'erreur en rafraichissant la page sur un des projets"],
               "moreInfoSubTitle": "<div>Voici ce qui arrivera prochainement ! </div>",
               "title" :"Portfolio",
               "menutitle" :"Portfolio",

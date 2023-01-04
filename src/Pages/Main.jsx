@@ -4,7 +4,9 @@ import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-
+import Lottie from 'lottie-react'
+import ScrollDArrow from '../assets/lotties/arrowDown.json'
+import ScrollUArrow from '../assets/lotties/arrowUp.json'
 
 
 function Main(props) {
@@ -17,6 +19,7 @@ function Main(props) {
   const {t } = useTranslation()
   const time = useRef(gsap.timeline({paused: true}));
   const [Scrollable, setScrollable] = useState(scroll)
+  const [ScrollArrow, setScrollArrow] = useState(ScrollDArrow)
   const main = useRef();
   const container = useRef();
   const aboutRef = useRef()
@@ -66,7 +69,8 @@ useEffect(() => {
   .from(contactRef.current, {yPercent: -100}).to(contactRef.current, {borderBottomRightRadius: 0, onUpdate: () => {
     let progress =  time.current.progress()
     progress > 0.82 ? setScrollable(S => ({...S, contact: true})) : setScrollable(S => ({...S, contact: false}))
-    }}, '<15%').from('.progressbarB',{scaleY: 0}).addLabel('.ContactSection')
+    // progress > 0.99 ? setScrollArrow(ScrollUArrow) : setScrollArrow(ScrollDArrow)
+    }}, '<15%').from('.progressbarB',{scaleY: 0, onComplete: () => { setScrollArrow(ScrollUArrow) }, onUpdate: () => { setScrollArrow(ScrollDArrow)}}).addLabel('.ContactSection')
   
   let st = 
   ScrollTrigger.create({
@@ -116,12 +120,15 @@ useEffect(() => {
         
           <div ref={container}  className='relative sm:w-1/2 w-full h-screen overflow-hidden container'>   
               
-              <About sectionRef={about} isScrollable={Scrollable} />
+              <About sectionRef={about} changeSection={props.changeSection} isScrollable={Scrollable} />
         
               <CV sectionRef={cv} isScrollable={Scrollable} />
               <Contact sectionRef={contact} isScrollable={Scrollable}/> 
           </div>
           
+        </div>
+        <div className='fixed top-[95%] left-1/2  '>
+                <Lottie animationData={ScrollArrow} />
         </div>
       </div>
    
