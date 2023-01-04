@@ -63,6 +63,7 @@
             
           },
           "Projects": {
+            "section": "Projets",
             "lang" : "Tecnologies: ",
             "status" :{
               "on": "En cours..",

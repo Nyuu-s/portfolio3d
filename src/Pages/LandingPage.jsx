@@ -136,7 +136,7 @@ function LandingPage(props) {
                 }}/>
               
 
-              <NavButton title={'Projects'}  clickFunc={() => {
+              <NavButton title={<Trans >Projects.section</Trans>}  clickFunc={() => {
               
                 setLocation('/projects')
                 
