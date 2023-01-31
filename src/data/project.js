@@ -117,6 +117,42 @@ export const Projects = [
         
             </div>
         </div>
+    </Project>,
+    <Project category={0} menuTitle={<Trans>Projects.11.menutitle</Trans>} title={<Trans>Projects.11.title</Trans>} lng={"Javascript, React, Three.js"} status={0}  shortDesc={<Trans>Projects.11.shortDesc</Trans>} link={""}>
+        <div>
+            <div>
+                <Trans components={{"div": <div className="ml-5"></div>}}>Projects.11.desc</Trans>
+                <Trans components={{"div": <div className="ml-5 mt-5"></div>}}>Projects.11.moreInfoSubTitle</Trans>
+
+                    <ul className="ml-5">
+                        <Translation>
+                                {
+                                    (t) => t('Projects.11.moreinfo', {returnObjects: true}).map((item, i) => (<li key={i} className='p-2'>{item}</li>))
+                                }
+                        </Translation>
+                    </ul>
+                {/* <img className="mx-auto w-1/2 mt-10" src="" alt="capture d'ecran" /> */}
+        
+            </div>
+        </div>
+    </Project>,
+    <Project category={0} menuTitle={<Trans>Projects.11.menutitle</Trans>} title={<Trans>Projects.11.title</Trans>} lng={"Javascript, React, Three.js"} status={0}  shortDesc={<Trans>Projects.11.shortDesc</Trans>} link={""}>
+        <div>
+            <div>
+                <Trans components={{"div": <div className="ml-5"></div>}}>Projects.11.desc</Trans>
+                <Trans components={{"div": <div className="ml-5 mt-5"></div>}}>Projects.11.moreInfoSubTitle</Trans>
+
+                    <ul className="ml-5">
+                        <Translation>
+                                {
+                                    (t) => t('Projects.11.moreinfo', {returnObjects: true}).map((item, i) => (<li key={i} className='p-2'>{item}</li>))
+                                }
+                        </Translation>
+                    </ul>
+                {/* <img className="mx-auto w-1/2 mt-10" src="" alt="capture d'ecran" /> */}
+        
+            </div>
+        </div>
     </Project>
 
 

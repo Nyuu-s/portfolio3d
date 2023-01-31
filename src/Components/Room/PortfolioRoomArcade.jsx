@@ -12,7 +12,7 @@ import { useFrame, useThree,  } from '@react-three/fiber'
 import * as THREE from 'three'
 import useStore from '../../Context/ContextZustand'
 import { RoughEase } from 'gsap/EasePack'
-
+import {SmoothCameraFollow} from '../index'
 
 // TEXTURES
 import ScreenTexture from "../../assets/textures/screen_video.mp4"
@@ -144,6 +144,7 @@ export function RoomModel(props) {
             // timeline.to(group.current.rotation, {y:-0.6, duration: 3}, '<')
             // timeline.to(group.current.position, {x: 6, z:17, duration: 3}, '<')
             // // timeline.to(cam.current.position, {x: rocketcam.x, y: rocketcam.x.y, z:rocketcam.z, duration: 3}, '<')
+       
             timeline.to(cam.current.position, {x: rocketcam.x, y: rocketcam.y, z:rocketcam.z, duration: 3}, '<')
             timeline.to(cam.current.quaternion, {_x: rocketrot.x, _y: rocketrot.y, _z: rocketrot.z, _w: rocketrot.w, duration: 3}, '<')
             timeline.to(cam.current.scale, {x: scale, y: scale, z: scale, duration: 3, onComplete: () => {setrocketClick(true)}}, '<')
@@ -333,6 +334,7 @@ useFrame((state) => {
         <mesh name="Plane" castShadow receiveShadow geometry={nodes.Plane.geometry} material={materials.WindowFrame} position={[-0.73, 5.56, -3.31]} rotation={[-Math.PI / 2, 0, Math.PI / 4]} />
 
           <group name="Rocket"  position={[0.01, 0.35, -1.33]} rotation={[-1.39, 0.86, 2.9]} >
+          
                 <mesh  name="Cone" castShadow receiveShadow geometry={nodes.Cone.geometry} material={materials['Rocket.001']}/>
                 <mesh  name="Cone_1" castShadow receiveShadow geometry={nodes.Cone_1.geometry} material={materials.RocketTop} />
           </group>
@@ -341,7 +343,7 @@ useFrame((state) => {
           <mesh name="Box029004_1" castShadow receiveShadow geometry={nodes.Box029004_1.geometry} material={materials['Material #227.004']} />
         </group>
         <group>
-
+        
         <mesh name="Rocketv2" ref={Rocket} castShadow receiveShadow geometry={nodes.Rocketv2.geometry} material={materials.Mat} position={[-4.26, 3.71, 0.68]} rotation={[Math.PI / 2, 0, -Math.PI / 4]} scale={0.005} 
           onClick={(e) => {
             RoomState === 'rocket' ? setRoomState('default') : setRoomState('rocket')
@@ -359,7 +361,7 @@ useFrame((state) => {
             document.body.style.cursor = 'default';
           }}
         > 
-
+        
         </mesh>
         <PerspectiveCamera  
               // makeDefault={rocketClick}

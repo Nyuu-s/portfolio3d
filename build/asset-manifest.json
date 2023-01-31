@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.b0ecd6a1.css",
-    "main.js": "./static/js/main.0a33d698.js",
+    "main.js": "./static/js/main.3f2c1f32.js",
     "static/media/portfolio-room-arcade-v2.glb": "./static/media/portfolio-room-arcade-v2.7a442ef9661aabf4d715.glb",
     "static/media/8k_earth_clouds.jpg": "./static/media/8k_earth_clouds.08fcd80007fae8fc7170.jpg",
     "static/media/screen_noise2.mp4": "./static/media/screen_noise2.5c2599204ba7dc4e56a3.mp4",
@@ -14,10 +14,10 @@
     "static/media/Raleway-VariableFont_wght.ttf": "./static/media/Raleway-VariableFont_wght.575ec9e676c7a85494bb.ttf",
     "index.html": "./index.html",
     "main.b0ecd6a1.css.map": "./static/css/main.b0ecd6a1.css.map",
-    "main.0a33d698.js.map": "./static/js/main.0a33d698.js.map"
+    "main.3f2c1f32.js.map": "./static/js/main.3f2c1f32.js.map"
   },
   "entrypoints": [
     "static/css/main.b0ecd6a1.css",
-    "static/js/main.0a33d698.js"
+    "static/js/main.3f2c1f32.js"
   ]
 }

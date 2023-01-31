@@ -53,7 +53,7 @@ import {animateScroll as scroll} from 'react-scroll'
 
 
 function LandingPage(props) {
-
+  const Menu = useRef()
   const bSlide = useRef()
   const page = useRef()
   const logo = useRef()
@@ -68,37 +68,55 @@ function LandingPage(props) {
 
 
 
-  useEffect(() => {
-    let ctx =  gsap.context(() => {
-      if(isReady){
-        timeLine.current = gsap.timeline()
-        .to('.menuItem', {yPercent: -120, stagger: 0.1, duration: 1})
-        .to('.toggle-bar', {backgroundColor: "rgba(0,0,0,0)", duration: 1}, '<')
-        .pause()
-      }
-
-      
-    })
-    setTimeout(() => {
-      setIsReady(true)
-    }, 500);
-
-    return () => {
-      ctx.revert()
-    }
-  }, [isReady]) 
 
 
-
+  const toggleNav = () => {
+    setNavbarDeploy(!NavbarDeploy); 
+}
 
   
 
   useEffect(() => {
-    if(timeLine.current){
-      NavbarDeploy ? timeLine.current.play() : timeLine.current.reverse()
+    console.log(Menu);
+    if(Menu.current)
+    {
+     
+      const menuItems = Menu.current.children;
+      
+      const mq = window.matchMedia("(min-width: 768px)");
+      if(mq.matches) //Desketop
+      {
+        if (NavbarDeploy) {
+          gsap.set(menuItems, {autoAlpha: 0, x: -50});
+          gsap.to(menuItems, {duration: 0.5, autoAlpha: 1, x: 0, stagger: 0.1, ease: "power2.inOut"});
+        } else {
+            gsap.set(menuItems, {autoAlpha: 0, y: 0});
+            gsap.set(menuItems, {autoAlpha: 1, x: 0});
+            gsap.to(menuItems, {duration: 0.5, autoAlpha: 0, x: -50, stagger: 0.1, ease: "power2.inOut"});
+        }
+
+      } 
+      else 
+      { // Mobile
+        if (NavbarDeploy) {
+            gsap.set(menuItems, {autoAlpha: 0, y: -50});
+            gsap.set(menuItems, {autoAlpha: 0, x: 0});
+            
+            gsap.to(menuItems, {duration: 0.5, autoAlpha: 1, y: 0, stagger: 0.1, ease: "power2.inOut"});
+        } else {
+            gsap.set(menuItems, {autoAlpha: 1, y: 0});
+            gsap.to(menuItems, {duration: 0.5, autoAlpha: 0, y: -50, stagger: 0.1, ease: "power2.inOut"});
+            
+        }
+      }
+      
 
     }
-  }, [NavbarDeploy])
+    // if(timeLine.current){
+    //   NavbarDeploy ? timeLine.current.play() : timeLine.current.reverse()
+
+    // }
+  }, [NavbarDeploy, isReady])
 
   const defaultBehaviour = () => {
     if(location !== '/')
@@ -111,18 +129,19 @@ function LandingPage(props) {
   
 
 
-      <div ref={page} onScroll={() => {setSection('undefined')}} className='w-full h-full overflow-y-auto scrollbar-hide   page' >
-          {isReady && <div className='toggle-bar  bg-opacity-60  dark:bg-opacity-100  fixed flex  w-full top-0  z-20'>
-            <div className='flex w-full items-center'>
-            <div ref={logo} className='ml-5 z-20 mt-5'>
-              
-              <Logo  icon={<BurgerIcon className='dark:text-[#fff] text-[#522263]' size={20}/>} clickFunc={() => {
-                NavbarDeploy ? setNavbarDeploy(false) : setNavbarDeploy(true)
-                console.log(NavbarDeploy);
-              }}/> 
-            </div>
+      <div ref={page} onScroll={() => {setSection('undefined')}} className={`w-full h-full overflow-y-auto scrollbar-hide ${location === 'projects' ? "pointer-events-none" : "pointer-events-auto"}   page`} >
+          { <div className='toggle-bar  bg-opacity-60  dark:bg-opacity-100  fixed   w-full top-0  z-20'>
+            <div className={`flex  flex-col sm:flex-row ${ NavbarDeploy ?  'bg-main-dark-bg' : 'bg-transparent'  } sm:bg-transparent w-full h-16 pointer-events-auto `}>
+              <div ref={logo} className='ml-5 z-20  mt-8'>
+                
+                <Logo  icon={<BurgerIcon className='dark:text-[#fff] text-[#522263]' size={25}/>} clickFunc={() => {
+                  // NavbarDeploy ? setNavbarDeploy(false) : setNavbarDeploy(true)
+                  toggleNav();
+                  console.log(NavbarDeploy);
+                }}/> 
+              </div>
  
-            <div className='menuItems flex   w-full ml-3 mt-5'>
+            <div ref={Menu} className={`menuItems flex flex-col sm:flex-row gap-8 ${ NavbarDeploy ?  'bg-main-dark-bg' : 'bg-transparent'  } sm:bg-transparent w-full pl-3 pt-5  `}>
 
               <NavButton title={<HomeIcon className='dark:text-[#fff] text-[#522263]' size={35}/>} clickFunc={() => {
                     defaultBehaviour()
@@ -158,7 +177,7 @@ function LandingPage(props) {
                   //scroll to section
                 }}/>
 
-                <div className="menuItem flex mr-2 justify-end items-center top-12 right-12 z-50">
+                <div className="menuItem flex mr-5  items-center py-5 z-50">
 
                   <div className="sun"> 
                     <Flashon className='dark:text-[#fff] text-[#522263]'size={20}/>

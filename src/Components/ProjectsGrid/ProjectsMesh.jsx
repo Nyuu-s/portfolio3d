@@ -28,18 +28,21 @@ const onLeave = (e, position, func) => {
  }
 
  const setup = (Projects, helpers) => {
+    if(!Projects) return []
     let proj = []
     const positions = []
-    var x = -5.5
-    var y = 4.5
-    var z = 10
+    var x = 0
+    var y = 4.5 + helpers.defaultPosition.y
+    var z = 10 + helpers.defaultPosition.z
     for (let i = 0; i < Projects.length; i++) {
         
-        x =  i % 4 === 0 ? -5.3 : x + 3.5
+        x =  i % 4 === 0 ? helpers.defaultPosition.x : x +3.5
         y -= i % 4 === 0 ? 2.5 : 0
-        var rotY = x === -5.3 ? -0.5 : x === -5.3+(3.5*3) ? 0.5 : 0 
-        var transZ = (x === -5.3 || x === -5.3+(3.5*3)) ? z - 1  : z
+        var rotY = x === helpers.defaultPosition.x ? -0.5 : x === helpers.defaultPosition.x+(3.5*3) ? 0.5 : 0 
+        var transZ = (x === helpers.defaultPosition.x || x === helpers.defaultPosition.x+(3.5*3)) ? z - 1  : z
         positions.push({x, y, z: transZ, rotationY: rotY})
+
+
         proj.push(
         <Plane  key={i} args={[3,2]}  position={[x, y, transZ]} rotation={[0,rotY,0]}
         onPointerOver={(e) =>{
@@ -95,10 +98,13 @@ function ProjectsMesh(props) {
     const [, setLocation] = useLocation()
     const playAnim = useStore((state) => state.ProjectsAnim)
     const setplayAnim = useStore((state) => state.setProjectsAnim)
-    
+    const defaultPosition = props.position
+ 
     const projectsGroup = useRef()
 
-    const projects = setup(props.projectsArr, {setMovable, movable, setLocation})
+    const projects = setup(props.projectsArr, {setMovable, movable, setLocation, defaultPosition})
+
+
 
     
     

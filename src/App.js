@@ -5,7 +5,7 @@ import './App.css';
 
 import {Canvas} from '@react-three/fiber'
 import * as THREE from 'three'
-import { Earth,  Camera  } from './Components/'
+import { Earth,  Camera, SolarSystem } from './Components/'
 import {Preload} from '@react-three/drei';
 import { LandingPage } from './Pages';
 import { useTheme } from './Context/ContextZustand'
@@ -15,6 +15,7 @@ import makeMatcher from "wouter/matcher"
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import {ScrollToPlugin} from 'gsap/ScrollToPlugin'
 import { Projects } from './data/project';
+
 
 
 const RoomModel = React.lazy(() => import('./Components/Room/PortfolioRoomArcade'))
@@ -125,12 +126,14 @@ function App() {
 
                       <Camera default={true} perspective={true} {...cameraPersProp}/>
                       <group name='SolarSystem' >
-                        <Earth NormalizedMouse={mouse} /> 
+                        
+                        <SolarSystem Projects={Projects} Mouse={mouse}/>
+                    
                       </group>
                    
                   </Route>
                   <Route path={'/projects'}>
-                      <ProjectsMesh projectsArr={Projects} />
+                      {/* <ProjectsMesh projectsArr={Projects} /> */}
                   </Route>
                 </Router>
 
