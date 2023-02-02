@@ -160,17 +160,21 @@
               "desc": "<div> Un portfolio créer avec react et Three.js permettant d'apprendre le fonctionnement de WebGL tout en mettant en valeurs mes autres projets. </div> "
             },
             "12": {
-              "moreinfo": ["SmoothScrolling", "Plus d'interactions avec la pièce. (dont des petits jeux !)", "Version Anglaise du site" ,"Effets de transitions entre les scènes", "Amélioration de l'UI", "Complétion des projets", "Différents fixs pour la version mobile", "Correction l'erreur en rafraichissant la page sur un des projets"],
-              "moreInfoSubTitle": "<div>Voici ce qui arrivera prochainement ! </div>",
               "title" :"ULearning1",
               "menutitle" :"ULearning1",
-              "shortDesc" :"Mon premier jeu 3D, un petit RPG ou le joueur doit tuer un boss pour finir le jeu",
-              "desc": "<div> Il s'agit de mon premier jeu fait avec Unreal Engine, le but était de comprendre comment utiliser Unreal en creeant un jeu simple (mais pas si facile a finir haha). Le jeu est disponible pour Windows dans les release du dépots git. </div> ",
-              "section1": "<div>Tous les assets utilisé dans ce projet sont des assets disponibles gratuitement. Le jeu dispose d'un simple menu sans aucune options disponibles malgré la présence du bouton dans ce meme menu. Le model du personnage est celui d'Echo de la demo d'Unreal Engine 5, il peut se deplacer dans toutes les direction et effectuer des roulades ce qui ma permis de faire des montages d'animations.  </div>",
-              "section2": "<div>Le joueur va rencontrer divers type d'enemies tel que des paladins, des insectes volant et ce qui ressemble a un gros loup, les paladins attaquent lentements et font autant de dégats que la premiere arme disponible pour le joueur. Les insecte font moins de dégats mais frappe plus rapidement et le loup fait autant de degat que le paladin mais encore plus rapide que les insecte ce qui le rend assez coriace a vaincre (un peu trop meme)</div>",
-              "section3": "<div>Le joueur peut ramasser plusieurs type d'objets, le premier étant les âmes des créature tuer, mais aussi les trésors en détruisant les differents objects comme les pots ou les statues (Ces 2 types d'objets ne servent à rien dans ce jeu). Il existe aussi une autre arme faisant 50 point de degats. Le plus important sont les différents coeurs: Le rouge redonne 20 points de vie, le vert donne 10 point vie max en plus, le violet redefini la vie du joueur a une certaine valeur (dans ce niveau il y a 1pv, 10pv et 50pv mais aucune distinction entre les coeurs violet est possible). Enfin les coeur Jaunes qui donne 200 point de vie maximum et redonne 100 point vie. </div>",
-              "section4": "<div>J'ai aussi pu découvir brievement l'inverse kinematics de Unreal en déplacant les jambes et les cheville du personnage sur les hauteur et les pentes. Si le joueur sort de la carte le niveau recommence. </div>",
-              "section5": "<div>les IA patrouillent autour de certains points et chassent le joueur sur un certain rayon, Une fois le boss mort le jeu est terminé. </div>"
+              "shortDesc": "Mon premier jeu 3D, un petit RPG où le joueur doit tuer un boss pour finir le jeu",
+              "desc": "<div>Il s'agit de mon premier jeu fait avec Unreal Engine. Le but était de comprendre comment utiliser Unreal en créant un jeu simple (mais pas si facile à finir haha). Le jeu est disponible pour Windows dans les releases du dépôt git.</div>",
+              "section1": "<div>Tous les assets utilisés dans ce projet sont disponibles gratuitement. Le jeu dispose d'un simple menu sans aucune option disponible malgré la présence du bouton dans ce même menu. Le modèle du personnage est celui d'Echo de la démo d'Unreal Engine 5. Il peut se déplacer dans toutes les directions et effectuer des roulades, ce qui m'a permis de faire des montages d'animations.</div>",
+              "section2": "<div>Le joueur va rencontrer différents types d'ennemis tels que des paladins, des insectes volants et ce qui ressemble à un gros loup. Les paladins attaquent lentement et causent autant de dégâts que la première arme disponible pour le joueur. Les insectes causent moins de dégâts mais frappent plus rapidement, et le loup cause autant de dégâts que le paladin, mais est encore plus rapide que les insectes, ce qui le rend assez coriace à vaincre (un peu trop, même).</div>",
+              "section3": "<div>Le joueur peut récupérer plusieurs types d'objets, le premier étant les âmes des créatures tuées, mais aussi les trésors en détruisant les différents objets tels que les pots ou les statues (ces deux types d'objets ne servent à rien dans ce jeu). Il existe également une autre arme causant 50 points de dégâts. Le plus important sont les différents cœurs: le rouge redonne 20 points de vie, le vert donne 10 points de vie maximum en plus, le violet redéfinit la vie du joueur à une certaine valeur (dans ce niveau, il y a 1 pv, 10 pv et 50 pv, mais aucune distinction entre les cœurs violets n'est possible). Enfin, les cœurs jaunes qui donnent 200 points de vie maximum et redonnent 100 points de vie. </div>",
+              "section4": "<div>J'ai également pu découvrir brièvement l'inverse kinematics d'Unreal en déplaçant les jambes et les chevilles du personnage sur les hauteurs et les pentes. Si le joueur sort de la carte, le niveau recommence. </div>",
+              "section5": "<div>Les IA patrouillent autour de certains points et chassent le joueur sur un certain rayon. Une fois le boss mort, le jeu est terminé. </div>"
+            },
+            "13": {
+              "title" :"ULearning2",
+              "menutitle" :"ULearning2",
+              "shortDesc" :"Un jeu multijoueur",
+              "desc": "<div> Il s'agit d'un jeu fait avec Unreal Engine pour comprendre comment fonctionne le multijoueur et de nombreuses autres fonctionnalités du moteur. </div> "
             }
           }
 

@@ -178,6 +178,14 @@ export const Projects = [
             </div>
         </div>
     </Project>,
+        <Project id={12} category={0} subCategory={1} menuTitle={<Trans>Projects.13.menutitle</Trans>} title={<Trans>Projects.13.title</Trans>} lng={"UnrealEngine, C++"} status={0}  shortDesc={<Trans>Projects.13.shortDesc</Trans>} link={""}>
+        <div>
+            <div>
+                <Trans components={{"div": <div className="ml-5"></div>}}>Projects.13.desc</Trans>
+        
+            </div>
+        </div>
+    </Project>,
 
 
 ]
