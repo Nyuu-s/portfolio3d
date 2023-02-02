@@ -7,7 +7,7 @@ const rescale = (lvl) => {
 
 function Logo({icon, clickFunc}) {
   return (
-    <div  className='text-[#522263] main-icon z-50 hover:cursor-pointer ' onClick={clickFunc} >
+    <div  className=' main-icon z-50 hover:cursor-pointer ' onClick={clickFunc} >
         {icon}
     </div>
   )

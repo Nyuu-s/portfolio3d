@@ -7,12 +7,7 @@ import useStore from '../../Context/ContextZustand'
 import {Trans} from 'react-i18next'
 
 
-const CategoryMap = {
-    0: <div className='text-blue-500 text-xs font-raleway'><Trans>Projects.category.pers</Trans></div>,
-    1: <div className='text-purple-500 text-xs font-raleway'><Trans>Projects.category.uni</Trans></div>,
-    2: <div className='text-green-500 text-xs font-raleway'><Trans>Projects.category.work</Trans></div>,
-    3: <div className='text-red-500 text-xs font-raleway'><Trans>Projects.category.special</Trans></div>
-  }
+
 
 
 const onEnter = (e, position) => {
@@ -46,7 +41,7 @@ const onLeave = (e, position, func) => {
         proj.push(
         <Plane  key={i} args={[3,2]}  position={[x, y, transZ]} rotation={[0,rotY,0]}
         onPointerOver={(e) =>{
-            e.object.material.color = {r: 0, g:1, b: 0, isColor: true}
+            e.object.material.color = {r: 0, g:0.2, b: 0, isColor: true}
             document.body.style.cursor = 'pointer'
             onEnter(e, positions[i]) 
             helpers.setMovable(true)
@@ -65,25 +60,25 @@ const onLeave = (e, position, func) => {
            
         }}
         onPointerLeave={(e) =>{
-            e.eventObject.material.color = {r: 1, g:205/255, b: 178/255, isColor: true}
+            e.eventObject.material.color = {r: 15/255, g:15/255, b: 15/255, isColor: true}
             document.body.style.cursor = 'default'
             onLeave(e, positions[i])
             helpers.setMovable(false)
         }} 
         onClick={() => {
             
-            helpers.setLocation('/projects/'+i)
+            helpers.setLocation('/projects/'+ Projects[i].props.id)
            
         }}
         
         >
-            <meshBasicMaterial side={THREE.DoubleSide} color={[1, 205/255, 178/255] }  />
+            <meshBasicMaterial side={THREE.DoubleSide} color={[15/255, 15/255, 15/255] }  />
             {/* Use Html from drei or make custom texture for each project and use it on plane */}
             
 
             <Html occlude transform position={[0,0,0.1]} scale={0.8} pointerEvents='false'>
-                <div className='text-lg font-raleway w-30 h-30 '>{Projects[i].props.menuTitle}</div>
-                {CategoryMap[Projects[i].props.category]}
+                <div className='text-lg font-raleway w-30 h-30 text-[#bbb]'>{Projects[i].props.menuTitle}</div>
+                {helpers.CategoryMap[Projects[i].props.category][Projects[i].props.subCategory]}
             </Html>
             
         </Plane> 
@@ -99,10 +94,11 @@ function ProjectsMesh(props) {
     const playAnim = useStore((state) => state.ProjectsAnim)
     const setplayAnim = useStore((state) => state.setProjectsAnim)
     const defaultPosition = props.position
+    const CategoryMap = props.CatMap
  
     const projectsGroup = useRef()
 
-    const projects = setup(props.projectsArr, {setMovable, movable, setLocation, defaultPosition})
+    const projects = setup(props.projectsArr, {setMovable, movable, setLocation, defaultPosition, CategoryMap})
 
 
 

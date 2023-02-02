@@ -17,7 +17,7 @@ import {ProjectsMesh} from '../index'
 
 
 
-function Earth({NormalizedMouse, Projects}) {
+function Earth({NormalizedMouse}) {
    
     var startAngle = -0.471239
     const earth = useRef()

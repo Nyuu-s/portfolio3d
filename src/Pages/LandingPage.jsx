@@ -77,7 +77,7 @@ function LandingPage(props) {
   
 
   useEffect(() => {
-    console.log(Menu);
+
     if(Menu.current)
     {
      
@@ -124,26 +124,26 @@ function LandingPage(props) {
     scroll.scrollToTop()
     setSection('.page')
   } 
-
+//text-[#522263]
   return (
   
 
 
       <div ref={page} onScroll={() => {setSection('undefined')}} className={`w-full h-full overflow-y-auto scrollbar-hide ${location === 'projects' ? "pointer-events-none" : "pointer-events-auto"}   page`} >
-          { <div className='toggle-bar  bg-opacity-60  dark:bg-opacity-100  fixed   w-full top-0  z-20'>
+          { <div className='toggle-bar    fixed   w-full top-0  z-20'>
             <div className={`flex  flex-col sm:flex-row ${ NavbarDeploy ?  'bg-main-dark-bg' : 'bg-transparent'  } sm:bg-transparent w-full h-16 pointer-events-auto `}>
               <div ref={logo} className='ml-5 z-20  mt-8'>
                 
                 <Logo  icon={<BurgerIcon className='dark:text-[#fff] text-[#522263]' size={25}/>} clickFunc={() => {
                   // NavbarDeploy ? setNavbarDeploy(false) : setNavbarDeploy(true)
                   toggleNav();
-                  console.log(NavbarDeploy);
+                  
                 }}/> 
               </div>
  
             <div ref={Menu} className={`menuItems flex flex-col sm:flex-row gap-8 ${ NavbarDeploy ?  'bg-main-dark-bg' : 'bg-transparent'  } sm:bg-transparent w-full pl-3 pt-5  `}>
 
-              <NavButton title={<HomeIcon className='dark:text-[#fff] text-[#522263]' size={35}/>} clickFunc={() => {
+              <NavButton title={<HomeIcon className='dark:text-[#fff]  text-[#522263]' size={35}/>} clickFunc={() => {
                     defaultBehaviour()
                 }}/>
               

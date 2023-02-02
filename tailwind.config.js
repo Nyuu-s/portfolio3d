@@ -22,7 +22,8 @@ module.exports = {
         'status-on' : '#04C9C0',
         'status-off' : '#C23D0B',
         'status-hiatus' : '#C3C904',
-        'status-done' : '#31DE45'
+        'status-done' : '#31DE45',
+        'main-dark': '#20232A',
       },
       animation: {
         'spin-slow': 'spin 3s linear infinite',
