@@ -1,6 +1,6 @@
-import React, {useRef, useState,useEffect} from 'react'
+import React, {useRef, useEffect} from 'react'
 import * as THREE from 'three'
-import { gsap, ScrollTrigger } from 'gsap/all'
+import { gsap } from 'gsap/all'
 import vertexShader from '../../shaders/vertex.js'
 import atmosVertexShader from '../../shaders/atmosVertex'
 import fragmentShader from '../../shaders/fragment.js'
@@ -9,11 +9,11 @@ import EarthTexture from '../../assets/textures/8k_earth_daymap.jpg'
 import EarthCloudsMap from "../../assets/textures/8k_earth_clouds.jpg";
 import EarthNightMap from "../../assets/textures/8k_earth_nightmap.jpg";
 
-import { useFrame, useLoader, useThree } from '@react-three/fiber'
+import { useFrame, useLoader } from '@react-three/fiber'
 import { TextureLoader  } from 'three'
-import {OrbitControls, Stars} from '@react-three/drei'
-import { useLocation } from 'wouter'
-import {ProjectsMesh} from '../index'
+import { Stars} from '@react-three/drei'
+
+
 
 
 
@@ -26,8 +26,7 @@ function Earth({NormalizedMouse}) {
     const StarsRef = useRef()
     // const [toggle, setToggle] = useState(false)
     // const [Display, setDisplay] = useState(true)
-    const [location] = useLocation()
-    const {camera } = useThree()
+
    
 
 

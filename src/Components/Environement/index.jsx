@@ -39,7 +39,7 @@ function Environement() {
 
     }
      
-  }, [theme])
+  }, [theme, lightColor, darkColor])
 
   return (
     <>

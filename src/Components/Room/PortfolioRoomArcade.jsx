@@ -12,7 +12,6 @@ import { useFrame, useThree,  } from '@react-three/fiber'
 import * as THREE from 'three'
 import useStore from '../../Context/ContextZustand'
 import { RoughEase } from 'gsap/EasePack'
-import {SmoothCameraFollow} from '../index'
 
 // TEXTURES
 import ScreenTexture from "../../assets/textures/screen_video.mp4"
@@ -173,9 +172,6 @@ export function RoomModel(props) {
      
   }, [RoomState, ArcadeNoise, setLocation, Arcadevideo, PCNoise, PCvideo, ambiantRef, dirLightRef])
   
-  const getScene = () => {
-    return scene
-  }
 
   useEffect(() => {
     const onMove = (e) =>{
@@ -187,7 +183,7 @@ export function RoomModel(props) {
     window.addEventListener('mousemove', onMove)
     const el = props.containerRef.current
     
-    // tl.to(scene.current.position, {x: 5, duration:10})
+
     let ctx = gsap.context(() => { 
 
       scene.current.position.set(-0.45, 0, 0)
@@ -209,7 +205,6 @@ export function RoomModel(props) {
       })
 
       mm.add("(max-width: 640px)", ()=> {
-        console.log(getScene());
         scene.current.scale.set(0.6, 0.6, 0.6)
 
         miniLamp.current.distance = 100
@@ -261,7 +256,7 @@ export function RoomModel(props) {
   
  
 
-  }, [ props.containerRef, Rotlerp, lerp ])
+  }, [ props.containerRef, props.isReady, Rotlerp, lerp ])
 
   //BLENDER ANIMATION & VIDEO TEXTURE 
   useEffect(() => {

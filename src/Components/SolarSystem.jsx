@@ -1,11 +1,10 @@
 import React from 'react'
-import { Earth, Project, ProjectsMesh } from './'
-import { useFrame , useThree} from '@react-three/fiber'
-import { OrbitControls, useScroll, Scroll, Html, Plane } from '@react-three/drei'
-import * as THREE from 'three';
+import { Earth, ProjectsMesh } from './'
+import { useThree} from '@react-three/fiber'
+import { OrbitControls, Html, Plane } from '@react-three/drei'
 import { useEffect } from 'react';
-import { gsap, ScrollTrigger } from 'gsap/all'
-import { useRef, useState, useMemo } from 'react';
+import { gsap } from 'gsap/all'
+import { useState, useMemo } from 'react';
 import { useLocation } from 'wouter'
 import {Trans} from 'react-i18next'
 import {BiRightArrow, BiLeftArrow} from 'react-icons/bi'
@@ -54,7 +53,7 @@ function SolarSystem({Projects, Mouse, ...props}) {
   const [toggle, setToggle] = useState(false)
   const [location] = useLocation()
   const [Display, setDisplay] = useState(true)
-  const SegmentedProjects = useMemo(() => (ChunkArrayByNumber(Projects, 12)), [])
+  const SegmentedProjects = useMemo(() => (ChunkArrayByNumber(Projects, 12)), [Projects])
   const [ProjectFilterState, setProjectFilterState] = useState({array: SegmentedProjects, state: ""})
   const [page, setpage] = useState(0)
   const PersCategories = useMemo(() => {
@@ -69,7 +68,7 @@ function SolarSystem({Projects, Mouse, ...props}) {
       )
     }
     return arr
-  }, [])
+  }, [Projects])
   const UniCategories = useMemo(() => {
     let arr = []
     for (const key in CategoryMap[1]) {
@@ -80,7 +79,7 @@ function SolarSystem({Projects, Mouse, ...props}) {
       )
     }
     return arr
-  }, [])
+  }, [Projects])
   const WorkCategories = useMemo(() => {
     let arr = []
     for (const key in CategoryMap[2]) {
@@ -91,7 +90,7 @@ function SolarSystem({Projects, Mouse, ...props}) {
       )
     }
     return arr
-  }, [])
+  }, [Projects])
   const SpeCategories = useMemo(() => {
     let arr = []
     for (const key in CategoryMap[3]) {
@@ -102,7 +101,7 @@ function SolarSystem({Projects, Mouse, ...props}) {
       )
     }
     return arr
-  }, [])
+  }, [Projects])
   
   useEffect(() => {
    
@@ -113,49 +112,7 @@ function SolarSystem({Projects, Mouse, ...props}) {
       ctx.revert();
     }
   }, [camera])
-  
 
-  // useEffect(() => {
-  //   let ctx = gsap.context(() => {
-
-  //       gsap.registerPlugin(ScrollTrigger)
-  //       gsap.to(camera.position, {x: 0, y:0, z:30})
-  //       gsap.to(camera.position, {
-
-  //       scrollTrigger: {
-         
-  //         trigger: "body",
-  //         scroller: '.page',
-  //         start: "top top",
-  //         end: "+=500%",
-  //         markers: true,
-  //         scrub: 0.5,
-  //         onUpdate: ({progress}) => {
-  //         if(progress > 0)
-  //         {
-  //           setToggle(false)
-  //           gsap.to(camera.position, { y:0 , z:30 , duration: 1})
-  //           gsap.to(camera.rotation, {x:0 , y:0 , z:0, duration: 1})
-        
-  //         }
-  //         else
-  //         {
-          
-  //           setToggle(true)
-          
-  //         }
-      
-  //       }
-  //       },
-  //       x: 100
-  //     })
-  //   })
-  
-  //   return () => { 
-  //     ctx.revert();
-     
-  //   }
-  // }, [camera])
 
   useEffect(() => {
       

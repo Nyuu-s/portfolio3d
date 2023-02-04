@@ -99,8 +99,10 @@ useEffect(() => {
       if(props.Section !== 'undefined'){
 
         let sc = ScrollTrigger.getById('mainPageScroller')
-      
-        gsap.to('.page', {scrollTo: sc.labelToScroll(props.Section), duration: 2 })  
+        if(sc)
+        {
+          gsap.to('.page', {scrollTo: sc.labelToScroll(props.Section), duration: 2 })  
+        }
       }
   }, [props.Section])
 

@@ -7,10 +7,10 @@ const rescale = (lvl) => {
 
 function Logo({icon, clickFunc}) {
   return (
-    <div  className=' main-icon z-50 hover:cursor-pointer ' onClick={clickFunc} >
+    <div onMouseOver={() => rescale(1.2)} onMouseLeave={()=>rescale(1)}  className=' main-icon z-50 hover:cursor-pointer ' onClick={clickFunc} >
         {icon}
     </div>
   )
 }
-// onMouseOver={() => rescale(1.2)} onMouseLeave={()=>rescale(1)}
+// 
 export default Logo

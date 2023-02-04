@@ -28,19 +28,19 @@
           "Welcome": "Bienvenue !",
           "About" : {
             "section": "A propos de moi",
-            "intro": "<div>Salut, je m'appelle Edgar, j'ai 23 ans et je suis développeur d'applications. Je suis passionné d'informatique depuis tout jeune et notamment de jeux vidéo.\n ",
+            "intro": "<div>Salut, je m'appelle Edgar, j'ai 23 ans et je suis développeur d'applications. Je suis passionné d'informatique depuis tout jeune et notamment de jeux vidéo. Mon objectif est de travailler dans le domaine du jeu vidéo en tant que développeur gameplay ou en tant que développeur moteur.\n ",
             "hobbies": {
               "title": "II) Mes centres d'intérêts",
               "progTitle": "Programmation",
               "sciencesTitle": "Sciences",
               "prog": "Parmi les activités que j'apprécie la programmation détient la médaille d'or, j'aime apprendre de nouveaux languages et renforcer mes compétences dans ceux que je connais déjà. Pour moi, la programmation consiste en une série de défis et d'énigmes à résoudre. J'aime particulièrement trouver des solutions à des problèmes complexes.",
               "sciences": "Je suis absolument émerveillé par les sciences qui représentent pour moi le salut de l'humanité ;). Les domaines que j'affectionne le plus, même si parfois cela dépasse de loin mes compétences sont dans un premier temps l'astronomie et tout ce qui concerne l'espace et l'infiniment grand. Dans un second temps j'aime les neurosciences et tout ce qui concernent la compréhension du cerveau humain et de la numérisation de la conscience / esprit. Et enfin je m'intéresse également à la physique quantique qui joue un rôle majeur dans l'infiniment grand et qui contient tellement de mystères.",
-              "learning": "J'aime beaucoup apprendre de nouvelles choses sur des sujets variés mais je reste humain avant tout et ma concentration n'est pas infinie alors oui j'aime aussi jouer aux jeux vidéo, regarder des films et des series et lire des mangas !"
+              "learning": "J'aime beaucoup apprendre de nouvelles choses sur des sujets variés mais je reste humain avant tout alors oui j'aime aussi jouer aux jeux vidéo, regarder des films et des series et lire des mangas !"
             },
             "formation": {
               "title": "I) Mon parcours",
               "motivation": "Ayant joué aux jeux vidéo étant plus jeune, je me suis assez vite retrouvé à vouloir être de l'autre côté du miroir et créer des jeux, une façon de raconter des histoires et d'exprimer ma créativité de manière plus immersive et interactive que les médias conventionnels.",
-              "journey": "J'ai commencé mes études à Lyon où j'ai obtenu mon Bac+2. Ensuite, j'ai poursuivi à Rennes ma Licence et j'ai terminé mon cursus à Montpellier par un Master 2."
+              "journey": "J'ai commencé mes études à Lyon où j'ai obtenu mon Bac+2. Ensuite, j'ai poursuivi à Rennes ma Licence et j'ai terminé mon cursus à Montpellier par un Master 2 (IMAGINE)."
 
             }
 
@@ -163,7 +163,7 @@
               "title" :"ULearning1",
               "menutitle" :"ULearning1",
               "shortDesc": "Mon premier jeu 3D, un petit RPG où le joueur doit tuer un boss pour finir le jeu",
-              "desc": "<div>Il s'agit de mon premier jeu fait avec Unreal Engine. Le but était de comprendre comment utiliser Unreal en créant un jeu simple (mais pas si facile à finir haha). Le jeu est disponible pour Windows dans les releases du dépôt git.</div>",
+              "desc": "<div>Il s'agit de mon premier jeu fait avec Unreal Engine. Le but était de comprendre comment utiliser Unreal en créant un jeu simple (mais pas si facile à finir haha) qui me servira de référence pour des futurs projets. Le jeu est disponible pour Windows dans les releases du dépôt git.</div>",
               "section1": "<div>Tous les assets utilisés dans ce projet sont disponibles gratuitement. Le jeu dispose d'un simple menu sans aucune option disponible malgré la présence du bouton dans ce même menu. Le modèle du personnage est celui d'Echo de la démo d'Unreal Engine 5. Il peut se déplacer dans toutes les directions et effectuer des roulades, ce qui m'a permis de faire des montages d'animations.</div>",
               "section2": "<div>Le joueur va rencontrer différents types d'ennemis tels que des paladins, des insectes volants et ce qui ressemble à un gros loup. Les paladins attaquent lentement et causent autant de dégâts que la première arme disponible pour le joueur. Les insectes causent moins de dégâts mais frappent plus rapidement, et le loup cause autant de dégâts que le paladin, mais est encore plus rapide que les insectes, ce qui le rend assez coriace à vaincre (un peu trop, même).</div>",
               "section3": "<div>Le joueur peut récupérer plusieurs types d'objets, le premier étant les âmes des créatures tuées, mais aussi les trésors en détruisant les différents objets tels que les pots ou les statues (ces deux types d'objets ne servent à rien dans ce jeu). Il existe également une autre arme causant 50 points de dégâts. Le plus important sont les différents cœurs: le rouge redonne 20 points de vie, le vert donne 10 points de vie maximum en plus, le violet redéfinit la vie du joueur à une certaine valeur (dans ce niveau, il y a 1 pv, 10 pv et 50 pv, mais aucune distinction entre les cœurs violets n'est possible). Enfin, les cœurs jaunes qui donnent 200 points de vie maximum et redonnent 100 points de vie. </div>",

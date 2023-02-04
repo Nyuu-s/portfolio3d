@@ -13,60 +13,19 @@ import {animateScroll as scroll} from 'react-scroll'
  import { Projects } from '../data/project'
 
 
-// WEIRD BEHAVIOUR ON NAVIGATION BETWEEN ROUTES
-// const setupAsscroll = () => {
-//   // https://github.com/ashthornton/asscroll
-//   const asscroll = new ASScroll({ 
-    
-//     disableRaf: true });
-
-    
-//   gsap.ticker.add(asscroll.update);
-
-//   ScrollTrigger.defaults({
-//     scroller: asscroll.containerElement });
-
-
-//   ScrollTrigger.scrollerProxy(asscroll.containerElement, {
-//     scrollTop(value) {
-//       return arguments.length ? asscroll.currentPos = value : asscroll.currentPos;
-//     },
-//     getBoundingClientRect() {
-//       return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-//     },
-    
-//     });
-
- 
-//   asscroll.on("update", ScrollTrigger.update);
-//   ScrollTrigger.addEventListener("refresh", asscroll.resize);
-  
-    
-//   requestAnimationFrame(() => {
-//     asscroll.enable({
-//       newScrollElements: document.querySelectorAll(".gsap-marker-start, .gsap-marker-end, [asscroll]") });
-
-//   });
-//   return asscroll;
-// }
-
-
-
 function LandingPage(props) {
   const Menu = useRef()
   const bSlide = useRef()
   const page = useRef()
   const logo = useRef()
   const asscrollRef = useRef()
-  const timeLine = useRef()
   const toggleTheme = useToggleTheme()  
   const [NavbarDeploy, setNavbarDeploy] = useState(false)
   const {mode} = useTheme()
   const [location, setLocation] = useLocation();
   const [section, setSection] = useState('.page')
-  const [isReady, setIsReady] = useState(false)
 
-
+  
 
 
 
@@ -116,7 +75,7 @@ function LandingPage(props) {
     //   NavbarDeploy ? timeLine.current.play() : timeLine.current.reverse()
 
     // }
-  }, [NavbarDeploy, isReady])
+  }, [NavbarDeploy])
 
   const defaultBehaviour = () => {
     if(location !== '/')
@@ -130,7 +89,7 @@ function LandingPage(props) {
 
 
       <div ref={page} onScroll={() => {setSection('undefined')}} className={`w-full h-full overflow-y-auto scrollbar-hide ${location === 'projects' ? "pointer-events-none" : "pointer-events-auto"}   page`} >
-          { <div className='toggle-bar    fixed   w-full top-0  z-20'>
+          {<div className='toggle-bar    fixed   w-full top-0  z-20'>
             <div className={`flex  flex-col sm:flex-row ${ NavbarDeploy ?  'bg-main-dark-bg' : 'bg-transparent'  } sm:bg-transparent w-full h-16 pointer-events-auto `}>
               <div ref={logo} className='ml-5 z-20  mt-8'>
                 

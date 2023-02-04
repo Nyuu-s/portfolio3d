@@ -1,11 +1,11 @@
 
-import React, { Suspense, useRef, useMemo } from 'react';
+import React, { Suspense, useRef, useMemo , useState, useEffect} from 'react';
 import './App.css';
 
 
 import {Canvas} from '@react-three/fiber'
 import * as THREE from 'three'
-import { Earth,  Camera, SolarSystem } from './Components/'
+import { Camera, SolarSystem } from './Components/'
 import {Preload} from '@react-three/drei';
 import { LandingPage } from './Pages';
 import { useTheme } from './Context/ContextZustand'
@@ -21,7 +21,7 @@ import { Projects } from './data/project';
 const RoomModel = React.lazy(() => import('./Components/Room/PortfolioRoomArcade'))
 const Environement = React.lazy(() => import('./Components/Environement/index'))
 const Floor = React.lazy(() => import('./Components/Floor/index'))
-const ProjectsMesh = React.lazy(() => import('./Components/ProjectsGrid/ProjectsMesh'))
+// const ProjectsMesh = React.lazy(() => import('./Components/ProjectsGrid/ProjectsMesh'))
 const CustomLoader = React.lazy(() => import('./Components/CustomLoader'))
 
 
@@ -40,11 +40,18 @@ const multipathMatcher = (patterns, path) => {
   return [false, null];
 };
 
-
+function IsReady({SetIsReady}) {
+  useEffect(() => {
+    SetIsReady(true)
+  }, [])
+  
+  return null
+}
 
 function App() {
   gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
   const container = useRef()
+  const [Ready, setReady] = useState(false)
   let Theme = useTheme()
   
 
@@ -77,7 +84,8 @@ function App() {
       
 
 
-<LandingPage  />
+   <LandingPage  />
+
 
 
    
@@ -100,6 +108,8 @@ function App() {
             }}
               
         >
+                  <Suspense fallback={<CustomLoader />}>
+                      {/* <IsReady SetIsReady={setReady} /> */}
             { DEBUG && <>
               <gridHelper args={[10, 10]} />
               <axesHelper args={[10]}/>
@@ -108,17 +118,14 @@ function App() {
                 <Router matcher={multipathMatcher}>
                 <Route path='/'>
                   <>
-                  <Suspense fallback={<CustomLoader />}>
-
                       <Camera default={true} perspective={false} {...cameraOrthoProp}/>
                         <group name='RoomScene'> 
                           <Environement />
-                          <RoomModel containerRef={container} />
+                          <RoomModel containerRef={container} isReady={Ready}/>
                           <Floor />
                           <Preload all />
                           
                         </group>
-                  </Suspense>
                   </>
                 </Route>
                   <Route path={['/projects', '/projects/:id']}>
@@ -137,6 +144,7 @@ function App() {
                   </Route>
                 </Router>
 
+                  </Suspense>
         </Canvas>
    
        

@@ -1,7 +1,7 @@
 import React, { useRef , useLayoutEffect, useState} from 'react'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import { useToggleTheme, useTheme } from '../Context/ContextZustand'
+import { useTheme } from '../Context/ContextZustand'
 
 function debounce(fn, ms) {
     let timer

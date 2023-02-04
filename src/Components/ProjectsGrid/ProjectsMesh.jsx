@@ -4,7 +4,7 @@ import React , { useRef, useState, useEffect} from 'react'
 import gsap from 'gsap'
 import {useLocation} from 'wouter'
 import useStore from '../../Context/ContextZustand'
-import {Trans} from 'react-i18next'
+
 
 
 
@@ -106,8 +106,8 @@ function ProjectsMesh(props) {
     
     
     useEffect(() => {
-    let ctx = gsap.context(() => {
-        
+        let ctx = gsap.context(() => {
+            
             let tl = gsap.timeline({delay: 2})
             if(playAnim){
 
@@ -117,14 +117,12 @@ function ProjectsMesh(props) {
                 }))
                 tl.play()
             }
-        
-  
         })
         
         return () => {
             ctx.revert()
         }
-      }, [])
+      }, []) 
      
   return (
     <>
