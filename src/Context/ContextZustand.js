@@ -3,7 +3,12 @@ import create from 'zustand'
 const THEME_COLORS = {
     light: "#000",
     dark: "#333"
-} 
+}
+
+const LANGUAGES = {
+    french: "fr",
+    english: "en"
+}
 
 const useStore = create((set) => ({
 
@@ -13,7 +18,13 @@ const useStore = create((set) => ({
     setCamera: (cam) => {set(() => ({mainCamera: cam}))},
     setLights: (amblight, dirlight) => { set(() => ({AmbiantLight: amblight, DirLight: dirlight}))},
     ProjectsAnim: true,
-    setProjectsAnim : (value) => {set(() => ({ProjectsAnim: value}))}
+    setProjectsAnim : (value) => {set(() => ({ProjectsAnim: value}))},
+    lang: window.localStorage.getItem('Lang') || LANGUAGES.english,
+    setLang: (str) => set(() => {
+        localStorage.setItem('Lang', str)
+        return {lang: str}
+    }
+    )
   
     
 }))

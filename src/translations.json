@@ -1,27 +1,165 @@
 
 {
     "en": {
-        "translation": {
-          "Welcome": "Welcome !",
-          "About" : {
-            "intro": "",
-            "hobbies": {
-              "prog": "",
-              "science": "",
-              "learning": ""
+      "translation": {
+        "Welcome": "Welcome!",
+        "About": {
+          "section": "About me",
+          "intro": "<div>Hi, my name is Edgar, I am 23 years old and I am an application developer. I have been passionate about computer science since I was young and especially about video games. My goal is to work in the video game industry as a gameplay developer or as an engine developer.\n",
+          "hobbies": {
+            "title": "II) My interests",
+            "progTitle": "Programming",
+            "sciencesTitle": "Sciences",
+            "prog": "Among the activities I enjoy, programming holds the gold medal, I love learning new languages and reinforcing my skills in those I already know. For me, programming is a series of challenges and puzzles to solve. I especially enjoy finding solutions to complex problems.",
+            "sciences": "I am absolutely amazed by the sciences that represent for me the salvation of humanity ;). The areas I love the most, even though they often go far beyond my skills, are astronomy and everything related to space and the infinitely large. In a second time I love neurosciences and everything related to understanding the human brain and digitizing consciousness / mind. And finally I am also interested in quantum physics which plays a major role in the infinitely large and which contains so many mysteries.",
+            "learning": "I love learning new things on various topics but I remain human above all, so yes, I also like playing video games, watching movies and series, and reading manga!"
+          },
+          "formation": {
+            "title": "I) My journey",
+            "motivation": "Having played video games when I was younger, I quickly found myself wanting to be on the other side of the mirror and create games, a way to tell stories and express my creativity in a more immersive and interactive way than conventional media.",
+            "journey": "I started my studies in Lyon where I got my Bac + 2 (HND). Then, I continued in Rennes for my Bachelor's degree and I completed my journey in Montpellier with a Master's degree (Images and Games)."
+          }
+        },
+        "CV": {
+          "download": "Download",
+          "skill": "Skills",
+          "formation": "Education",
+          "hobbies": "Hobbies"
+        },
+        "Contact": {
+          "section": "Contact",
+          "title1": "Contact",
+          "title2": "Me!",
+          "subtitle": "To contact me, use one of the following methods:",
+          "tel": "+33 6 21 54 48 35",
+          "email": "edgar.jacquemoud99@gmail.com",
+          "github": "https://github.com/Nyuu-s",
+          "linkedin": "www.linkedin.com/in/edgargamedev"
+          
+        },
+        "Projects": {
+          "section": "Projects",
+          "lang" : "Technologies: ",
+          "status" :{
+            "on": "In progress..",
+            "off": "Cancelled!",
+            "hiatus": "On Hiatus",
+            "done" : "Done."
+          },
+          "category": {
+            "pers": {
+              "default": "Personal",
+              "games": "Games"
             },
-            "motivation": " "
+            "uni": {
+              "default": "Academic",
+              "m1" : "Master's Degree 1",
+              "m2" : "Master's Degree 2"
+            },
+            "work": {
+              "default": "Business"
+            },
+            "special" : {
+              "default": "Special"
+            }
+          },
+          "1": {
+            "title": "Code in Coop",
+            "menutitle": "Code in Coop",
+            "shortDesc": "A Minecraft mod made with a friend",
+            "desc": "<div> The goal was to learn how Minecraft mods work while working as a team, unfortunately my friend and I got separated by our studies and so the project is now on hold. </div>"
+            },
+            "2": {
+            "title": "Opengl base",
+            "menutitle": "Opengl base",
+            "shortDesc": "A basic rendering environment with Opengl",
+            "desc": "<div> The goal was to discover and understand how rendering a simple scene works with OpenGL through the FreeCodeCamp tutorial. I later wanted to use it as a base for various exercises or projects without having to rewrite the basics every time. </div>"
+            },
+            "3": {
+            "title": "Anime List",
+            "menutitle": "Anime List",
+            "shortDesc": "An application listing various series/animes and various statistics.",
+            "desc": "<div> I created an application using Javascript and the front-end frameworks React and Electron to create a Windows application for listing series watched or to be watched, as well as available languages, release dates, and other information. Initially, this application was intended for a friend, but it will eventually be usable by everyone. </div>",
+            "desc2": "<div> A customization interface tab has been set up to change colors as desired and the main theme (dark or light) </div>"
+            },
+            "4": {
+            "title": "Infectious Engine",
+            "menutitle": "Infectious Engine",
+            "shortDesc": "A 3D/4D game engine",
+            "desc": "<div> The goal of this project is to create a game engine that will, in a first step, experiment with various techniques, graphic APIs, code structures, and optimizations in order to better understand 3D game engines. Then, this engine will be used to run a first 3D game and a 4D game (4 spatial dimensions). Finally, I want to convert this engine to Rust to deepen my knowledge of this language that interests me. With the skills acquired through this project, I would like to create another engine (or use the one I have already developed) to make a game controlled by thought using an electroencephalography (EEG) headset. </div>"
+            },
+            "5": {
+            "title": "Laby js",
+            "menutitle": "Laby js",
+            "shortDesc": "A maze generator",
+            "desc": "<div> This is a small program written with the p5.js framework that generates a maze, the goal being to experiment with different algorithms including one using 'Backtrack' and another using recursive division of space. </div>"
+            },
+            "6": {
+              "title": "Snowman Temple Run",
+              "menutitle": "Temple Run",
+              "shortDesc": "A university project consisting of creating a game engine and a game using this engine.",
+              "desc": "<div>This is a university project I worked on with 2 of my classmates where the goal was to create a game engine with a game using this same engine. To do this, we used QT (C++) and OpenGl as a graphic API. Then, we chose to take the mobile game Temple Run, but on the theme of winter with a snowman. We also challenged ourselves to only move the background and obstacles and not the character. It's an endless game where the goal is to get the best score possible by avoiding ice. The three snowballs of the snowman represent the number of remaining lives, each obstacle removing one life. However, it is still possible to recover a snowball that falls from the walls when only one life is left.</div>",
+              "desc2": "<div>In this project, I mainly set up the collision detection system, set up the texture systeme and participated in the architecture of the scene graph of the engine.</div>"
+            },
+            "7": {
+              "title": "HDR Images",
+              "menutitle": "HDR Images",
+              "shortDesc": "A university project for an application to generate wide-range (HDR) images in astrophotography.",
+              "desc": "<div>Our university project was to create an application that could take in a night sky image as input and apply different HDR algorithms to enhance it. My classmate and I used Qt to create an easy-to-use interface, and we implemented different HDR algorithms using openCV, such as those of Robertson, Debevec and Mertens. We also tested several methods to reduce noise, which is a common problem in astrophotography, first by averaging the images and then using a convolutional neural network. Finally, our results were quite satisfactory and we were able to develop an application that offered different options for tonal mapping and HDR algorithms to produce an enhanced image.</div>"
+            },
+            "8": {
+              "title": "Augmented Reality Piano Assistant ARPA",
+              "menutitle": "ARPA",
+              "shortDesc": "A university project allowing playing the piano in augmented reality",
+              "desc": "<div>This is a project I worked on with 2 of my classmates, using Unity and a LeapMotion to detect the user's hands. With certain hand movements, you can zoom in/out on the piano or move along it. With the help of different techniques, such as quantization, we were able to reduce the imprecisions of the sensors and thus reduce accidental errors, such as double taps. It is also possible to visualize what chords are being played. Here are some demonstration videos of the final application (in French).</div>"
+            },
+            "9": {
+              "title": "Inpainting",
+              "menuTitle": "Inpainting",
+              "shortDesc": "A university project consisting of an application that performs image reconstruction.",
+              "desc": "Our university project, done with a classmate, aims to develop an application that can take an image as input and select the areas to be repainted in order to reconstruct or erase elements of the image. Our initial approach is to calculate the average of the surrounding pixels. We also discovered another method called Fast Marching Method (FMM) that promises significantly better results while remaining performant, but we didn't have time to implement it. To select an area to paint, just click on a pixel of the image and change the sensitivity, that is, the color variance detection, using the mouse wheel."
+            },
+            "10": {
+              "title": "Espelyet",
+              "menuTitle": "Espelyet",
+              "shortDesc": "A database project listing all web accessibility criteria.",
+              "desc": "During my final internship, I developed a project aimed at preparing the development of an accessible website producing CMS. To do this, I created an application with a database that includes all accessibility criteria and an API that will allow this future CMS to request validations or recommendations regarding the user's ongoing production. Unfortunately, due to the nature of the project, I cannot show anything here."
+            },
+            "11": {
+              "moreInfo": [
+                "SmoothScrolling",
+                "More interactions with the room. (including small games!)",
+                "Transition effects between scenes",
+                "UI improvement",
+                "Completion of projects",
+                "Different fixes for the mobile version"
 
-          },
-          "CV": {
-            "download": "Download",
-            "skill": "",
-            "formation": "",
-            "hobbies": ""
-          },
-          "Contact": {},
-          "Projects": {}
-        }
+              ],
+              "moreInfoSubTitle": "Here's what's coming up next!",
+              "title": "Portfolio",
+              "menuTitle": "Portfolio",
+              "shortDesc": "My 3D Portfolio",
+              "desc": "A portfolio created with React and Three.js allowing me to learn about the functioning of WebGL while highlighting my other projects."
+            },
+            "12": {
+              "title": "ULearning1",
+              "menutitle": "ULearning1",
+              "shortDesc": "My first 3D game, a small RPG where the player must kill a boss to finish the game",
+              "desc": "<div>This is my first game made with Unreal Engine. The goal was to understand how to use Unreal by creating a simple game (but not so easy to finish haha) that will serve as a reference for future projects. The game is available for Windows in the git repository releases.</div>",
+              "section1": "<div>All the assets used in this project are available for free. The game has a simple menu with no available options despite the presence of the button in the same menu. The character model is that of Echo from the Unreal Engine 5 demo. He can move in all directions and perform rolls, which allowed me to make animation montages.</div>",
+              "section2": "<div>The player will encounter different types of enemies such as paladins, flying insects, and what looks like a big wolf. Paladins attack slowly and cause as much damage as the first weapon available to the player. Insects cause less damage but hit more quickly, and the wolf causes as much damage as the paladin, but is even faster than the insects, making it tough to beat (a bit too tough, even).</div>",
+              "section3": "<div>The player can pick up several types of items, the first being the souls of the creatures killed, but also treasure by destroying various objects such as pots or statues (these two types of objects serve no purpose in this game). There is also another weapon causing 50 damage points. The most important are the different hearts: the red one gives 20 life points, the green one gives 10 extra maximum life points, the purple one sets the player's life to a certain value (in this level, there are 1 HP, 10 HP, and 50 HP, but no distinction between purple hearts is possible). Finally, the yellow hearts that give 200 maximum life points and restore 100 life points. </div>",
+              "section4": "<div>I also briefly discovered Unreal's inverse kinematics by moving the character's legs and ankles on heights and slopes. If the player goes out of the map, the level restarts. </div>",
+              "section5": "<div>The AI patrols around certain points and hunts the player within a certain radius. Once the boss is dead, the game is over. </div>"
+            },
+            "13": {
+              "title": "ULearning2",
+              "menutitle": "ULearning2",
+              "shortDesc": "A multiplayer game",
+              "desc": "<div>It is a game made with Unreal Engine 5 to understand how multiplayer works and many other features of the engine.</div>"
+            }
+          }
+        } 
       },
       "fr": {
         "translation": {
@@ -152,7 +290,7 @@
               "desc": "<div>Pendant mon stage de fin d'étude, j'ai réalisé un projet visant à préparer le développement d'un CMS produisant des sites accessibles. Pour ce faire, j'ai créé une application avec une base de données comprenant tous les critères d'accessibilité et une API qui permettra à ce futur CMS de demander des validations ou des recommandations concernant la production en cours d'un utilisateur. Malheureusement, en raison de la nature du projet, je ne peux pas montrer quoi que ce soit ici. "
             },
             "11": {
-              "moreinfo": ["SmoothScrolling", "Plus d'interactions avec la pièce. (dont des petits jeux !)", "Version Anglaise du site" ,"Effets de transitions entre les scènes", "Amélioration de l'UI", "Complétion des projets", "Différents fixs pour la version mobile", "Correction l'erreur en rafraichissant la page sur un des projets"],
+              "moreinfo": ["SmoothScrolling", "Plus d'interactions avec la pièce. (dont des petits jeux !)","Effets de transitions entre les scènes", "Amélioration de l'UI", "Complétion des projets", "Différents fixs pour la version mobile"],
               "moreInfoSubTitle": "<div>Voici ce qui arrivera prochainement ! </div>",
               "title" :"Portfolio",
               "menutitle" :"Portfolio",

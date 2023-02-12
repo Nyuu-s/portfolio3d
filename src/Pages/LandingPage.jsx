@@ -1,16 +1,16 @@
 import React , { useRef, useState, useEffect } from 'react'
 import { Main} from './'
 import { BsLightbulb as Flashon, BsLightbulbOff as Flashoff} from 'react-icons/bs'
-import { useToggleTheme, useTheme } from '../Context/ContextZustand'
+import useStore, { useToggleTheme, useTheme }  from '../Context/ContextZustand'
 import gsap from 'gsap'
 
 import {useLocation, Route, Switch} from 'wouter'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Logo, NavButton } from '../Components'
 import {GiHamburgerMenu as BurgerIcon}  from 'react-icons/gi'
 import {TiHome as HomeIcon}  from 'react-icons/ti'
 import {animateScroll as scroll} from 'react-scroll'
- import { Projects } from '../data/project'
+import { Projects } from '../data/project'
 
 
 function LandingPage(props) {
@@ -22,8 +22,10 @@ function LandingPage(props) {
   const toggleTheme = useToggleTheme()  
   const [NavbarDeploy, setNavbarDeploy] = useState(false)
   const {mode} = useTheme()
+  const {lang, setLang} = useStore()
   const [location, setLocation] = useLocation();
   const [section, setSection] = useState('.page')
+  const {i18n} = useTranslation()
 
   
 
@@ -33,6 +35,9 @@ function LandingPage(props) {
     setNavbarDeploy(!NavbarDeploy); 
 }
 
+  useEffect(() => {
+    i18n.changeLanguage(lang)
+  }, [lang, i18n])
   
 
   useEffect(() => {
@@ -91,13 +96,13 @@ function LandingPage(props) {
       <div ref={page} onScroll={() => {setSection('undefined')}} className={`w-full h-full overflow-y-auto scrollbar-hide ${location === 'projects' ? "pointer-events-none" : "pointer-events-auto"}   page`} >
           {<div className='toggle-bar    fixed   w-full top-0  z-20'>
             <div className={`flex  flex-col sm:flex-row ${ NavbarDeploy ?  'bg-main-dark-bg' : 'bg-transparent'  } sm:bg-transparent w-full h-16 pointer-events-auto `}>
-              <div ref={logo} className='ml-5 z-20  mt-8'>
+              <div ref={logo} className='sm:ml-5 ml-10 z-20  mt-8'>
                 
                 <Logo  icon={<BurgerIcon className='dark:text-[#fff] text-[#522263]' size={25}/>} clickFunc={() => {
                   // NavbarDeploy ? setNavbarDeploy(false) : setNavbarDeploy(true)
                   toggleNav();
                   
-                }}/> 
+                }}/>  
               </div>
  
             <div ref={Menu} className={`menuItems flex flex-col sm:flex-row gap-8 ${ NavbarDeploy ?  'bg-main-dark-bg' : 'bg-transparent'  } sm:bg-transparent w-full pl-3 pt-5  `}>
@@ -135,7 +140,9 @@ function LandingPage(props) {
                   setSection('.ContactSection')
                   //scroll to section
                 }}/>
-
+                <NavButton title={<img width={35} alt={"language flag"} src={`${lang === 'en' ? '/images/uk.png' : '/images/fr.png'}`}></img>} clickFunc={() => {
+                     lang === "en" ? setLang("fr") : setLang("en")
+                  }}/>
                 <div className="menuItem flex mr-5  items-center py-5 z-50">
 
                   <div className="sun"> 
